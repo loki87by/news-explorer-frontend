@@ -1,0 +1,10 @@
+.About__title{
+  grid-area: "title";
+  margin-top: 131px;
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 115%;
+  color: #1A1B22;
+}

@@ -1,0 +1,5 @@
+.About__avatar{
+  margin: 104px, 80px, 56px, 80px;
+  border-radius: 100%;
+  grid-area: "avatar";
+}

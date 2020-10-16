@@ -1,0 +1,6 @@
+.About{
+  display: grid;
+  grid-template-areas:
+  "avatar", "title"
+  "avatar", "text";
+}

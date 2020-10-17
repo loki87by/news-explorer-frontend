@@ -1,0 +1,9 @@
+.NewsCard__button{
+  position: absolute;
+  top: 24px;
+  right: 64px;
+  border-radius: 8px;
+  background-size: 40px;
+  background-color: #ffffff;
+  background-image: url('../../../../images/save-hover.svg');
+}

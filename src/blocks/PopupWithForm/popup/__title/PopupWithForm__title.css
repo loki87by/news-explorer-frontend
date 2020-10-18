@@ -1,0 +1,23 @@
+.PopupWithForm__title {
+  max-width: 315px;
+  max-height: 56px;
+  padding-top: 34px;
+  padding-left: 36px;
+  margin: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1A1B22;
+}
+/*
+@media (max-width: 557px) {
+  .popup__title {
+    max-width: calc((330 / 430) * 100%);
+    min-height: calc((23 / 430) * 100%);
+    padding-top: calc((34 / 430) * 100%);
+    margin-left: calc((36 / 430) * 100%);
+    font-size: 4.3vw;
+  }
+}*/

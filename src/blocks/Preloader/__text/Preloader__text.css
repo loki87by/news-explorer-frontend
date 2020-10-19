@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+
+.Preloader__text{
+  margin-bottom: 80px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+}

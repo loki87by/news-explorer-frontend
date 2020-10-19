@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
+.Header__title{
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+}

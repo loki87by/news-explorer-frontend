@@ -1,13 +1,16 @@
 .SearchForm__input{
-  margin: auto;
-  margin-top: 64px;
-  margin-bottom: 80px;
-  padding: 21px;
-  padding-left: 24px;
-  padding-right: 40px;
+  max-width: 100%;
+  max-height: 64px;
+  padding: 24px 21px 40px;
   background: #FFFFFF;
   border: 1px solid #D1D2D6;
   box-sizing: border-box;
   backdrop-filter: blur(8px);
   border-radius: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1A1B22;
 }

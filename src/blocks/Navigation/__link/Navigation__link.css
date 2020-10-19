@@ -1,0 +1,7 @@
+.Navigation__link{
+  margin-left: 34px;
+}
+
+.Navigation__link:active{
+  border-bottom: 3px solid;
+}

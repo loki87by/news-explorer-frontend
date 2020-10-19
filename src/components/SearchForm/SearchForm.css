@@ -1,4 +1,5 @@
 .SearchForm{
+  max-width: 608px;
   display: flex;
   flex-direction: column;
 }

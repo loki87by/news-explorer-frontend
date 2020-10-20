@@ -1,8 +1,13 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+
 .SavedNewsHeader__hashtag-information{
   margin-top: 30px;
   margin-bottom: 56px;
   max-width: 712px;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

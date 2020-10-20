@@ -1,0 +1,9 @@
+.Preloader__figure-smile{
+  position: absolute;
+  top: 43px;
+  left: 22px;
+  width: 30px;
+  height: 7px;
+  border-top: 1px solid #D1D2D6;
+  border-radius: 50%;
+}

@@ -1,7 +1,8 @@
 .About__text{
   grid-area: "text";
-  margin: auto;
-  font-family: Roboto;
+  max-width: 600px;
+  margin-top: 24px;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

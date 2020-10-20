@@ -1,0 +1,9 @@
+.Preloader__figure-tail{
+  position: absolute;
+  top: 63px;
+  left: 63px;
+  width: 28px;
+  height: 1px;
+  border: 1px solid #D1D2D6;
+  transform: rotate(45deg);
+}

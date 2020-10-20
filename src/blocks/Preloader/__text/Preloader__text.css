@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Roboto';
-  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+  src: url('../../../vendor/fonts/roboto-regular.woff') format('woff');
 }
 
 .Preloader__text{

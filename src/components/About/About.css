@@ -3,4 +3,6 @@
   grid-template-areas:
   "avatar", "title"
   "avatar", "text";
+  margin: 0px 80px;
+  background-color: #ffffff;
 }

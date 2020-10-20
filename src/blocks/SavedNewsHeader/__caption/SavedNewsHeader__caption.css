@@ -1,6 +1,10 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+
 .SavedNewsHeader__caption{
-  margin-top: 40px;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

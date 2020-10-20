@@ -1,17 +1,23 @@
 // **импорты
 import React from 'react';
 import './SavedNewsHeader.css';
+// принимает пропсы: newsQuantity(количество сохраненных новостей),
+// hashtags(массив хэштэгов сохраненных новостей) и name (пользователя)
 
 // **Функционал
 function SavedNewsHeader(props) {
+  // *функция сортировки и отброса повторяющихся хэштэгов
   const arrayNormalizer = (props) => {
+    // сосчитаем повторяющиеся хэштэги
     const repeatCounter = props.hashtags.reduce((p, i) => {
       if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
       return p; }, {});
+    // отсортируем массив по количеству повторов
     const keysSorted = Object.keys(repeatCounter).sort((a,b) => {
       return repeatCounter[b] - repeatCounter[a]});
     return keysSorted
   }
+  // *функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
       return 'По ключевому слову: '
@@ -19,6 +25,7 @@ function SavedNewsHeader(props) {
       return 'По ключевым словам: '
     }
   }
+  // *функция возврата ТОП-2 хэштэгов
   function hashtagsCreator() {
     if (arrayNormalizer.length === 1) {
       return `${arrayNormalizer[0]}`
@@ -28,6 +35,7 @@ function SavedNewsHeader(props) {
       return `${arrayNormalizer[0]}, ${arrayNormalizer[1]} `
     }
   }
+  // *функция возврата хэштегов превышающих ТОП-2
   function hashtagsExcesser() {
     const excess = arrayNormalizer.length - 2;
     if (arrayNormalizer.length === 3) {
@@ -38,6 +46,7 @@ function SavedNewsHeader(props) {
       return `${excess}-и другим`
     }
   }
+  // *результатирующая функция возращающая весь текстовый блок
   function textResulter() {
     if (props.hashtags.length < 3) {
       return (
@@ -58,4 +67,5 @@ function SavedNewsHeader(props) {
   )
 };
 
+// *экспорт
 export default SavedNewsHeader;

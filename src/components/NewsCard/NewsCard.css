@@ -1,5 +1,9 @@
 .NewsCard{
-  position: relative;
   display: flex;
   flex-direction: column;
+  max-width: 400px;
+  max-height: 576px;
+  border-radius: 5px 5px 0px 0px;
+  background-color: #ffffff;
+  cursor: pointer;
 }

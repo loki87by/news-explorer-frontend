@@ -1,4 +1,5 @@
 .NewsCard__image{
-  max-width: 224px;
-  max-height: 150px;
+  max-width: 400px;
+  max-height: 272px;
+  object-fit: cover;
 }

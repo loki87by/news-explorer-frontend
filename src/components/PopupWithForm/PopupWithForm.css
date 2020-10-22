@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../../vendor/fonts/inter-regular.woff') format('woff');
+}
+
 .PopupWithForm{
   position: fixed;
   display: -webkit-box;

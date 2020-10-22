@@ -1,11 +1,11 @@
 // **импорты
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Navigation.css';
 import '../../blocks/Navigation/_black/Navigation_black.css'
 import '../../blocks/Navigation/__link/Navigation__link.css'
 import '../../blocks/Navigation/__button/Navigation__button.css'
-// принимает пропсы loggedIn, isSavedNewsPage и name
+// принимает пропсы loggedIn, setLoginPopupOpen, isSavedNewsPage и name
 
 // **Функционал
 function Navigation(props) {
@@ -16,7 +16,7 @@ function Navigation(props) {
       <NavLink to="/saved-pages" activeClassName="Navigation__link_active" className="Navigation__link">Сохраненные страницы</NavLink> : ''}
       {props.loggedIn ?
       <button className="Navigation__button" type="reset">{props.name} [-&gt;</button> :
-      <Link to="/signin" className="Navigation__button">Авторизоваться</Link>}
+      <button className="Navigation__button" onClick={ props.setLoginPopupOpen(true) }>Авторизоваться</button>}
     </section>
   )
 };

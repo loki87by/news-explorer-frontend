@@ -1,5 +1,8 @@
 .PopupWithForm__container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 34px 36px 28px;
   margin: auto;
   max-width: 430px;
   max-height: 457px;

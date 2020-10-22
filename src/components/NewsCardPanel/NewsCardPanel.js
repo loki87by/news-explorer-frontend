@@ -6,11 +6,11 @@ import '../../blocks/NewsCardPanel/__tooltip/NewsCardPanel__tooltip.css';
 import '../../blocks/NewsCardPanel/__button/NewsCardPanel__button.css';
 import '../../blocks/NewsCardPanel/__button/_delete/NewsCardPanel__button_delete.css';
 import '../../blocks/NewsCardPanel/__button/_save/NewsCardPanel__button_save.css';
-//передать пропсы isLoggedIn, isSavedNewsPage и article
+//передать пропсы loggedIn, isSavedNewsPage и article
 
 // **Функционал
 function NewsCardPanel(props) {
-  return props.isLoggedIn ?
+  return props.loggedIn ?
       (<>{props.isSavedNewsPage ?
         <div className="NewsCardPanel">
           <h2 className="NewsCardPanel__keyword">{props.article.keyword}</h2>

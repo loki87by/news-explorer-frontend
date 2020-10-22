@@ -1,7 +1,7 @@
 .PopupWithForm__label{
-  margin: 0px;
+  margin: 0;
   margin-bottom: 9px;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

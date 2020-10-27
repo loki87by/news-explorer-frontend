@@ -1,15 +1,15 @@
 .NewsCardPanel__tooltip{
-  display: none;
+  visibility: hidden;
   justify-self: right;
+  margin: 0;
   margin-right: 5px;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 10px;
+  line-height: 12px;
   padding: 16px 0;
-  border: 1px solid #ffffff;
+  border: none;
   border-radius: 10px;
   background-color: #ffffff;
-}
-
-.NewsCardPanel__button:hover .NewsCardPanel__tooltip{
-  display: flex;
+  width: 182px;
+  height: 8px;
+  text-align: center;
 }

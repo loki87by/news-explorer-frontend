@@ -1,5 +1,5 @@
 .About__avatar{
   border-radius: 100%;
-  grid-area: "avatar";
-  grid-gap: 56px;
+  grid-area: avatar;
+  width: 464px;
 }

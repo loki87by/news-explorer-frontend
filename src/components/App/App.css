@@ -2,10 +2,6 @@
   display: flex;
   flex-direction: column;
   max-width: 1440px;
+  margin: auto;
   background-color: #ffffff;
-  background-image: url('../../images/82f1206f112335e2ee4d938ba64f02d6-min.jpg');
-  background-size: auto;
-  background-position: top;
-  padding-left: 104px;
-  padding-right: 104px;
 }

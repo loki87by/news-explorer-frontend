@@ -1,18 +1,15 @@
 // **импорты
 import React from 'react';
-import SearchForm from '../SearchForm';
-import NewsCardList from '../NewsCardList';
-import Preloader from './Preloader';
-import About from '../About';
+import NewsCardList from '../NewsCardList/NewsCardList';
+import Preloader from '../Preloader/Preloader';
+import About from '../About/About';
 import './Main.css';
-// принимает пропсы isResponseSending и isDataLoaded
 
 // **Функционал
 function Main(props) {
   return (
     <main className="Main">
-      <SearchForm />
-      {props.isResponseSending ? (props.isDataLoaded ? <NewsCardList /> : <Preloader />) : ''}
+      {props.isResponseSending ? (props.isDataLoaded ? <NewsCardList loggedIn={props.loggedIn} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} /> : <Preloader searchError={props.searchError} />) : ''}
       <About />
     </main>
   )

@@ -18,12 +18,12 @@ function NewsCardPanel(props) {
           <button className="NewsCardPanel__button NewsCardPanel__button_delete"></button>
         </div> :
       <div className="NewsCardPanel">
-        <button className="NewsCardPanel__button"></button>
+        <button className="NewsCardPanel__button NewsCardPanel__button_save"></button>
       </div>}
     </>) :
     (<div className="NewsCardPanel">
-      <h2 className="NewsCardPanel__tooltip">Войдите, чтобы сохранять статьи</h2>
       <button className="NewsCardPanel__button NewsCardPanel__button_save"></button>
+      <h2 className="NewsCardPanel__tooltip">Войдите, чтобы сохранять статьи</h2>
     </div>)
 };
 

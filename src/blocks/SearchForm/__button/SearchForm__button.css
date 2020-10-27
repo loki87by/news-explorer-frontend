@@ -2,10 +2,18 @@
   position: absolute;
   max-width: 168px;
   max-height: 64px;
-  padding: 50px 15px 49px 17px;
-  top: 0px;
-  right: 169px;
+  padding: 18px 53px 22px 54px;
+  top: 0;
+  right: 0;
   background: #2F71E5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border: none;
   border-radius: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  color: #ffffff;
 }

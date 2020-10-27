@@ -1,6 +1,5 @@
 .NewsCard__source{
-  margin-top: 10px;
-  margin-bottom: 24px;
+  margin: auto auto 24px 24px;
   font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: bold;

@@ -1,15 +1,16 @@
 .PopupWithForm__submit{
-  margin-top: 8px;
+  margin-top: 13px;
   background: #2F71E5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   border-radius: 100px;
+  border: none;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
-  padding: auto;
+  padding: 21px 114px 19px;
   cursor: pointer;
 }
 /*

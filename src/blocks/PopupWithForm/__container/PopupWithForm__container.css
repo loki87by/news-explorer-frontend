@@ -2,10 +2,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 36px 34px 36px 28px;
+  padding: 34px 36px 28px;
   margin: auto;
-  max-width: 430px;
-  max-height: 457px;
+  width: 358px;
+  max-height: 395px;
   z-index: 2;
   background-color: #FFFFFF;
   -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);

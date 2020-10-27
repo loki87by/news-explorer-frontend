@@ -1,8 +1,20 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
 .About{
+  margin-top: 80px;
   display: grid;
+  grid-template-columns: 464px 56px 600px;
+  grid-template-rows: 100px 1fr;
   grid-template-areas:
-  "avatar", "title"
-  "avatar", "text";
-  margin: 0px 80px;
+      "avatar . title"
+      "avatar . text";
+  padding: 0 216px 80px 104px;
   background-color: #ffffff;
 }

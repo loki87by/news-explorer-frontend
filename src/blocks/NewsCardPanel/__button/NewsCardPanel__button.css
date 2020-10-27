@@ -1,5 +1,15 @@
 .NewsCardPanel__button{
-  border-radius: 8px;
-  background-size: 40px;
   background-color: #ffffff;
+  background-size: 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.NewsCardPanel__button:hover + .NewsCardPanel__tooltip{
+  visibility: visible;
 }

@@ -1,7 +1,17 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
 .Footer{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   max-height: 80px;
+  padding: 0 104px;
 }

@@ -1,6 +1,8 @@
 .PopupWithForm__label{
+  position: relative;
   margin: 0;
-  margin-bottom: 9px;
+  display: flex;
+  flex-direction: column;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: normal;

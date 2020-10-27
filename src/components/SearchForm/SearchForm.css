@@ -1,5 +1,17 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
 .SearchForm{
   max-width: 608px;
+  margin: auto;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
 }

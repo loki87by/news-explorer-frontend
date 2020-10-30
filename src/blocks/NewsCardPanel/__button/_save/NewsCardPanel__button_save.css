@@ -1,7 +1,0 @@
-.NewsCardPanel__button_save{
-  background-image: url('../../../../images/save-norm-min.png');
-}
-
-.NewsCardPanel__button_save:hover{
-  background-image: url('../../../../images/save-hover-min.png');
-}

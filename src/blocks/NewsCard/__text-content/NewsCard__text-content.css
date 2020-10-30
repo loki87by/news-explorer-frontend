@@ -1,9 +1,0 @@
-@font-face {
-  font-family: 'Roboto Slab';
-  src: url('../../../vendor/fonts/robotoslab-regular.woff') format('woff');
-}
-
-.NewsCard__text-content{
-  margin-left: 24px;
-  font-family: 'Roboto Slab', sans-serif;
-}

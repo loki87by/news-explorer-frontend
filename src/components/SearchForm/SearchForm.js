@@ -2,29 +2,31 @@
 import React from 'react';
 import articles from '../../utils/articles'
 import './SearchForm.css';
-import '../../blocks/SearchForm/__title/SearchForm__title.css';
-import '../../blocks/SearchForm/__text/SearchForm__text.css';
-import '../../blocks/SearchForm/__form/SearchForm__form.css';
-import '../../blocks/SearchForm/__input/SearchForm__input.css';
-import '../../blocks/SearchForm/__button/SearchForm__button.css';
+import './styles/__title/SearchForm__title.css';
+import './styles/__text/SearchForm__text.css';
+import './styles/__form/SearchForm__form.css';
+import './styles/__input/SearchForm__input.css';
+import './styles/__button/SearchForm__button.css';
 
 // **Функционал
 function SearchForm(props) {
-  const[keyword, setKeyword] = React.useState('');
+  const[request, setRequest] = React.useState('');
 
   function searchNews() {
     if (props.isDataLoaded) {
       props.setResponseSending(false)
       props.setDataLoaded(false)
       props.setArticles([])
+      //window.scrollTo({x: 0, y: 500, smooth: true})
     }
     props.setResponseSending(true)
-    const search = articles.map((article) => {
-      let keyNews = {};
-      Object.values(article).forEach((k) => {
-        if (k.includes(keyword)){
-          return keyNews = article;
+    const search = articles.filter((article, index) => {
+      let keyNews = Object.values(article).find((k) => {
+        if (k.includes(request)){
+          article.id = index;
+          article.keyword.splice(0, 0, request);
         };
+        return k.includes(request)
       })
       return keyNews;
     })
@@ -45,7 +47,7 @@ function SearchForm(props) {
       <h1 className="SearchForm__title">Что творится в мире?</h1>
       <p className="SearchForm__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
       <form className="SearchForm__form">
-        <input className="SearchForm__input" type='text' placeholder='Введите тему новости' onChange={e => setKeyword(e.target.value)} value={keyword} id="search" name="search" />
+        <input className="SearchForm__input" type='text' placeholder='Введите тему новости' onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
         <button className="SearchForm__button" type='button' onClick={ searchNews }>Искать</button>
       </form>
     </section>

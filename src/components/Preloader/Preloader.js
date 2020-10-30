@@ -1,17 +1,17 @@
 // **импорты
 import React from 'react';
 import './Preloader.css';
-import '../../blocks/Preloader/__figure/Preloader__figure.css';
-import '../../blocks/Preloader/__figure-bigcircle/Preloader__figure-bigcircle.css';
-import '../../blocks/Preloader/__figure-smallcircle/Preloader__figure-smallcircle.css';
-import '../../blocks/Preloader/__figure-smallcircle/_left/Preloader__figure-smallcircle_left.css';
-import '../../blocks/Preloader/__figure-smallcircle/_right/Preloader__figure-smallcircle_right.css';
-import '../../blocks/Preloader/__figure-smallcircle/Preloader__figure-smallcircle.css';
-import '../../blocks/Preloader/__figure-smile/Preloader__figure-smile.css';
-import '../../blocks/Preloader/__figure-tail/Preloader__figure-tail.css';
-import '../../blocks/Preloader/__rotator/Preloader__rotator.css';
-import '../../blocks/Preloader/__text/Preloader__text.css';
-import '../../blocks/Preloader/__errorTitle/Preloader__errorTitle.css';
+import './styles/__figure/Preloader__figure.css';
+import './styles/__figure-bigcircle/Preloader__figure-bigcircle.css';
+import './styles/__figure-smallcircle/Preloader__figure-smallcircle.css';
+import './styles/__figure-smallcircle/_left/Preloader__figure-smallcircle_left.css';
+import './styles/__figure-smallcircle/_right/Preloader__figure-smallcircle_right.css';
+import './styles/__figure-smallcircle/Preloader__figure-smallcircle.css';
+import './styles/__figure-smile/Preloader__figure-smile.css';
+import './styles/__figure-tail/Preloader__figure-tail.css';
+import './styles/__rotator/Preloader__rotator.css';
+import './styles/__text/Preloader__text.css';
+import './styles/__errorTitle/Preloader__errorTitle.css';
 
 // **Функционал
 function Preloader(props) {

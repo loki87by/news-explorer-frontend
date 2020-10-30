@@ -1,22 +1,27 @@
 // **импорты
 import React from 'react';
 import './SavedNewsHeader.css';
+import './styles/__title/SavedNewsHeader__title.css';
+import './styles/__caption/SavedNewsHeader__caption.css';
+import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css';
 // принимает пропсы: newsQuantity(количество сохраненных новостей),
 // hashtags(массив хэштэгов сохраненных новостей) и name (пользователя)
 
 // **Функционал
 function SavedNewsHeader(props) {
   // *функция сортировки и отброса повторяющихся хэштэгов
-  const arrayNormalizer = (props) => {
+  //const arrayNormalizer = () => {
     // сосчитаем повторяющиеся хэштэги
     const repeatCounter = props.hashtags.reduce((p, i) => {
       if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
       return p; }, {});
     // отсортируем массив по количеству повторов
-    const keysSorted = Object.keys(repeatCounter).sort((a,b) => {
+    const arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
+      console.log(arrayNormalizer)
       return repeatCounter[b] - repeatCounter[a]});
+      /*
     return keysSorted
-  }
+  }*/
   // *функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
@@ -46,23 +51,27 @@ function SavedNewsHeader(props) {
       return `${excess}-и другим`
     }
   }
-  // *результатирующая функция возращающая весь текстовый блок
-  function textResulter() {
-    if (props.hashtags.length < 3) {
-      return (
-        <h2 className="SavedNewsHeader__hashtag-information">{textCreator}<b>{hashtagsCreator}</b></h2>
-      )
+
+  let newsQuantityText;
+  function newsQuantityTextCreator() {
+    if (props.newsQuantity === 1) {
+      newsQuantityText = 'сохранённая статья';
+    } else if ((props.newsQuantity > 1) && (props.newsQuantity < 5)) {
+      newsQuantityText = 'сохранённых статьи';
     } else {
-      return (
-        <h2 className="SavedNewsHeader__hashtag-information">{textCreator}<b>{hashtagsCreator}</b>и <b>{hashtagsExcesser}</b></h2>
-      )
+      newsQuantityText = 'сохранённых статей';
     }
-  }
+  };
+  newsQuantityTextCreator()
+
   return (
     <section className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
-      <h1 className="SavedNewsHeader__title">{`${props.name} у вас ${props.newsQuantity} сохранённых статей`}</h1>
-      {props.hashtags.length > 0 ? {textResulter} : ''}
+      <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${props.newsQuantity} ${newsQuantityText}`}</h1>
+      {props.hashtags.length > 0 ?
+        (props.hashtags.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b></h2>
+        : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
+      : ''}
     </section>
   )
 };

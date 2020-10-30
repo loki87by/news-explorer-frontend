@@ -9,7 +9,7 @@ import './Main.css';
 function Main(props) {
   return (
     <main className="Main">
-      {props.isResponseSending ? (props.isDataLoaded ? <NewsCardList loggedIn={props.loggedIn} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} /> : <Preloader searchError={props.searchError} />) : ''}
+      {props.isResponseSending ? (props.isDataLoaded ? <NewsCardList loggedIn={props.loggedIn} savedNews={props.savedNews} updateSavedNews={props.updateSavedNews} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} /> : <Preloader searchError={props.searchError} />) : ''}
       <About />
     </main>
   )

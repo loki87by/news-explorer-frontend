@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 // import api from '../../utils/Api';
 import closeButton from '../../images/close.png';
 import './PopupWithForm.css';
-import '../../blocks/PopupWithForm/_opened/PopupWithForm_opened.css';
-import '../../blocks/PopupWithForm/__container/PopupWithForm__container.css';
-import '../../blocks/PopupWithForm/__close/PopupWithForm__close.css';
-import '../../blocks/PopupWithForm/__text/PopupWithForm__text.css';
-import '../../blocks/PopupWithForm/__label/PopupWithForm__label.css';
-import '../../blocks/PopupWithForm/__input/PopupWithForm__input.css';
-import '../../blocks/PopupWithForm/__error/PopupWithForm__error.css';
-import '../../blocks/PopupWithForm/__error/_registrationError/PopupWithForm__error_registrationError.css';
-import '../../blocks/PopupWithForm/__submit/PopupWithForm__submit.css';
-import '../../blocks/PopupWithForm/__subsidiary-text/PopupWithForm__subsidiary-text.css';
-import '../../blocks/PopupWithForm/__link/PopupWithForm__link.css';
+import './styles/_opened/PopupWithForm_opened.css';
+import './styles/__container/PopupWithForm__container.css';
+import './styles/__close/PopupWithForm__close.css';
+import './styles/__text/PopupWithForm__text.css';
+import './styles/__label/PopupWithForm__label.css';
+import './styles/__input/PopupWithForm__input.css';
+import './styles/__error/PopupWithForm__error.css';
+import './styles/__error/_registrationError/PopupWithForm__error_registrationError.css';
+import './styles/__submit/PopupWithForm__submit.css';
+import './styles/__subsidiary-text/PopupWithForm__subsidiary-text.css';
+import './styles/__link/PopupWithForm__link.css';
 // передать пропсы: currentUser, signOut,
 // setUserToken, setCurrentUser
 // сделать Auth, Api, informationPopup, authDataValidation

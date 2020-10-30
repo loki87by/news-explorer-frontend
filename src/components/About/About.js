@@ -2,9 +2,9 @@
 import React from 'react';
 import authorAvatar from '../../images/authorAvatar-min.jpg'
 import './About.css';
-import '../../blocks/About/__avatar/About__avatar.css';
-import '../../blocks/About/__title/About__title.css';
-import '../../blocks/About/__text/About__text.css';
+import './styles/__avatar/About__avatar.css';
+import './styles/__title/About__title.css';
+import './styles/__text/About__text.css';
 
 // **Функционал
 function About() {

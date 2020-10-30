@@ -2,10 +2,9 @@
 import React, { useState } from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import './NewsCardList.css';
-import '../../blocks/NewsCardList/__title/NewsCardList__title.css';
-import '../../blocks/NewsCardList/__container/NewsCardList__container.css';
-import '../../blocks/NewsCardList/__button/NewsCardList__button.css';
-//принимает пропсы articles и isSavedNewsPage
+import './styles/__title/NewsCardList__title.css';
+import './styles/__container/NewsCardList__container.css';
+import './styles/__button/NewsCardList__button.css';
 
 // **Функционал
 function NewsCardList(props) {
@@ -30,13 +29,21 @@ function NewsCardList(props) {
   }
   return (
     <div className="NewsCardList">
-      {props.isSavedNewsPage ? '' : <h1 className="NewsCardList__title">Результаты поиска</h1>}
+      {props.isSavedNewsPage ?
       <section className='NewsCardList__container'>
-        {newsCards.map((article, i) => (
-          <NewsCard key={i} article={article} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
-        ))}
-      </section>
-      {hiddenNews > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
+      {props.savedNews.map((article, i) => (
+        <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
+      ))}
+      </section>:
+      <>
+        <h1 className="NewsCardList__title">Результаты поиска</h1>
+        <section className='NewsCardList__container'>
+          {newsCards.map((article, i) => (
+            <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
+          ))}
+        </section>
+        {hiddenNews > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
+      </>}
     </div>
   )
 };

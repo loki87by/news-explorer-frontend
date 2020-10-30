@@ -2,8 +2,8 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
-import '../../blocks/Header/__title/Header__title.css'
-import '../../blocks/Header/_black/Header_black.css'
+import './styles/_black/Header_black.css'
+import './styles/__title/Header__title.css'
 // передать пропс открытой страницы сохраненок
 
 // **Функционал

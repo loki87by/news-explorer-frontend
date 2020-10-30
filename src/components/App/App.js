@@ -8,10 +8,10 @@ import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
-// import {ArticlesContext} from '../../contexts/CurrentUserContext';
-//import background from '../../images/82f1206f112335e2ee4d938ba64f02d6-min.jpg'
+import {ArticlesContext} from '../../contexts/ArticlesContext';
 import './App.css';
-import './App__background.css'
+import './styles/App__background.css'
+import './styles/App__background-image.css'
 /* isSavedNewsPage - header, navi, newsCardList, newsCardPanel
 isDataLoaded, isResponseSending - main
 loggedIn - navi, newsCardPanel
@@ -30,7 +30,8 @@ function App() {
   const [isResponseSending, setResponseSending] = React.useState(false);
   const [isDataLoaded, setDataLoaded] = React.useState(false);
   const [searchError, setSearchError] = React.useState('');
-  const [isSavedNewsPage, setSavedNewsPage] = React.useState(false)
+  const [isSavedNewsPage, setSavedNewsPage] = React.useState(false);
+  const [savedNews, updateSavedNews] = React.useState([]);
 
   function handleLoginClick() {
     setLoginPopupOpen(true);
@@ -43,21 +44,25 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+    <ArticlesContext.Provider value={savedNews}>
       <div className="App">
         <PopupWithForm isOpen={isLoginPopupOpen} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
-        <Route path='/'>
-          <div className='App__background'>
+        <Route exact path='/'>
+          <div className='App__background App__background-image'>
             <Header setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} loggedIn={loggedIn} isSavedNewsPage={isSavedNewsPage} handleLoginClick={handleLoginClick}/>
             <SearchForm isDataLoaded={isDataLoaded} setArticles={setArticles} setDataLoaded={setDataLoaded} setSearchError={setSearchError} setResponseSending={setResponseSending} />
           </div>
-          <Main loggedIn={loggedIn} articles={articles} isSavedNewsPage={isSavedNewsPage} isDataLoaded={isDataLoaded} searchError={searchError} isResponseSending={isResponseSending} isInformationPopup={isInformationPopupOpen} currentUser={currentUser} />
+          <Main updateSavedNews={updateSavedNews} savedNews={savedNews} loggedIn={loggedIn} articles={articles} isSavedNewsPage={isSavedNewsPage} isDataLoaded={isDataLoaded} searchError={searchError} isResponseSending={isResponseSending} isInformationPopup={isInformationPopupOpen} currentUser={currentUser} />
         </Route>
         <Route path='/saved-pages'>
-          <Header isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
-          <SavedNews />
+          <div className='App__background'>
+            <Header isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
+            </div>
+            <SavedNews loggedIn={loggedIn} articles={articles} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
         </Route>
         <Footer />
       </div>
+    </ArticlesContext.Provider>
     </CurrentUserContext.Provider>
   )
 };

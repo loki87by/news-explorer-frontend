@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import githubLogo from '../../images/github.svg';
 import facebookLogo from '../../images/facebook.svg';
 import './Footer.css';
-import '../../blocks/Footer/__copyright/Footer__copyright.css';
-import '../../blocks/Footer/__text-link/Footer__text-link.css';
-import '../../blocks/Footer/__text-link/Footer__text-link.css';
-import '../../blocks/Footer/__social-link/Footer__social-link.css';
+import './styles/__copyright/Footer__copyright.css';
+import './styles/__text-link/Footer__text-link.css';
+import './styles/__text-link/Footer__text-link.css';
+import './styles/__social-link/Footer__social-link.css';
 
 // **Функционал
 function Footer() {

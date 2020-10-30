@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
+.NewsCardList__title{
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1A1B22;
+  margin: 18px 0 64px;
+}

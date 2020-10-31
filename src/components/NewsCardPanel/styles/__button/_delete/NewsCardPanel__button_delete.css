@@ -1,5 +1,6 @@
 .NewsCardPanel__button_delete{
   background-image: url('../../../../../images/trash-unhover.svg');
+  order: 1;
 }
 
 .NewsCardPanel__button_delete:hover{

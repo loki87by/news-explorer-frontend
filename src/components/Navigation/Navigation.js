@@ -19,7 +19,7 @@ function Navigation(props) {
       {props.loggedIn ?
       <NavLink to="/saved-pages" activeClassName="Navigation__link_active" className={`Navigation__link ${props.isSavedNewsPage && "Navigation_black"}`}>Сохраненные страницы</NavLink> : ''}
       {props.loggedIn ?
-      <button className={`Navigation__button ${props.isSavedNewsPage && "Navigation_black"}`} onClick={offSavedPages} type="reset">{props.currentUser.name} [-&gt;</button> :
+      <button className={`Navigation__button ${props.isSavedNewsPage && "Navigation_black"}`} onClick={props.logOut} type="reset">{props.currentUser.name} [-&gt;</button> :
       <button className={`Navigation__button ${props.isSavedNewsPage && "Navigation_black"}`} type="button" onClick={props.handleLoginClick}>Авторизоваться</button>}
     </section>
   )

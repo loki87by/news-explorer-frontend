@@ -1,5 +1,6 @@
 .NewsCardPanel__button_save{
   background-image: url('../../../../../images/save-norm-min.png');
+  background-size: 14px;
 }
 
 .NewsCardPanel__button_save:hover{

@@ -11,7 +11,7 @@ function Header(props) {
   return (
     <div className={`Header ${props.isSavedNewsPage && "Header_black"}`}>
       <h1 className="Header__title">NewsExplorer</h1>
-      <Navigation handleLoginClick={props.handleLoginClick} setSavedNewsPage={props.setSavedNewsPage} isSavedNewsPage={props.isSavedNewsPage} loggedIn={props.loggedIn} currentUser={props.currentUser}/>
+      <Navigation logOut={props.logOut} handleLoginClick={props.handleLoginClick} setSavedNewsPage={props.setSavedNewsPage} isSavedNewsPage={props.isSavedNewsPage} loggedIn={props.loggedIn} currentUser={props.currentUser}/>
     </div>
   )
 };

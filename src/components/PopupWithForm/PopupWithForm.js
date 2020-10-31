@@ -1,8 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import { Link, useHistory } from 'react-router-dom';
-//import * as Auth from '../../utils/Auth';
-// import api from '../../utils/Api';
 import closeButton from '../../images/close.png';
 import './PopupWithForm.css';
 import './styles/_opened/PopupWithForm_opened.css';
@@ -16,18 +12,11 @@ import './styles/__error/_registrationError/PopupWithForm__error_registrationErr
 import './styles/__submit/PopupWithForm__submit.css';
 import './styles/__subsidiary-text/PopupWithForm__subsidiary-text.css';
 import './styles/__link/PopupWithForm__link.css';
-// передать пропсы: currentUser, signOut,
-// setUserToken, setCurrentUser
-// сделать Auth, Api, informationPopup, authDataValidation
 
 function PopupWithForm(props) {
 
-//  const history = useHistory();
-  const [url, setUrl] = React.useState('');
-//  const [registrationError, setRegistrationError] = React.useState('');
   const [popupName, setPopupName] = React.useState('login');
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
-  //const [validation, setValidation] = React.useState({;
   const [isValidEmail, setValidEmail] = React.useState(false);
   const [invalidEmailMessage, setInvalidEmailMessage] = React.useState('');
   const [isValidPassword, setValidPassword] = React.useState(false);
@@ -72,58 +61,24 @@ function handlePasswordChange(e) {
   }
 }
 
-  function loginSubmit(e) {
-    e.preventDefault();
-    /* const { email, password } = user;
-     Auth.login({ email, password })
-    .then((token) => {
-      if (token){
-        localStorage.setItem('token', token);
-        props.setUserToken(token);
-        sourceLoading(token);
-      }
-    }
-    )
-    .catch((err) => console.log(err));
-  };
-
-  function sourceLoading(token) {
-    Auth.getContent(token)
-    .then((user) => {
-      props.setCurrentUser(user);
-      props.setLoggedIn(true);
-      history.push('/');
-    })
-    .catch(() => props.signOut())
-    .finally(() => {
-      api.getArticles(token)
-      .then((articles) => {
-        props.setArticles(articles);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      }) */
+  function loginSubmit() {
+    closeAllPopups();
   }
 
   function registrationSubmit() {
-  /*  const { email, password } = user;
-    Auth.register({ email, password })
-    .then((res) => {
-      if(res) {
-        props.setInformationPopup(true);
-      }
-    })
-    .catch((err) => setRegistrationError(err)); */
+    closeAllPopups();
+    if (isValidEmail && isValidPassword) {
+      props.registrationAcces()
+    }
   };
 
   function changeLink() {
-    if (url === '/signup') {
-      setUrl('/signin');
-      setPopupName('registration');
+    if (isRegisterPopupOpen) {
+      closeAllPopups()
+      props.handleLoginClick()
     } else {
-      setUrl('/signup');
-      setPopupName('login');
+      setRegisterPopupOpen(true)
+      setPopupName('registration');
     }
   };
 
@@ -168,9 +123,9 @@ function handlePasswordChange(e) {
           <span className="PopupWithForm__error PopupWithForm__error_registrationError">{ props.registrationError || ' ' }</span>
         </>
         }
-        <button type="submit" onSubmit={popupName === 'login' ? loginSubmit : registrationSubmit} className="PopupWithForm__submit">{popupName === 'login' ? 'Войти' : 'Зарегистрироваться'}</button>
+        <button type="button" disabled={(isValidEmail && isValidPassword) ? false : "disabled"} style={{ backgroundColor: `${(isValidEmail && isValidPassword) ? '' : "black"}` }} onClick={popupName === 'login' ? loginSubmit : registrationSubmit} className="PopupWithForm__submit">{popupName === 'login' ? 'Войти' : 'Зарегистрироваться'}</button>
         <p className="PopupWithForm__subsidiary-text">или
-          <Link to={url} onClick={changeLink} className="PopupWithForm__subsidiary-text PopupWithForm__link">{popupName === 'login' ? ' Зарегистрироваться' : ' Войти'}</Link>
+          <button onClick={changeLink} type="button" className="PopupWithForm__subsidiary-text PopupWithForm__link">{popupName === 'login' ? ' Зарегистрироваться' : ' Войти'}</button>
         </p>
       </form>
     </section>

@@ -17,9 +17,9 @@ function SearchForm(props) {
       props.setResponseSending(false)
       props.setDataLoaded(false)
       props.setArticles([])
-      //window.scrollTo({x: 0, y: 500, smooth: true})
     }
     props.setResponseSending(true)
+    props.scroller()
     const search = articles.filter((article, index) => {
       let keyNews = Object.values(article).find((k) => {
         if (k.includes(request)){

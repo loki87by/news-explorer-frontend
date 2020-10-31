@@ -12,7 +12,7 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 // **Функционал
 function NewsCardPanel(props) {
 const [marker, setMarker] = React.useState(false)
-  function swicher() {
+  function swichMarker() {
     let index = props.article.id;
     if (props.article.marked) {
       props.article.marked = false;
@@ -22,9 +22,17 @@ const [marker, setMarker] = React.useState(false)
       setMarker(true);
     }
     function marker() {
-      props.articles.splice((index - 1), 1, props.article)
+      props.articles.splice(index, 1, props.article)
     }
     marker()
+    let savedNews = props.articles.filter((item) => {return item.marked === true})
+    props.updateSavedNews(savedNews)
+  }
+  function unsaveArticle() {
+    let index = props.article.id;
+    props.article.marked = false;
+    props.articles.splice(index, 0)
+    setMarker(false);
     let savedNews = props.articles.filter((item) => {return item.marked === true})
     props.updateSavedNews(savedNews)
   }
@@ -33,11 +41,11 @@ const [marker, setMarker] = React.useState(false)
       (<>{props.isSavedNewsPage ?
         (<div className={`NewsCardPanel ${props.isSavedNewsPage && "NewsCardPanel_savedPages"}`}>
           <h2 className="NewsCardPanel__keyword">{props.article.keyword}</h2>
+          <button type="button" onClick={unsaveArticle} className="NewsCardPanel__button NewsCardPanel__button_delete"></button>
           <h2 className="NewsCardPanel__tooltip">Убрать из сохранённых</h2>
-          <button className="NewsCardPanel__button NewsCardPanel__button_delete"></button>
         </div>) :
       (<div className="NewsCardPanel">
-        <button onClick={swicher} className={`NewsCardPanel__button NewsCardPanel__button_save ${marker && "NewsCardPanel__button_marked"}`}></button>
+        <button type="button" onClick={swichMarker} className={`NewsCardPanel__button NewsCardPanel__button_save ${marker && "NewsCardPanel__button_marked"}`}></button>
       </div>)}
     </>) :
     (<div className="NewsCardPanel">

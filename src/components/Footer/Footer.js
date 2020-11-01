@@ -5,6 +5,7 @@ import githubLogo from '../../images/github.svg';
 import facebookLogo from '../../images/facebook.svg';
 import './Footer.css';
 import './styles/__copyright/Footer__copyright.css';
+import './styles/__links/Footer__links.css';
 import './styles/__text-link/Footer__text-link.css';
 import './styles/__text-link/Footer__text-link.css';
 import './styles/__social-link/Footer__social-link.css';
@@ -14,7 +15,7 @@ function Footer() {
   return (
     <nav className="Footer">
       <p className="Footer__copyright">© 2020 Алексей Акулич, Powered by News API</p>
-      <ul style={{ display: 'flex', margin: 0, padding: '27px 2px 28px' }}>
+      <ul className="Footer__links">
         <li style={{ listStyle: 'none' }}>
           <Link to='/' className="Footer__text-link">Главная</Link>
         </li>

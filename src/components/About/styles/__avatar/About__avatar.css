@@ -3,3 +3,10 @@
   grid-area: avatar;
   width: 464px;
 }
+
+@media (max-width: 768px) {
+  .About__avatar{
+    margin-top: 32px;
+    width: 232px;
+  }
+}

@@ -12,3 +12,11 @@
   color: #1A1B22;
   margin: 18px 0 64px;
 }
+
+@media (max-width: 768px) {
+  .NewsCardList__title{
+    font-size: 30px;
+    line-height: 34px;
+    margin: 0 auto 32px 0;
+  }
+}

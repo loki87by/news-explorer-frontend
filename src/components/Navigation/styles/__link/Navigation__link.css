@@ -7,3 +7,12 @@
   margin-top: 30px;
   margin-bottom: 25px;
 }
+
+@media (max-width: 768px) {
+  .Navigation__link{
+    margin-left: 16px;
+    font-size: 16px;
+    margin-top: 22px;
+    margin-bottom: 20px;
+  }
+}

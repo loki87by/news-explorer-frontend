@@ -3,3 +3,9 @@
   padding-bottom: 47px;
   color: #FFFFFF;
 }
+
+@media (max-width: 768px) {
+  .Navigation__link_active{
+    padding-bottom: 41px;
+  }
+}

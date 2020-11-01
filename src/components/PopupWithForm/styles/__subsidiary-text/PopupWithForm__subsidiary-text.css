@@ -1,7 +1,7 @@
 .PopupWithForm__subsidiary-text{
   align-self: center;
   max-width: 226px;
-  margin: 16px auto 0;
+  margin: 0;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -9,4 +9,5 @@
   line-height: 17px;
   color: #000000;
   text-decoration: none;
+  padding: 0;
 }

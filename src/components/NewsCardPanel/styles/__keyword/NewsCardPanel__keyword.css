@@ -7,3 +7,9 @@
   line-height: 24px;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .NewsCardPanel__keyword{
+    padding: 7px 12px;
+  }
+}

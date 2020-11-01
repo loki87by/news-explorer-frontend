@@ -3,3 +3,9 @@
   grid-gap: 16px;
   grid-template-columns: repeat(3, auto);
 }
+
+@media (max-width: 768px) {
+  .NewsCardList__container{
+    grid-gap: 8px;
+  }
+}

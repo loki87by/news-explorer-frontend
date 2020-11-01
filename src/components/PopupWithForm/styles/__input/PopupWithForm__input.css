@@ -13,7 +13,12 @@
   border: none;
   border-bottom: 1px solid;
   border-bottom-color: rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
 }
+/*
+.PopupWithForm__input:focus {
+  background-color: #ffffff;
+}*/
 /*
 @media (max-width: 904px) {
   .signform__input {

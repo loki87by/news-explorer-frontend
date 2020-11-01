@@ -1,3 +1,7 @@
 .PopupWithForm__link {
-  color: #2F71E5;
+    color: #2F71E5;
+    margin-top: 16px;
+    border: none;
+    background-color: #ffffff;
+    padding: 0;
 }

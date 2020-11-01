@@ -12,3 +12,11 @@
   background-color: #ffffff;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .NewsCard{
+    max-width: 224px;
+    max-height: 420px;
+    border-radius: 16px;
+  }
+}

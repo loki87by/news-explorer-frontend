@@ -9,3 +9,11 @@
   text-transform: uppercase;
   color: #B6BCBF;
 }
+
+@media (max-width: 768px) {
+  .NewsCard__source{
+    margin: 0 auto 16px 16px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

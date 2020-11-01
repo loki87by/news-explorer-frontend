@@ -8,3 +8,11 @@
   color: #1A1B22;
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  .Footer__text-link{
+    margin-right: 8px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

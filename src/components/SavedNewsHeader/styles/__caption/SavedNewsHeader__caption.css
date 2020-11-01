@@ -12,3 +12,10 @@
   color: rgba(26, 27, 34, 0.5);
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .SavedNewsHeader__caption{
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

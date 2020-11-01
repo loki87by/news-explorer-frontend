@@ -4,3 +4,12 @@
   max-width: 1440px;
   max-height: 576px;
 }
+
+@media (max-width: 768px) {
+  .App__background{
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+    max-height: 400px;
+  }
+}

@@ -1,0 +1,11 @@
+.Footer__links{
+  display: flex;
+  margin: 0;
+  padding: 27px 2px 28px;
+}
+
+@media (max-width: 768px) {
+  .Footer__links{
+    padding: 0 0 2px;
+  }
+}

@@ -14,3 +14,12 @@
   height: 8px;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .NewsCardPanel__tooltip{
+    position: absolute;
+    width: 163px;
+    margin-right: 0;
+    right: 53px;
+  }
+}

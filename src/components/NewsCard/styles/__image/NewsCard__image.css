@@ -3,3 +3,10 @@
   max-height: 272px;
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+  .NewsCard__image{
+    max-width: 224px;
+    max-height: 150px;
+  }
+}

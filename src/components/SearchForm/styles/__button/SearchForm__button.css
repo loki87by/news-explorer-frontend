@@ -17,3 +17,11 @@
   cursor: pointer;
   color: #ffffff;
 }
+
+@media (max-width: 768px) {
+  .SearchForm__button{
+    max-width: 160px;
+    max-height: 56px;
+    padding: 15px 49px 17px 50px;
+  }
+}

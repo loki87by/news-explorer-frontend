@@ -5,3 +5,9 @@
   background-position-x: center;
   background-position-y: top, -13vw;
 }
+
+@media (max-width: 768px) {
+  .App__background-image{
+    background-position-y: top, -7vw;
+  }
+}

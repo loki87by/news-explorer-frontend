@@ -12,7 +12,7 @@ function About() {
     <section className="About">
       <img className="About__avatar" alt='avatar' src={ authorAvatar } />
       <h1 className="About__title">Об авторе</h1>
-      <p className="About__text">Придумать текст</p>
+      <p className="About__text">Раздолбай, компъютерный гений, и.т.д... Чего я только в свою сторону не слышал, но чтобы я о себе не написал, решать вам, верить моим словам или нет. Так что не стану многословить, судите меня по тому, что я делаю.</p>
     </section>
   )
 };

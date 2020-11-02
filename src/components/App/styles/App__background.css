@@ -13,3 +13,11 @@
     max-height: 400px;
   }
 }
+
+@media (max-width: 400px) {
+  .App__background{
+    max-width: 400px;
+    padding: 0;
+    max-height: 536px;
+  }
+}

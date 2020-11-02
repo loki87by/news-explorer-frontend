@@ -9,6 +9,7 @@ import './styles/__links/Footer__links.css';
 import './styles/__text-link/Footer__text-link.css';
 import './styles/__text-link/Footer__text-link.css';
 import './styles/__social-link/Footer__social-link.css';
+import './styles/__social-link/_mobile-position/Footer__social-link_mobile-position.css';
 
 // **Функционал
 function Footer() {
@@ -23,7 +24,7 @@ function Footer() {
           <a href='https://praktikum.yandex.ru/' className="Footer__text-link" target="blank">Яндекс.Практикум</a>
         </li>
         <li style={{ listStyle: 'none' }}>
-          <a href='https://github.com/loki87by' className="Footer__social-link" target="blank">
+          <a href='https://github.com/loki87by' className="Footer__social-link Footer__social-link_mobile-position" target="blank">
             <img src={ githubLogo } alt='github' />
           </a>
         </li>

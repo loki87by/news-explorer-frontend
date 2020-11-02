@@ -18,3 +18,10 @@
     line-height: 40px;
   }
 }
+
+@media (max-width: 400px) {
+  .About__title{
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+}

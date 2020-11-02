@@ -10,3 +10,10 @@
     max-height: 150px;
   }
 }
+
+@media (max-width: 400px) {
+  .NewsCard__image{
+    max-width: 288px;
+    max-height: 196px;
+  }
+}

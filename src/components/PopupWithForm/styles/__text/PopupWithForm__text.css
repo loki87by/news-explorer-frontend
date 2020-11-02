@@ -8,16 +8,9 @@
   margin: 0px;
   margin-bottom: 22px;
 }
-/*
-@media (max-width: 904px) {
-  .signform__text {
-    margin-bottom: 10px;
+
+@media (max-width: 400px) {
+  .PopupWithForm__text {
+    margin-left: 1px;
   }
 }
-
-@media (max-width: 358px) {
-  .signform__text {
-    font-size: 20px;
-    line-height: 24px;
-  }
-}*/

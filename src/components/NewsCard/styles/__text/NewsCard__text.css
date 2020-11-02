@@ -21,3 +21,9 @@
     max-height: 88px;
   }
 }
+
+@media (max-width: 400px) {
+  .NewsCard__text{
+    margin: 0 16px 8px;
+  }
+}

@@ -10,24 +10,12 @@
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
-  padding: 21px 114px 19px;
+  padding: 21px 0 19px;
   cursor: pointer;
 }
-/*
-.signform__submit:hover {
-  opacity: 0.6;
-}
 
-@media (max-width: 904px) {
-  .signform__submit {
-    margin-top: 200px;
+@media (max-width: 400px) {
+  .PopupWithForm__submit {
+    margin-top: -7px;
   }
 }
-
-@media (max-width: 358px) {
-  .signform__submit {
-    margin-top: 173px;
-    font-size: 16px;
-    line-height: 19px;
-  }
-}*/

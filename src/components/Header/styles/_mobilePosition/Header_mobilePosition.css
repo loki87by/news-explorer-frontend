@@ -1,0 +1,6 @@
+.Header_mobilePosition{
+  position: fixed;
+  width: calc(100% - 32px);
+  background-color: #ffffff;
+  z-index: 3;
+}

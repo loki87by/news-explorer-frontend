@@ -27,3 +27,13 @@
     grid-template-rows: 34px 1fr;
   }
 }
+
+@media (max-width: 400px) {
+  .About{
+    padding: 32px 16px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}

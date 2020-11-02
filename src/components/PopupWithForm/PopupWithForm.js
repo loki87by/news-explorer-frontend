@@ -124,7 +124,7 @@ function handlePasswordChange(e) {
         </>
         }
         <button type="button" disabled={(isValidEmail && isValidPassword) ? false : "disabled"} style={{ backgroundColor: `${(isValidEmail && isValidPassword) ? '' : "#E6E8EB"}`, color: `${(isValidEmail && isValidPassword) ? '' : "#B6BCBF"}` }} onClick={popupName === 'login' ? loginSubmit : registrationSubmit} className="PopupWithForm__submit">{popupName === 'login' ? 'Войти' : 'Зарегистрироваться'}</button>
-        <p className="PopupWithForm__subsidiary-text">или
+        <p className="PopupWithForm__subsidiary-text">или&nbsp;
           <button onClick={changeLink} type="button" className="PopupWithForm__subsidiary-text PopupWithForm__link">{popupName === 'login' ? ' Зарегистрироваться' : ' Войти'}</button>
         </p>
       </form>

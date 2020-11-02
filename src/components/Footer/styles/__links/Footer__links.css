@@ -9,3 +9,12 @@
     padding: 0 0 2px;
   }
 }
+
+@media (max-width: 400px) {
+  .Footer__links{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -20,3 +20,9 @@
     margin: 0 auto 32px 0;
   }
 }
+
+@media (max-width: 400px) {
+  .NewsCardList__title{
+    margin: 8px auto 24px 0;
+  }
+}

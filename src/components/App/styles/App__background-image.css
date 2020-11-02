@@ -11,3 +11,9 @@
     background-position-y: top, -7vw;
   }
 }
+
+@media (max-width: 400px) {
+  .App__background-image{
+    background-position-y: top;
+  }
+}

@@ -21,3 +21,10 @@
     width: 208px;
   }
 }
+
+@media (max-width: 400px) {
+  .NewsCardPanel{
+    padding: 16px;
+    width: 256px;
+  }
+}

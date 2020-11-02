@@ -17,3 +17,9 @@
     line-height: 20px;
   }
 }
+
+@media (max-width: 400px) {
+  .NewsCard__source{
+    margin: 0 16px 17px;
+  }
+}

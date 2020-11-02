@@ -17,3 +17,10 @@
     margin-left: 0;
   }
 }
+
+@media (max-width: 400px) {
+  .SearchForm__title{
+    max-width: 100%;
+    margin: 0;
+  }
+}

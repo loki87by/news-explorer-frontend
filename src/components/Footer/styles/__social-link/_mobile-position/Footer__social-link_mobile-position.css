@@ -1,0 +1,5 @@
+@media (max-width: 400px) {
+  .Footer__social-link_mobile-position{
+    right: 66px;
+  }
+}

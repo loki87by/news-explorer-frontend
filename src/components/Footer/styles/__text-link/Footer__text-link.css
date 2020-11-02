@@ -16,3 +16,10 @@
     line-height: 24px;
   }
 }
+
+@media (max-width: 400px) {
+  .Footer__text-link{
+    margin-right: 0;
+    line-height: 48px;
+  }
+}

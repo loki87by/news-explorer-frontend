@@ -10,3 +10,11 @@
     width: 232px;
   }
 }
+
+@media (max-width: 400px) {
+  .About__avatar{
+    margin-top: 0;
+    width: 272px;
+    align-self: center;
+  }
+}

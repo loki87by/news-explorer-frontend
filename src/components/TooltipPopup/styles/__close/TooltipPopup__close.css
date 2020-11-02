@@ -9,21 +9,15 @@
   border: 0;
   background-color: transparent;
   background-image: url('../../../../images/close.png');
-  /*background-image: url('../../../images/plus.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: transparent;*/
 }
 
 .TooltipPopup__close:hover {
   opacity: 0.6;
 }
-/*
+
 @media (max-width: 400px) {
-  .popup__close {
-    max-width: 30px;
-    max-height: 30px;
-    right: 45%;
-    top: -55px;
+  .TooltipPopup__close {
+    right: 8px;
+    top: -48px;
   }
-}*/
+}

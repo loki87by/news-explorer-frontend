@@ -20,7 +20,7 @@
 
 @media (max-width: 400px) {
   .NewsCardList__button{
-    padding: 15px auto 17px;
+    padding: 15px 0 17px;
     margin: 15px 0 0;
   }
 }

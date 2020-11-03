@@ -27,7 +27,7 @@
 @media (max-width: 400px) {
   .NewsCardPanel__tooltip{
     position: absolute;
-    width: 211px;
+    width: calc(100% - 77px);
     margin-right: 0;
     right: 61px;
   }

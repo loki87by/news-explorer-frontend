@@ -24,7 +24,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 610px) {
   .Navigation__button{
     font-size: 18px;
     padding: 14px;

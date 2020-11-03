@@ -17,6 +17,12 @@
   }
 }
 
+@media (max-width: 585px) {
+  .Footer__text-link{
+    margin-right: calc((100vw - 347px) / 2);
+  }
+}
+
 @media (max-width: 400px) {
   .Footer__text-link{
     margin-right: 0;

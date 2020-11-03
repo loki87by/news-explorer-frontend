@@ -24,7 +24,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 585px) {
   .Footer{
     flex-direction: column-reverse;
     max-height: 176px;

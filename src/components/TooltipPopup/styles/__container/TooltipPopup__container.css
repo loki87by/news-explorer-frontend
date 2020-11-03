@@ -14,9 +14,15 @@
   border-radius: 16px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 610px) {
   .TooltipPopup__container {
     margin: 56px auto;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 530px) {
+  .TooltipPopup__container {
     max-height: 128px;
   }
 }

@@ -15,8 +15,17 @@
   opacity: 0.6;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 610px) {
   .TooltipPopup__close {
+    position: fixed;
+    right: 8px;
+    top: 8px;
+  }
+}
+
+@media (max-width: 430px) {
+  .TooltipPopup__close {
+    position: absolute;
     right: 8px;
     top: -48px;
   }

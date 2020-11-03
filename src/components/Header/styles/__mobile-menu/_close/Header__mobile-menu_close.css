@@ -4,7 +4,7 @@
   visibility: hidden;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 610px) {
   .Header__mobile-menu_close{
     visibility: visible;
   }

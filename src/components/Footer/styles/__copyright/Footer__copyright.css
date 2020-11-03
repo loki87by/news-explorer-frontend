@@ -17,6 +17,13 @@
   }
 }
 
+@media (max-width: 585px) {
+  .Footer__copyright{
+    align-self: center;
+    padding: 0;
+  }
+}
+
 @media (max-width: 400px) {
   .Footer__copyright{
     padding: 0;

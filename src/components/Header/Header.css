@@ -25,10 +25,19 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 610px) {
   .Header{
     max-height: 55px;
     padding: 16px;
     padding-bottom: 15px;
+    margin-left: -40px;
+    margin-right: -40px;
+    max-width: calc(100% + 80px);
+  }
+}
+
+@media (max-width: 400px) {
+  .Header{
+    margin: 0;
   }
 }

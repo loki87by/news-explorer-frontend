@@ -23,7 +23,7 @@
   .About{
     margin-top: 0;
     padding: 29px 40px 61px;
-    grid-template-columns: 232px 32px 424px;
+    grid-template-columns: 232px 32px calc(100% - 264px);
     grid-template-rows: 34px 1fr;
   }
 }

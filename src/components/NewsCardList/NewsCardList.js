@@ -28,7 +28,7 @@ function NewsCardList(props) {
     return
   }
   return (
-    <div className="NewsCardList">
+    <article className="NewsCardList">
       {props.isSavedNewsPage ?
       <section className='NewsCardList__container'>
       {props.savedNews.map((article, i) => (
@@ -44,7 +44,7 @@ function NewsCardList(props) {
         </section>
         {hiddenNews > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
       </>}
-    </div>
+    </article>
   )
 };
 

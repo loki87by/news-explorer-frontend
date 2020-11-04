@@ -60,14 +60,14 @@ function SavedNewsHeader(props) {
   newsQuantityTextCreator()
 
   return (
-    <section className="SavedNewsHeader">
+    <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
       <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${props.newsQuantity} ${newsQuantityText}`}</h1>
       {props.hashtags.length > 0 ?
         (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b></h2>
         : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
       : ''}
-    </section>
+    </article>
   )
 };
 

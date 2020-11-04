@@ -14,7 +14,7 @@ import './styles/__social-link/_mobile-position/Footer__social-link_mobile-posit
 // **Функционал
 function Footer() {
   return (
-    <nav className="Footer">
+    <footer className="Footer">
       <p className="Footer__copyright">© 2020 Алексей Акулич, Powered by News API</p>
       <ul className="Footer__links">
         <li style={{ listStyle: 'none' }}>
@@ -34,7 +34,7 @@ function Footer() {
           </a>
         </li>
       </ul>
-    </nav>
+    </footer>
   )
 };
 

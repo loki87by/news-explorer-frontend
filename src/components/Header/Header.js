@@ -33,7 +33,7 @@ function Header(props) {
     }
   }
   return (
-    <div className={`Header ${props.isSavedNewsPage && !isMobileMenuOpen && "Header_black"} ${props.isSavedNewsPage && (screenWidth < 611) && "Header_mobilePosition"} ${isMobileMenuOpen && "Header_mobileMenuOpen"}`}>
+    <header className={`Header ${props.isSavedNewsPage && !isMobileMenuOpen && "Header_black"} ${props.isSavedNewsPage && (screenWidth < 611) && "Header_mobilePosition"} ${isMobileMenuOpen && "Header_mobileMenuOpen"}`}>
       <h1 className="Header__title">NewsExplorer</h1>
       {screenWidth > 610 ?
       <Navigation screenWidth={screenWidth} logOut={props.logOut} handleLoginClick={props.handleLoginClick} setSavedNewsPage={props.setSavedNewsPage} isSavedNewsPage={props.isSavedNewsPage} loggedIn={props.loggedIn} currentUser={props.currentUser}/>
@@ -43,7 +43,7 @@ function Header(props) {
           <Navigation screenWidth={screenWidth} logOut={props.logOut} handleLoginClick={props.handleLoginClick} setSavedNewsPage={props.setSavedNewsPage} isSavedNewsPage={props.isSavedNewsPage} loggedIn={props.loggedIn} currentUser={props.currentUser}/>
         </>
         : <button className={`Header__mobile-menu ${props.isSavedNewsPage && "Header__mobile-menu_black"}`} area-label="Открыть" onClick={mobileMenuSwitcher}></button>)}
-    </div>
+    </header>
   )
 };
 

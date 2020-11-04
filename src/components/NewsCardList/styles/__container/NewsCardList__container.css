@@ -10,7 +10,13 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 767px) {
+  .NewsCardList__container{
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media (max-width: 555px) {
   .NewsCardList__container{
     grid-gap: 10px;
     grid-template-columns: 1fr;

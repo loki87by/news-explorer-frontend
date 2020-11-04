@@ -13,10 +13,15 @@
   border-radius: 16px;
 }
 
+@media (max-width: 430px) {
+  .PopupWithForm__container {
+    margin: 56px auto auto;
+  }
+}
+
 @media (max-width: 400px) {
   .PopupWithForm__container {
     padding: 16px;
-    margin: 56px auto auto;
     max-height: 3000px;
     width: 100%;
     height: calc(100% - 56px);

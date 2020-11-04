@@ -7,7 +7,7 @@
   padding: 24px;
   display: flex;
   flex-direction: row-reverse;
-  width: 352px;
+  width: calc(100% - 48px);
   z-index: 2;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -19,12 +19,13 @@
   .NewsCardPanel{
     padding: 8px;
     width: 208px;
+    width: calc(100% - 16px);
   }
 }
 
 @media (max-width: 400px) {
   .NewsCardPanel{
     padding: 16px;
-    width: calc(100% - 64px);
+    width: calc(100% - 32px);
   }
 }

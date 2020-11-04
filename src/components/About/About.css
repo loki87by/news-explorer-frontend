@@ -10,7 +10,7 @@
 .About{
   margin-top: 80px;
   display: grid;
-  grid-template-columns: 464px 56px 600px;
+  grid-template-columns: 464px 56px calc(100% - 520px);
   grid-template-rows: 100px 1fr;
   grid-template-areas:
       "avatar . title"
@@ -19,12 +19,30 @@
   background-color: #ffffff;
 }
 
+@media (max-width: 1328px) {
+  .About{
+    padding: 0 104px 80px;
+    grid-template-columns: 464px 32px calc(100% - 500px);
+  }
+}
+
+@media (max-width: 900px) {
+  .About{
+    grid-template-columns: 232px 32px calc(100% - 264px);
+    grid-template-rows: 34px 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .About{
     margin-top: 0;
     padding: 29px 40px 61px;
-    grid-template-columns: 232px 32px calc(100% - 264px);
-    grid-template-rows: 34px 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .About{
+    grid-template-columns: max-content 16px 1fr;
   }
 }
 

@@ -1,5 +1,5 @@
 // **импорты
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
 import './styles/__mobile-menu/Header__mobile-menu.css';
@@ -13,7 +13,17 @@ import './styles/__title/Header__title.css'
 
 // **Функционал
 function Header(props) {
-  const screenWidth = window.screen.width
+  const [screenWidth, setScreenWidth] = React.useState(window.screen.width);
+
+  useEffect(function() {
+    function resizer() {
+      setScreenWidth(window.screen.width)
+    };
+    window.addEventListener("resize", resizer);
+    resizer();
+    return () => window.removeEventListener("resize", resizer);
+  });
+  console.log(screenWidth);
   const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   function mobileMenuSwitcher() {
     if (isMobileMenuOpen) {

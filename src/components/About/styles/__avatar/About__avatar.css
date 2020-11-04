@@ -4,10 +4,16 @@
   width: 464px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .About__avatar{
     margin-top: 32px;
     width: 232px;
+  }
+}
+
+@media (max-width: 500px) {
+  .About__avatar{
+    width: 40vw;
   }
 }
 

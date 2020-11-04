@@ -11,7 +11,7 @@
   color: #1A1B22;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .About__title{
     padding-top: 0;
     font-size: 30px;
@@ -19,8 +19,18 @@
   }
 }
 
+@media (max-width: 500px) {
+  .About__title{
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 16px;
+  }
+}
+
 @media (max-width: 400px) {
   .About__title{
+    font-size: 30px;
+    line-height: 40px;
     margin-top: 24px;
     margin-bottom: 16px;
   }

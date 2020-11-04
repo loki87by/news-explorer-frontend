@@ -27,13 +27,6 @@
   .PopupWithForm__close {
     position: absolute;
     right: 8px;
-    top: -63px;
-  }
-}
-
-@media (max-width: 400px) {
-  .PopupWithForm__close {
-    right: 8px;
     top: -48px;
   }
 }

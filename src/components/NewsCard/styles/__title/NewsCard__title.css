@@ -7,11 +7,23 @@
   color: #1A1B22;
 }
 
+@media (max-width: 1120px) {
+  .NewsCard__title{
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .NewsCard__title{
+    word-break: break-word;
+    margin-right: 24px;
+  }
+}
+
 @media (max-width: 768px) {
   .NewsCard__title{
     margin: 0 16px 10px;
-    font-size: 22px;
-    line-height: 24px;
     max-height: 72px;
   }
 }
@@ -19,6 +31,6 @@
 @media (max-width: 400px) {
   .NewsCard__title{
     line-height: 26px;
-    max-height: 52px;
+    max-height: 78px;
   }
 }

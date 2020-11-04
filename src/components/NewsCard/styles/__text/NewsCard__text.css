@@ -9,15 +9,32 @@
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 137%;
+  line-height: 22px;
   color: #1A1B22;
+}
+
+@media (max-width: 1120px) {
+  .NewsCard__text{
+    max-height: 154px;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 1020px) {
+  .NewsCard__text{
+    max-height: 132px;
+  }
+}
+
+@media (max-width: 900px) {
+  .NewsCard__text{
+    max-height: 110px;
+  }
 }
 
 @media (max-width: 768px) {
   .NewsCard__text{
-    margin: 0 16px 12px;
-    font-size: 16px;
-    line-height: 22px;
+    margin: 16px 12px;
     max-height: 88px;
   }
 }

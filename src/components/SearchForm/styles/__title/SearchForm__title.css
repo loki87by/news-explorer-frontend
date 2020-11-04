@@ -12,9 +12,9 @@
 @media (max-width: 768px) {
   .SearchForm__title{
     max-width: 80%;
+    margin-left: 0;
     font-size: 36px;
     line-height: 40px;
-    margin-left: 0;
   }
 }
 

@@ -1,7 +1,7 @@
 .Header__title{
+  max-width: 200px;
   margin-top: 30px;
   margin-bottom: 25px;
-  max-width: 200px;
   font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: bold;

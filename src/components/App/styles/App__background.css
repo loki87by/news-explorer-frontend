@@ -1,22 +1,22 @@
 .App__background{
-  padding-left: 104px;
-  padding-right: 104px;
   max-width: 1440px;
   max-height: 576px;
+  padding-left: 104px;
+  padding-right: 104px;
 }
 
 @media (max-width: 768px) {
   .App__background{
     max-width: 100%;
+    max-height: 400px;
     padding-left: 40px;
     padding-right: 40px;
-    max-height: 400px;
   }
 }
 
 @media (max-width: 400px) {
   .App__background{
-    padding: 0;
     max-height: 536px;
+    padding: 0;
   }
 }

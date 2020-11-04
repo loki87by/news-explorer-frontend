@@ -1,8 +1,8 @@
 .About__title{
-  grid-area: title;
   max-width: 100%;
   margin: 0;
   padding-top: 51px;
+  grid-area: title;
   font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -21,17 +21,17 @@
 
 @media (max-width: 500px) {
   .About__title{
+    margin-bottom: 16px;
     font-size: 24px;
     line-height: 24px;
-    margin-bottom: 16px;
   }
 }
 
 @media (max-width: 400px) {
   .About__title{
-    font-size: 30px;
-    line-height: 40px;
     margin-top: 24px;
     margin-bottom: 16px;
+    font-size: 30px;
+    line-height: 40px;
   }
 }

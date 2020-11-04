@@ -4,9 +4,9 @@
 }
 
 .SavedNewsHeader__hashtag-information{
+  max-width: 712px;
   margin-top: 0;
   margin-bottom: 16px;
-  max-width: 712px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;

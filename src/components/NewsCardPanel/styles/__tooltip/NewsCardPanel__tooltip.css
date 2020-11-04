@@ -18,17 +18,17 @@
 @media (max-width: 768px) {
   .NewsCardPanel__tooltip{
     position: absolute;
+    right: 53px;
     width: 163px;
     margin-right: 0;
-    right: 53px;
   }
 }
 
 @media (max-width: 400px) {
   .NewsCardPanel__tooltip{
     position: absolute;
+    right: 61px;
     width: calc(100% - 77px);
     margin-right: 0;
-    right: 61px;
   }
 }

@@ -1,17 +1,17 @@
 .TooltipPopup__container {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  z-index: 2;
+  max-width: 358px;
+  max-height: 182px;
   padding: 43px 36px 51px;
   margin: auto;
   margin-bottom: 33vh;
-  max-width: 358px;
-  max-height: 182px;
-  z-index: 2;
-  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
   -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 16px;
+  background-color: #FFFFFF;
 }
 
 @media (max-width: 610px) {

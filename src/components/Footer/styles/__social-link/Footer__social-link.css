@@ -7,17 +7,17 @@
 
 @media (max-width: 768px) {
   .Footer__social-link{
-    margin-left: 20px;
     padding: 2px 0 0;
+    margin-left: 20px;
   }
 }
 
 @media (max-width: 585px) {
   .Footer__social-link{
-    margin-left: 20px;
-    padding: 2px 0 0;
     position: absolute;
     right: 18px;
     top: 22px;
+    padding: 2px 0 0;
+    margin-left: 20px;
   }
 }

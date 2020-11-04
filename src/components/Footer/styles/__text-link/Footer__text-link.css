@@ -1,12 +1,12 @@
 .Footer__text-link{
   margin-right: 14px;
+  text-decoration: none;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
-  text-decoration: none;
 }
 
 @media (max-width: 768px) {

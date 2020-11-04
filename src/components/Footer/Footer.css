@@ -8,13 +8,13 @@
 }
 
 .Footer{
+  position: relative;
+  max-height: 80px;
+  padding: 0 104px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-height: 80px;
-  padding: 0 104px;
-  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -26,9 +26,9 @@
 
 @media (max-width: 585px) {
   .Footer{
-    flex-direction: column-reverse;
     max-height: 176px;
     padding: 20px 16px 22px;
+    flex-direction: column-reverse;
     align-items: flex-start;
   }
 }

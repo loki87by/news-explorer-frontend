@@ -8,6 +8,7 @@
 }
 
 .About{
+  padding: 0 216px 80px 104px;
   margin-top: 80px;
   display: grid;
   grid-template-columns: 464px 56px calc(100% - 520px);
@@ -15,7 +16,6 @@
   grid-template-areas:
       "avatar . title"
       "avatar . text";
-  padding: 0 216px 80px 104px;
   background-color: #ffffff;
 }
 
@@ -35,8 +35,8 @@
 
 @media (max-width: 768px) {
   .About{
-    margin-top: 0;
     padding: 29px 40px 61px;
+    margin-top: 0;
   }
 }
 

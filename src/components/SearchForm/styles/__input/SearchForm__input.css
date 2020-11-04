@@ -2,17 +2,17 @@
   width: 100%;
   max-height: 64px;
   padding: 21px 24px;
-  background: #FFFFFF;
+  border-radius: 100px;
   border: 1px solid #D1D2D6;
   box-sizing: border-box;
   backdrop-filter: blur(8px);
-  border-radius: 100px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
   color: #1A1B22;
+  background: #FFFFFF;
 }
 
 @media (max-width: 768px) {
@@ -26,8 +26,8 @@
 
 @media (max-width: 400px) {
   .SearchForm__input{
-    max-height: 56px;
     padding: 15px 14px;
+    max-height: 56px;
     margin-bottom: 16px;
   }
 }

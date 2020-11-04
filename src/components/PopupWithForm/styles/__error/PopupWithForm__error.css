@@ -1,5 +1,6 @@
 .PopupWithForm__error {
   position: absolute;
+  z-index: 3;
   top: 53px;
   max-height: 14px;
   font-family: 'Inter', sans-serif;
@@ -11,13 +12,5 @@
   -webkit-transition: .1s opacity, .1s visibility ease-in;
   -o-transition: .1s opacity, .1s visibility ease-in;
   transition: .1s opacity, .1s visibility ease-in;
-  z-index: 3;
   word-wrap: break-word;
 }
-/*
-@media (max-width: 557px) {
-  .popup__text-error {
-    top: 24vw;
-    left: calc((36 / 430) * 100%);
-  }
-}*/

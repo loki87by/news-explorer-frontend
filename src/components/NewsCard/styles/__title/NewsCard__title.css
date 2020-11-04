@@ -16,21 +16,21 @@
 
 @media (max-width: 1020px) {
   .NewsCard__title{
-    word-break: break-word;
     margin-right: 24px;
+    word-break: break-word;
   }
 }
 
 @media (max-width: 768px) {
   .NewsCard__title{
-    margin: 0 16px 10px;
     max-height: 72px;
+    margin: 0 16px 10px;
   }
 }
 
 @media (max-width: 400px) {
   .NewsCard__title{
-    line-height: 26px;
     max-height: 78px;
+    line-height: 26px;
   }
 }

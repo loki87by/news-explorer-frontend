@@ -1,14 +1,14 @@
 .SearchForm__button{
   position: absolute;
+  top: 0;
+  right: 0;
   max-width: 168px;
   max-height: 64px;
   padding: 18px 53px 22px 54px;
-  top: 0;
-  right: 0;
-  background: #2F71E5;
-  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   border: none;
   border-radius: 100px;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  background: #2F71E5;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;

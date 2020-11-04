@@ -1,15 +1,15 @@
 .TooltipPopup__link {
-  color: #2F71E5;
+  max-width: 228px;
+  max-height: 18px;
+  padding: 0;
+  margin: 0;
   border: none;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  padding: 0;
-  margin: 0;
   background-color: #ffffff;
-  max-width: 228px;
+  color: #2F71E5;
   text-align: start;
-  max-height: 18px;
 }

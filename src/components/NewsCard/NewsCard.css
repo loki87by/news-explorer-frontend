@@ -4,14 +4,14 @@
 }
 
 .NewsCard{
-  display: flex;
-  flex-direction: column;
+  position: relative;
   max-width: calc((100vw - 240px) / 3);
   max-height: 600px;
+  display: flex;
+  flex-direction: column;
   border-radius: 5px 5px 0px 0px;
   background-color: #ffffff;
   cursor: pointer;
-  position: relative;
 }
 
 @media (max-width: 1120px) {

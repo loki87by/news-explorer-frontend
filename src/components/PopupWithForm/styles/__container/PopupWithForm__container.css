@@ -1,16 +1,16 @@
 .PopupWithForm__container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 34px 36px 28px;
-  margin: auto;
+  z-index: 2;
   width: 358px;
   max-height: 395px;
-  z-index: 2;
-  background-color: #FFFFFF;
+  padding: 34px 36px 28px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
   -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 16px;
+  background-color: #FFFFFF;
 }
 
 @media (max-width: 430px) {
@@ -21,9 +21,9 @@
 
 @media (max-width: 400px) {
   .PopupWithForm__container {
-    padding: 16px;
-    max-height: 3000px;
     width: 100%;
+    max-height: 3000px;
     height: calc(100% - 56px);
+    padding: 16px;
   }
 }

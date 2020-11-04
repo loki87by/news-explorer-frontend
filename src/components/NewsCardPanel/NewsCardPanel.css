@@ -4,11 +4,11 @@
 }
 .NewsCardPanel{
   position: absolute;
+  z-index: 2;
+  width: calc(100% - 48px);
   padding: 24px;
   display: flex;
   flex-direction: row-reverse;
-  width: calc(100% - 48px);
-  z-index: 2;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -17,15 +17,14 @@
 
 @media (max-width: 768px) {
   .NewsCardPanel{
-    padding: 8px;
-    width: 208px;
     width: calc(100% - 16px);
+    padding: 8px;
   }
 }
 
 @media (max-width: 400px) {
   .NewsCardPanel{
-    padding: 16px;
     width: calc(100% - 32px);
+    padding: 16px;
   }
 }

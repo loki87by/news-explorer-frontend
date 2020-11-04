@@ -34,8 +34,8 @@
 
 @media (max-width: 768px) {
   .NewsCard__text{
-    margin: 16px 12px;
     max-height: 88px;
+    margin: 16px 12px;
   }
 }
 

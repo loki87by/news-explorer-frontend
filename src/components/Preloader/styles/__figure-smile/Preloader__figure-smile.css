@@ -6,5 +6,7 @@
   min-height: 20px;
   border-top: 1px solid #D1D2D6;
   border-radius: 50%;
-  transform: matrix(-1, 0, 0, 1, 0, 0);
+  -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+      -ms-transform: matrix(-1, 0, 0, 1, 0, 0);
+          transform: matrix(-1, 0, 0, 1, 0, 0);
 }

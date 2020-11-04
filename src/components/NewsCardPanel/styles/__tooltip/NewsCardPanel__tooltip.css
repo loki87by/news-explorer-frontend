@@ -5,7 +5,8 @@
   margin: 0;
   margin-right: 5px;
   margin-left: auto;
-  justify-self: right;
+  -ms-grid-column-align: right;
+      justify-self: right;
   border: none;
   border-radius: 10px;
   visibility: hidden;

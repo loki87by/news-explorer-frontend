@@ -4,8 +4,8 @@
   padding: 21px 24px;
   border-radius: 100px;
   border: 1px solid #D1D2D6;
-  box-sizing: border-box;
-  backdrop-filter: blur(8px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   outline: none;
   font-family: 'Roboto', sans-serif;
   font-style: normal;

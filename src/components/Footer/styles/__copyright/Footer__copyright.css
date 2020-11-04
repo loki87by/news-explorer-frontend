@@ -20,7 +20,9 @@
 @media (max-width: 585px) {
   .Footer__copyright{
     padding: 0;
-    align-self: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
   }
 }
 

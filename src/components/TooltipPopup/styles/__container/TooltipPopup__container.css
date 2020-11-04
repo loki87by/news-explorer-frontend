@@ -6,8 +6,13 @@
   padding: 43px 36px 51px;
   margin: auto;
   margin-bottom: 33vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border-radius: 16px;
   -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
@@ -17,7 +22,9 @@
 @media (max-width: 610px) {
   .TooltipPopup__container {
     margin: 56px auto;
-    justify-content: space-evenly;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
   }
 }
 

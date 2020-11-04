@@ -1,34 +1,40 @@
 .NewsCardPanel__tooltip{
-  visibility: hidden;
-  justify-self: right;
+  width: 182px;
+  height: 8px;
+  padding: 16px 0;
   margin: 0;
   margin-right: 5px;
   margin-left: auto;
-  font-size: 10px;
-  line-height: 12px;
-  padding: 16px 0;
+  justify-self: right;
   border: none;
   border-radius: 10px;
+  visibility: hidden;
+  font-size: 10px;
+  line-height: 12px;
   background-color: #ffffff;
-  width: 182px;
-  height: 8px;
   text-align: center;
+}
+
+@media (max-width: 1330px) {
+  .NewsCardPanel__tooltip{
+    position: absolute;
+    right: 69px;
+    width: calc(100% - 93px);
+    height: 24px;
+    padding: 8px 0;
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 768px) {
   .NewsCardPanel__tooltip{
-    position: absolute;
     right: 53px;
-    width: 163px;
-    margin-right: 0;
+    width: calc(100% - 77px);
   }
 }
 
 @media (max-width: 400px) {
   .NewsCardPanel__tooltip{
-    position: absolute;
     right: 61px;
-    width: calc(100% - 77px);
-    margin-right: 0;
   }
 }

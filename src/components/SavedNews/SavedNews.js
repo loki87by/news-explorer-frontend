@@ -6,23 +6,25 @@ import './SavedNews.css';
 
 // **Функционал
 function SavedNews(props) {
-  useEffect(() => {props.setSavedNewsPage(true);})
-  let hashtags = []
+  useEffect(() => {props.setSavedNewsPage(true);});
+  // *отбор по ключевым словам
+  let hashtags = [];
   let hashtagger = (() => {
     let tags =[];
     props.savedNews.map((item) => {
       tags = Object.values(item.keyword).map(() => {
-        return item.keyword
+        return item.keyword;
       })
-      return tags
+      return tags;
     })
     if (props.savedNews.length > 0) {
-    hashtags = tags.reduce((tags, item) => {return tags.concat(item)})}
-    return hashtags
+    hashtags = tags.reduce((tags, item) => {return tags.concat(item)})};
+    return hashtags;
   })
   hashtagger()
-  let newsQuantity = props.savedNews.length
+  let newsQuantity = props.savedNews.length;
 
+  // **DOM
   return (
     <main className="SavedNews">
       <SavedNewsHeader currentUser={props.currentUser} newsQuantity={newsQuantity} hashtags={hashtags}/>
@@ -31,4 +33,5 @@ function SavedNews(props) {
   )
 };
 
+// **экспорт
 export default SavedNews;

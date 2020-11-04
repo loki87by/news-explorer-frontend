@@ -8,3 +8,9 @@
   align-items: center;
 	background-color: #F5F6F7;
 }
+
+@media (max-width: 768px) {
+  .Preloader{
+    padding-top: calc(80 / 768 * 100vw);
+  }
+}

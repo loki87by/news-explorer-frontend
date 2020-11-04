@@ -17,4 +17,5 @@ function About() {
   )
 };
 
+// **экспорт
 export default About;

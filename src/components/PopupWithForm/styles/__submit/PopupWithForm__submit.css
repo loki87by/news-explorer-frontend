@@ -10,8 +10,17 @@
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
+  outline: none;
   cursor: pointer;
   background: #2F71E5;
+}
+
+.PopupWithForm__submit:hover{
+  background: #347EFF;
+}
+
+.PopupWithForm__submit:active{
+  background: #2A65CC;
 }
 
 @media (max-width: 400px) {

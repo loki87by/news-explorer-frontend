@@ -8,25 +8,31 @@ import './styles/__button/NewsCardList__button.css';
 
 // **Функционал
 function NewsCardList(props) {
+  // *получаем все карточки
   const allCards = props.articles.map((article) => {
     return article
   });
+  // *отбираем 3 первых в списке
   let firstNews = JSON.parse(JSON.stringify(allCards));
   firstNews.splice(3)
   const [newsCards, setNewsCards] = useState(firstNews);
+  // *карточки после третьей
   let otherNews = JSON.parse(JSON.stringify(allCards));
-  const [hiddenNews, setHiddenNews] = useState(otherNews.length)
+  const [hiddenNews, setHiddenNews] = useState(otherNews.length);
+  // *подгрузка следующей тройки
   let moreNews;
   function getMoreNews() {
     if (otherNews.length > 3) {
       otherNews.splice(0, 3);
       moreNews = JSON.parse(JSON.stringify(otherNews)).slice(0, 3);
-      setHiddenNews(otherNews.length)
+      setHiddenNews(otherNews.length);
       firstNews = firstNews.concat(moreNews);
       setNewsCards(firstNews);
     }
     return
   }
+
+  // **DOM
   return (
     <article className="NewsCardList">
       {props.isSavedNewsPage ?
@@ -48,4 +54,5 @@ function NewsCardList(props) {
   )
 };
 
+// **экспорт
 export default NewsCardList;

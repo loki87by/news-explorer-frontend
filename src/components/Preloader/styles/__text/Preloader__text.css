@@ -13,3 +13,9 @@
   line-height: 24px;
   color: #B6BCBF;
 }
+
+@media (max-width: 768px) {
+  .Preloader__text{
+    margin-bottom: calc(80 / 768 * 100vw);
+  }
+}

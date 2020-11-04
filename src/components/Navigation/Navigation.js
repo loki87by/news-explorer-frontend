@@ -3,14 +3,14 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
 import './Navigation.css';
 import './styles/__link/Navigation__link.css';
-import './styles/__link/_active/Navigation__link_active.css'
+import './styles/__link/_active/Navigation__link_active.css';
 import './styles/__button/Navigation__button.css';
 import './styles/_black/Navigation_black.css';
 
 // **Функционал
 function Navigation(props) {
   function offSavedPages() {
-    props.setSavedNewsPage(false)
+    props.setSavedNewsPage(false);
   }
   return (
     <nav className="Navigation">
@@ -31,4 +31,5 @@ function Navigation(props) {
   )
 };
 
+// **экспорт
 export default Navigation;

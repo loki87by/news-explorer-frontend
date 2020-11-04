@@ -8,6 +8,10 @@
   color: #ffffff;
 }
 
+.Navigation__link:hover{
+  opacity: .7;
+}
+
 @media (max-width: 900px) {
   .Navigation__link{
     margin-left: 16px;

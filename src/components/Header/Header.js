@@ -7,14 +7,16 @@ import './styles/_mobilePosition/Header_mobilePosition.css';
 import './styles/__mobile-menu/_black/Header__mobile-menu_black.css';
 import './styles/_mobileMenuOpen/Header_mobileMenuOpen.css';
 import './styles/__mobile-menu/_close/Header__mobile-menu_close.css';
-import './styles/_black/Header_black.css'
-import './styles/__title/Header__title.css'
+import './styles/_black/Header_black.css';
+import './styles/__title/Header__title.css';
 // передать пропс открытой страницы сохраненок
 
 // **Функционал
 function Header(props) {
   const [screenWidth, setScreenWidth] = React.useState(window.screen.width);
+  const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
+  // *отслеживатель изменения ширины экрана
   useEffect(function() {
     function resizer() {
       setScreenWidth(window.screen.width)
@@ -23,8 +25,8 @@ function Header(props) {
     resizer();
     return () => window.removeEventListener("resize", resizer);
   });
-  console.log(screenWidth);
-  const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+  // *переключатель меню мобильной версии
   function mobileMenuSwitcher() {
     if (isMobileMenuOpen) {
       setMobileMenuOpen(false)
@@ -32,6 +34,8 @@ function Header(props) {
       setMobileMenuOpen(true)
     }
   }
+
+  // **DOM
   return (
     <header className={`Header ${props.isSavedNewsPage && !isMobileMenuOpen && "Header_black"} ${props.isSavedNewsPage && (screenWidth < 611) && "Header_mobilePosition"} ${isMobileMenuOpen && "Header_mobileMenuOpen"}`}>
       <h1 className="Header__title">NewsExplorer</h1>
@@ -47,4 +51,5 @@ function Header(props) {
   )
 };
 
+// **экспорт
 export default Header;

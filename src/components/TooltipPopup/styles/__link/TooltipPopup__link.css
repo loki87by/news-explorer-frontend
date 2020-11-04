@@ -4,6 +4,7 @@
   padding: 0;
   margin: 0;
   border: none;
+  cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -12,4 +13,8 @@
   background-color: #ffffff;
   color: #2F71E5;
   text-align: start;
+}
+
+.TooltipPopup__link:hover{
+  opacity: .8;
 }

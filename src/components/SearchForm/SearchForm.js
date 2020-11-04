@@ -11,37 +11,37 @@ import './styles/__button/SearchForm__button.css';
 // **Функционал
 function SearchForm(props) {
   const[request, setRequest] = React.useState('');
-
   function searchNews() {
     if (props.isDataLoaded) {
-      props.setResponseSending(false)
-      props.setDataLoaded(false)
-      props.setArticles([])
+      props.setResponseSending(false);
+      props.setDataLoaded(false);
+      props.setArticles([]);
     }
-    props.setResponseSending(true)
-    props.scroller()
+    props.setResponseSending(true);
+    props.scroller();
     const search = articles.filter((article, index) => {
       let keyNews = Object.values(article).find((k) => {
         if (k.includes(request)){
           article.id = index;
           article.keyword.splice(0, 0, request);
         };
-        return k.includes(request)
+        return k.includes(request);
       })
       return keyNews;
     })
     const news = search.filter((item) => {
-      return Object.keys(item).length !== 0
+      return Object.keys(item).length !== 0;
     });
     if (news.length !== 0) {
-      props.setDataLoaded(true)
-      props.setArticles(news)
+      props.setDataLoaded(true);
+      props.setArticles(news);
       return
     } else {
-      props.setSearchError('По вашему запросу ничего не найдено')
+      props.setSearchError('По вашему запросу ничего не найдено');
     }
   };
 
+  // *DOM
   return (
     <article className="SearchForm">
       <h1 className="SearchForm__title">Что творится в мире?</h1>
@@ -54,4 +54,5 @@ function SearchForm(props) {
   )
 };
 
+// **экспорт
 export default SearchForm;

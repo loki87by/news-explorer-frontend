@@ -1,3 +1,4 @@
+// **импорты
 import React from 'react';
 import closeButton from '../../images/close.png';
 import './PopupWithForm.css';
@@ -13,8 +14,10 @@ import './styles/__submit/PopupWithForm__submit.css';
 import './styles/__subsidiary-text/PopupWithForm__subsidiary-text.css';
 import './styles/__link/PopupWithForm__link.css';
 
+// **функционал
 function PopupWithForm(props) {
 
+  // *стейты
   const [popupName, setPopupName] = React.useState('login');
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isValidEmail, setValidEmail] = React.useState(false);
@@ -25,6 +28,7 @@ function PopupWithForm(props) {
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
 
+  // *ввод и проверка валидности мыла
   function handleEmailChange(e) {
     setUserEmail(e.target.value);
     const email = e.target.value;
@@ -41,67 +45,81 @@ function PopupWithForm(props) {
     }
 }
 
-function handlePasswordChange(e) {
-  setUserPassword(e.target.value);
-  const pass = e.target.value;
-  const reg = /^[a-zA-Z0-9]{6,30}$/;
-  const test = reg.test(pass);
-  if (pass.length === 0) {
-    setInvalidPasswordMessage('');
-    setValidPassword(false);
-  } else if((pass.length < 8) && (pass.length > 0)) {
-    setValidPassword(false);
-    setInvalidPasswordMessage('Пароль слишком короткий');
-  } else if(test) {
-    setInvalidPasswordMessage('');
-    setValidPassword(true);
-  } else {
-    setInvalidPasswordMessage('Пароль может содержать только цифры и буквы');
-    setValidPassword(false);
+  // *ввод и проверка валидности пароля
+  function handlePasswordChange(e) {
+    setUserPassword(e.target.value);
+    const pass = e.target.value;
+    const reg = /^[a-zA-Z0-9]{6,30}$/;
+    const test = reg.test(pass);
+    if (pass.length === 0) {
+      setInvalidPasswordMessage('');
+      setValidPassword(false);
+    } else if((pass.length < 8) && (pass.length > 0)) {
+      setValidPassword(false);
+      setInvalidPasswordMessage('Пароль слишком короткий');
+    } else if(test) {
+      setInvalidPasswordMessage('');
+      setValidPassword(true);
+    } else {
+      setInvalidPasswordMessage('Пароль может содержать только цифры и буквы');
+      setValidPassword(false);
+    }
   }
-}
 
+  // *сабмит формы
   function loginSubmit() {
     closeAllPopups();
   }
 
+  // *сабмит формы при регистрации
   function registrationSubmit() {
     closeAllPopups();
     if (isValidEmail && isValidPassword) {
-      props.registrationAcces()
+      props.registrationAcces();
     }
   };
 
+  // *смена формы
   function changeLink() {
     if (isRegisterPopupOpen) {
-      closeAllPopups()
-      props.handleLoginClick()
+      closeAllPopups();
+      props.handleLoginClick();
     } else {
-      setRegisterPopupOpen(true)
+      setRegisterPopupOpen(true);
       setPopupName('registration');
     }
   };
 
+  // *закрытие модальных окон
   function closeAllPopups() {
     props.onClose();
     setRegisterPopupOpen(false);
     setPopupName('login');
+    setUserEmail('');
+    setUserPassword('');
+    setUserName('');
+    setInvalidEmailMessage('');
+    setInvalidPasswordMessage('');
   }
+  // *закрытие по esc
   function handleEscClose(e) {
     if (e.key === "Escape") {
       closeAllPopups();
     }
   }
+  // *закрытие по оверлею
   function handleClickClose(e) {
     if (e.target.classList.contains('PopupWithForm_opened')) {
       closeAllPopups();
     }
   }
+  // *слушатели закрытий
   React.useEffect(() => {
-    window.addEventListener('keydown', handleEscClose)
-    window.addEventListener('click', handleClickClose)
+    window.addEventListener('keydown', handleEscClose);
+    window.addEventListener('click', handleClickClose);
   })
 
+  // **DOM
   return (
     <section className={`PopupWithForm ${(props.isOpen || isRegisterPopupOpen) && "PopupWithForm_opened"}`} id={popupName}>
       <form className="PopupWithForm__container" name={popupName} method="POST" action="#" id="PopupWithForm">
@@ -132,4 +150,5 @@ function handlePasswordChange(e) {
   );
 }
 
+// **экспорт
 export default PopupWithForm;

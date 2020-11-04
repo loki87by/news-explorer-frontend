@@ -9,6 +9,10 @@
   color: #1A1B22;
 }
 
+.Footer__text-link:hover{
+  opacity: .7;
+}
+
 @media (max-width: 768px) {
   .Footer__text-link{
     margin-right: 8px;

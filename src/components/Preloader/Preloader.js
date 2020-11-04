@@ -35,4 +35,5 @@ function Preloader(props) {
   )
 };
 
+// **экспорт
 export default Preloader;

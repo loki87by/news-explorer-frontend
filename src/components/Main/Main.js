@@ -15,4 +15,5 @@ function Main(props) {
   )
 };
 
+// **экспорт
 export default Main;

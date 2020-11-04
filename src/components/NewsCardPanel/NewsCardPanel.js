@@ -11,32 +11,36 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 
 // **Функционал
 function NewsCardPanel(props) {
-const [marker, setMarker] = React.useState(false)
+  // *отмечаем выбранные карточки
+  const [marker, setMarker] = React.useState(false);
   function swichMarker() {
     let index = props.article.id;
     if (props.article.marked) {
       props.article.marked = false;
-      setMarker(false)
+      setMarker(false);
     } else {
       props.article.marked = true;
       setMarker(true);
     }
     function marker() {
-      props.articles.splice(index, 1, props.article)
+      props.articles.splice(index, 1, props.article);
     }
-    marker()
-    let savedNews = props.articles.filter((item) => {return item.marked === true})
-    props.updateSavedNews(savedNews)
+    marker();
+    let savedNews = props.articles.filter((item) => {return item.marked === true});
+    props.updateSavedNews(savedNews);
   }
+
+  // *снятие отметки
   function unsaveArticle() {
     let index = props.article.id;
     props.article.marked = false;
-    props.articles.splice(index, 0)
+    props.articles.splice(index, 0);
     setMarker(false);
-    let savedNews = props.articles.filter((item) => {return item.marked === true})
-    props.updateSavedNews(savedNews)
+    let savedNews = props.articles.filter((item) => {return item.marked === true});
+    props.updateSavedNews(savedNews);
   }
 
+  // **DOM
   return props.loggedIn ?
       (<>{props.isSavedNewsPage ?
         (<div className={`NewsCardPanel ${props.isSavedNewsPage && "NewsCardPanel_savedPages"}`}>
@@ -54,4 +58,5 @@ const [marker, setMarker] = React.useState(false)
     </div>)
 };
 
+// **экспорт
 export default NewsCardPanel;

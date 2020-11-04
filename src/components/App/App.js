@@ -12,18 +12,12 @@ import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import {ArticlesContext} from '../../contexts/ArticlesContext';
 import './App.css';
-import './styles/App__background.css'
-import './styles/App__background-image.css'
-/* isSavedNewsPage - header, navi, newsCardList, newsCardPanel
-isDataLoaded, isResponseSending - main
-loggedIn - navi, newsCardPanel
-кучу всего в попапы
-searchError - прелоудер
-newsQuantity, hashtags - шапка новостей
-*/
+import './styles/App__background.css';
+import './styles/App__background-image.css';
 
 // **Функционал
 function App() {
+  // *стейты
   const [loggedIn, setLoggedIn] = React.useState(true);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
@@ -37,25 +31,30 @@ function App() {
 
   const history = useHistory();
 
+  // *открытие окна авторизации
   function handleLoginClick() {
     setLoginPopupOpen(true);
   }
 
+  // *открытие оповещения успешной регистрации
   function registrationAcces() {
-    setInformationPopupOpen(true)
+    setInformationPopupOpen(true);
   }
 
+  // *закрытие модальных окон
   function handlePopupClose() {
     setLoginPopupOpen(false);
     setInformationPopupOpen(false);
   }
 
+  // *выход из аккаунта
   function logOut(){
-    setSavedNewsPage(false)
-    setLoggedIn(false)
+    setSavedNewsPage(false);
+    setLoggedIn(false);
     history.push('/');
   }
 
+  // **DOM
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <ArticlesContext.Provider value={savedNews}>
@@ -86,4 +85,5 @@ function App() {
   )
 };
 
+// **экспорт
 export default App;

@@ -23,4 +23,5 @@ function NewsCard(props) {
   )
 };
 
+// **экспорт
 export default NewsCard;

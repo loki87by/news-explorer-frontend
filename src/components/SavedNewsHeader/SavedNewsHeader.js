@@ -4,8 +4,6 @@ import './SavedNewsHeader.css';
 import './styles/__title/SavedNewsHeader__title.css';
 import './styles/__caption/SavedNewsHeader__caption.css';
 import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css';
-// принимает пропсы: newsQuantity(количество сохраненных новостей),
-// hashtags(массив хэштэгов сохраненных новостей) и name (пользователя)
 
 // **Функционал
 function SavedNewsHeader(props) {
@@ -28,25 +26,26 @@ function SavedNewsHeader(props) {
   // *функция возврата ТОП-2 хэштэгов
   function hashtagsCreator() {
     if (arrayNormalizer.length === 1) {
-      return `${arrayNormalizer[0]}`
+      return `${arrayNormalizer[0]}`;
     } else if (arrayNormalizer.length === 2) {
-      return `${arrayNormalizer[0]} и ${arrayNormalizer[1]}`
+      return `${arrayNormalizer[0]} и ${arrayNormalizer[1]}`;
     } else {
-      return `${arrayNormalizer[0]}, ${arrayNormalizer[1]} `
+      return `${arrayNormalizer[0]}, ${arrayNormalizer[1]} `;
     }
   }
   // *функция возврата хэштегов превышающих ТОП-2
   function hashtagsExcesser() {
     const excess = arrayNormalizer.length - 2;
     if (arrayNormalizer.length === 3) {
-      return `${arrayNormalizer[2]}`
+      return `${arrayNormalizer[2]}`;
     } else if ((arrayNormalizer.length > 3) && (arrayNormalizer.length < 7)){
-      return `${excess}-м другим`
+      return `${excess}-м другим`;
     } else {
-      return `${excess}-и другим`
+      return `${excess}-и другим`;
     }
   }
 
+  // *функция подбора окончаний в зависимости от числительного
   let newsQuantityText;
   function newsQuantityTextCreator() {
     if (props.newsQuantity === 1) {
@@ -59,6 +58,7 @@ function SavedNewsHeader(props) {
   };
   newsQuantityTextCreator()
 
+  // **DOM
   return (
     <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
@@ -71,5 +71,5 @@ function SavedNewsHeader(props) {
   )
 };
 
-// *экспорт
+// **экспорт
 export default SavedNewsHeader;

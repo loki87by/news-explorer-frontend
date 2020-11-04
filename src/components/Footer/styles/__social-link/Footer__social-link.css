@@ -5,6 +5,10 @@
   margin-left: 28px;
 }
 
+.Footer__social-link:hover{
+  opacity: .7;
+}
+
 @media (max-width: 768px) {
   .Footer__social-link{
     padding: 2px 0 0;

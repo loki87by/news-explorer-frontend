@@ -6,13 +6,14 @@
   height: 40px;
   padding: 0;
   border: 0;
+  outline: none;
   cursor: pointer;
   background-color: transparent;
   background-image: url('../../../../images/close.png');
 }
 
 .PopupWithForm__close:hover {
-  opacity: 0.6;
+  opacity: .6;
 }
 
 @media (max-width: 610px) {

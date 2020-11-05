@@ -1,0 +1,19 @@
+.SavedNewsHeader{
+  max-height: 294px;
+  padding: 40px 104px;
+}
+
+@media (max-width: 768px) {
+  .SavedNewsHeader{
+    max-height: 204px;
+    padding: 24px 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .SavedNewsHeader{
+    max-height: 206px;
+    padding: 8px 16px 32px;
+    margin-top: 56px;
+  }
+}

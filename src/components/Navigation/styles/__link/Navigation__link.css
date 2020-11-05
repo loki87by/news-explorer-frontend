@@ -1,0 +1,30 @@
+.Navigation__link{
+  margin-left: 34px;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+}
+
+.Navigation__link:hover{
+  opacity: .7;
+}
+
+@media (max-width: 900px) {
+  .Navigation__link{
+    margin-left: 16px;
+    margin-top: 22px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 610px) {
+  .Navigation__link{
+    margin: 0;
+    font-size: 18px;
+    line-height: 56px;
+  }
+}

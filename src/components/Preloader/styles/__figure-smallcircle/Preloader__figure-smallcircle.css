@@ -1,0 +1,8 @@
+.Preloader__figure-smallcircle{
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border: 1px solid #D1D2D6;
+  border-radius: 50%;
+  background-color: #D1D2D6;
+}

@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../vendor/fonts/roboto-regular.woff') format('woff');
+}
+.NewsCardPanel{
+  position: absolute;
+  z-index: 2;
+  width: calc(100% - 48px);
+  padding: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  .NewsCardPanel{
+    width: calc(100% - 16px);
+    padding: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .NewsCardPanel{
+    width: calc(100% - 32px);
+    padding: 16px;
+  }
+}

@@ -1,0 +1,33 @@
+.Footer__copyright{
+  padding: 32px 0 26px;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #B6BCBF;
+}
+
+@media (max-width: 768px) {
+  .Footer__copyright{
+    padding: 3px 0 0;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 585px) {
+  .Footer__copyright{
+    padding: 0;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .Footer__copyright{
+    padding: 0;
+  }
+}

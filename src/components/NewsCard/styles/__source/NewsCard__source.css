@@ -1,0 +1,25 @@
+.NewsCard__source{
+  margin: auto auto 24px 24px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #B6BCBF;
+}
+
+@media (max-width: 768px) {
+  .NewsCard__source{
+    margin: 0 auto 16px 16px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .NewsCard__source{
+    margin: 0 16px 17px;
+  }
+}

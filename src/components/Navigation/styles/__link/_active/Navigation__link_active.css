@@ -1,0 +1,11 @@
+.Navigation__link_active{
+  padding-bottom: 47px;
+  border-bottom: 3px solid;
+  color: #FFFFFF;
+}
+
+@media (max-width: 900px) {
+  .Navigation__link_active{
+    padding-bottom: 41px;
+  }
+}

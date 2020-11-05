@@ -1,0 +1,27 @@
+.Footer__social-link{
+  max-width: 20px;
+  max-height: 20px;
+  margin: 0;
+  margin-left: 28px;
+}
+
+.Footer__social-link:hover{
+  opacity: .7;
+}
+
+@media (max-width: 768px) {
+  .Footer__social-link{
+    padding: 2px 0 0;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 585px) {
+  .Footer__social-link{
+    position: absolute;
+    right: 18px;
+    top: 22px;
+    padding: 2px 0 0;
+    margin-left: 20px;
+  }
+}

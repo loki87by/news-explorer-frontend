@@ -1,0 +1,16 @@
+.PopupWithForm__error {
+  position: absolute;
+  z-index: 3;
+  top: 53px;
+  max-height: 14px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  -webkit-transition: .1s opacity, .1s visibility ease-in;
+  -o-transition: .1s opacity, .1s visibility ease-in;
+  transition: .1s opacity, .1s visibility ease-in;
+  word-wrap: break-word;
+}

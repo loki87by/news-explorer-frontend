@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
+.NewsCard{
+  position: relative;
+  max-width: calc((100vw - 240px) / 3);
+  max-height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 5px 5px 0px 0px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+@media (max-width: 1120px) {
+  .NewsCard{
+    max-height: calc(573 / 293 * 28vw);
+  }
+}
+
+@media (max-width: 960px) {
+  .NewsCard{
+    max-height: 564px;
+  }
+}
+
+@media (max-width: 768px) {
+  .NewsCard{
+    max-width: 224px;
+    max-height: 420px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .NewsCard{
+    max-width: calc((100vw - 96px) / 2);
+  }
+}
+
+@media (max-width: 555px) {
+  .NewsCard{
+    max-width: 100%;
+    max-height: 440px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .NewsCard{
+    max-height: 600px;
+  }
+}

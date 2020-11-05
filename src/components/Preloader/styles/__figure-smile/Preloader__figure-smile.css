@@ -1,0 +1,12 @@
+.Preloader__figure-smile{
+  position: absolute;
+  top: 43px;
+  left: 22px;
+  width: 30px;
+  min-height: 20px;
+  border-top: 1px solid #D1D2D6;
+  border-radius: 50%;
+  -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+      -ms-transform: matrix(-1, 0, 0, 1, 0, 0);
+          transform: matrix(-1, 0, 0, 1, 0, 0);
+}

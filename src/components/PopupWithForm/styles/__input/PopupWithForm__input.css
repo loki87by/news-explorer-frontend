@@ -1,0 +1,22 @@
+.PopupWithForm__input {
+  max-width: 358px;
+  padding: 0;
+  padding-bottom: 9px;
+  margin-bottom: 30px;
+  margin-top: 9px;
+  border: none;
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.PopupWithForm__input:focus{
+  border: 3px solid #2F71E5
+}

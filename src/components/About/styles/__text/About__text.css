@@ -1,0 +1,27 @@
+.About__text{
+  max-width: 100%;
+  margin: 0;
+  padding-top: 24px;
+  grid-area: text;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+}
+
+@media (max-width: 768px) {
+  .About__text{
+    margin: 0;
+    padding: 27px 0 11px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .About__text{
+    padding: 0;
+  }
+}

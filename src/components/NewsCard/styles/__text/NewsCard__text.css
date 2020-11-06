@@ -16,13 +16,23 @@
 @media (max-width: 1120px) {
   .NewsCard__text{
     max-height: 154px;
-    overflow: scroll;
   }
 }
 
 @media (max-width: 1020px) {
   .NewsCard__text{
     max-height: 132px;
+    display: -webkit-box;
+    display: box;
+    -ms-line-clamp: 4;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
   }
 }
 

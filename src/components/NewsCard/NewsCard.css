@@ -19,42 +19,22 @@
   cursor: pointer;
 }
 
-@media (max-width: 1120px) {
-  .NewsCard{
-    max-height: calc(573 / 293 * 28vw);
-  }
-}
-
-@media (max-width: 960px) {
-  .NewsCard{
-    max-height: 564px;
-  }
-}
-
 @media (max-width: 768px) {
   .NewsCard{
     max-width: 224px;
-    max-height: 420px;
     border-radius: 16px;
   }
 }
 
 @media (max-width: 767px) {
   .NewsCard{
-    max-width: calc((100vw - 96px) / 2);
+    max-width: calc((100vw - 88px) / 2);
   }
 }
 
 @media (max-width: 555px) {
   .NewsCard{
     max-width: 100%;
-    max-height: 440px;
     border-radius: 16px;
-  }
-}
-
-@media (max-width: 400px) {
-  .NewsCard{
-    max-height: 600px;
   }
 }

@@ -1,6 +1,5 @@
 // **импорты
 import React from 'react';
-import closeButton from '../../images/close.png';
 import './TooltipPopup.css';
 import './styles/_opened/TooltipPopup_opened.css';
 import './styles/__container/TooltipPopup__container.css';
@@ -40,8 +39,8 @@ function TooltipPopup(props) {
   // **DOM
   return (
     <section className={`TooltipPopup ${props.isOpen && "TooltipPopup_opened"}`} id='TooltipPopup'>
-      <div className="TooltipPopup__container" name='TooltipPopup' id="TooltipPopup">
-        <button className="TooltipPopup__close" src={ closeButton } type="button" aria-label="Закрыть" onClick={ props.onClose } id="closeAllPopups"></button>
+      <div className="TooltipPopup__container">
+        <button className="TooltipPopup__close" type="button" aria-label="Закрыть" onClick={ props.onClose } id="closeAllPopups"></button>
         <h1 className="TooltipPopup__text">Пользователь успешно зарегистрирован!</h1>
         <button onClick={redirectToLogin} type="button" className="TooltipPopup__link">Войти</button>
       </div>

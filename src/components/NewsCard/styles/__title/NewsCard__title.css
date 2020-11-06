@@ -34,3 +34,10 @@
     line-height: 26px;
   }
 }
+
+@media (max-width: 325px) {
+  .NewsCard__title{
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

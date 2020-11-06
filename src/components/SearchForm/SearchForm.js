@@ -47,7 +47,7 @@ function SearchForm(props) {
       <h1 className="SearchForm__title">Что творится в мире?</h1>
       <p className="SearchForm__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
       <form className="SearchForm__form">
-        <input className="SearchForm__input" type='text' placeholder='Введите тему новости' onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
+        <input required className="SearchForm__input" type='text' placeholder='Введите тему новости' onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
         <button className="SearchForm__button" type='button' onClick={ searchNews }>Искать</button>
       </form>
     </article>

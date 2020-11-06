@@ -1,6 +1,6 @@
 // **импорты
 import React from 'react';
-import { Route, useHistory } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import { ScrollTo } from "react-scroll-to";
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -10,7 +10,11 @@ import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
+
 import {ArticlesContext} from '../../contexts/ArticlesContext';
+
+import * as MainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute';
 import './App.css';
 import './styles/App__background.css';
 import './styles/App__background-image.css';
@@ -18,7 +22,7 @@ import './styles/App__background-image.css';
 // **Функционал
 function App() {
   // *стейты
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
@@ -28,18 +32,72 @@ function App() {
   const [searchError, setSearchError] = React.useState('');
   const [isSavedNewsPage, setSavedNewsPage] = React.useState(false);
   const [savedNews, updateSavedNews] = React.useState([]);
+  const [userToken, setUserToken] = React.useState('');
+  const [userEmail, setUserEmail] = React.useState('');
+  const [userPassword, setUserPassword] = React.useState('');
+  const [userName, setUserName] = React.useState('');
 
   const history = useHistory();
 
-  // *открытие окна авторизации
+  // *регистрация
+  function handleRegisterClick() {
+    MainApi.register(userEmail, userPassword, userName)
+    .then((res) => {
+      if(res) {
+        setInformationPopupOpen(true)
+      } else {
+        setInformationPopupOpen(false)
+        // добавить текст ошибки
+      }
+    })
+    .catch((err) => console.log(err));
+  }
+
+  // *авторизация
   function handleLoginClick() {
     setLoginPopupOpen(true);
+    MainApi.login({ userEmail, userPassword })
+    .then((token) => {
+      if (token){
+        localStorage.setItem('token', token);
+        setUserToken(token);
+        sourceLoading(token);
+      }
+    }
+    )
+    .catch((err) => console.log(err));
   }
+  // *получение данных пользователя
+  function sourceLoading(token) {
+    MainApi.getContent(token)
+    .then((user) => {
+      setCurrentUser(user);
+      setLoggedIn(true);
+      history.push('/');
+    })
+    .catch(() => logOut())
+    /*.finally(() => {
+      api.getInitialCards(token)
+      .then((cards) => {
+        setCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      })*/
+  }
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(token) {
+    sourceLoading(token)
+  }
+  }, []);
 
   // *открытие оповещения успешной регистрации
   function registrationAcces() {
     setInformationPopupOpen(true);
-  }
+  } //более не используется
 
   // *закрытие модальных окон
   function handlePopupClose() {
@@ -49,17 +107,45 @@ function App() {
 
   // *выход из аккаунта
   function logOut(){
+    localStorage.removeItem('token');
     setSavedNewsPage(false);
     setLoggedIn(false);
     history.push('/');
   }
+  /*function updateArticle(data) {
+    const token = userToken
+    console.log(token)
+    Auth.addNewCard(token, data.name, data.link)
+    // console.log(data.name, data.link)
+    .then((res) => {
+      setDataImage(res);
+      setCards([res, ...cards]);
+      closeAllPopups()
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+}*/
+
+/*function articleDelete(card) {
+  setConfirmPopupOpen(true)
+  selectCardDelete(card)
+  function ConfirmDelete() {
+    const token = userToken
+    api.deleteCard(token, cardDelete._id).then(() => {
+      const newCards = cards.filter((i) => i._id !== cardDelete._id);
+      setCards(newCards);
+      closeAllPopups();
+    });
+  }
+}*/
 
   // **DOM
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <ArticlesContext.Provider value={savedNews}>
       <div className="App">
-        <PopupWithForm isOpen={isLoginPopupOpen} setInformationPopupOpen={setInformationPopupOpen} handleLoginClick={handleLoginClick} registrationAcces={registrationAcces} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
+        <PopupWithForm isOpen={isLoginPopupOpen} userEmail={userEmail} userPassword={userPassword} userName={userName}  setInformationPopupOpen={setInformationPopupOpen} handleLoginClick={handleLoginClick} registrationAcces={registrationAcces} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
         <TooltipPopup isOpen={isInformationPopupOpen} onClose={handlePopupClose} handleLoginClick={handleLoginClick} />
         <Route exact path='/'>
           <div className='App__background App__background-image'>
@@ -72,13 +158,18 @@ function App() {
           </div>
             <Main updateSavedNews={updateSavedNews} savedNews={savedNews} loggedIn={loggedIn} articles={articles} isSavedNewsPage={isSavedNewsPage} isDataLoaded={isDataLoaded} searchError={searchError} isResponseSending={isResponseSending} isInformationPopup={isInformationPopupOpen} currentUser={currentUser} />
         </Route>
-        <Route path='/saved-pages'>
-          <div className='App__background'>
-            <Header logOut={logOut} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
-            </div>
-            <SavedNews loggedIn={loggedIn} articles={articles} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
-        </Route>
-        <Footer />
+          <Switch>
+            <ProtectedRoute path='/saved-pages'>
+              <div className='App__background'>
+                <Header logOut={logOut} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
+                </div>
+                <SavedNews loggedIn={loggedIn} articles={articles} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
+            </ProtectedRoute>
+          <Footer />
+              <Route>
+                {loggedIn ? <Redirect to="/saved-pages" /> : <Redirect to="/" />}
+              </Route>
+            </Switch>
       </div>
     </ArticlesContext.Provider>
     </CurrentUserContext.Provider>

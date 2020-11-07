@@ -6,7 +6,7 @@
 .NewsCard{
   position: relative;
   max-width: calc((100vw - 240px) / 3);
-  max-height: 600px;
+  max-height: 576px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,15 +14,32 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 16px;
   background-color: #ffffff;
   cursor: pointer;
+}
+
+@media (max-width: 1435px) {
+  .NewsCard{
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 1244px) {
+  .NewsCard{
+    max-height: 620px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .NewsCard{
+    max-width: calc((100vw - 224px) / 3);
+  }
 }
 
 @media (max-width: 768px) {
   .NewsCard{
     max-width: 224px;
-    border-radius: 16px;
   }
 }
 
@@ -35,6 +52,5 @@
 @media (max-width: 555px) {
   .NewsCard{
     max-width: 100%;
-    border-radius: 16px;
   }
 }

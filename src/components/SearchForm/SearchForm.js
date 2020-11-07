@@ -20,12 +20,13 @@ function SearchForm(props) {
     props.setResponseSending(true);
     props.scroller();
     const search = articles.filter((article, index) => {
-      let keyNews = Object.values(article).find((k) => {
-        if (k.includes(request)){
+      let arr = Object.values(article);
+      let keyNews = arr.find(function(key) {
+        if (key.toString().includes(request.toString())){
           article.id = index;
-          article.keyword.splice(0, 0, request);
+          article.keyword.splice(0, 1, request);
         };
-        return k.includes(request);
+        return key.toString().includes(request.toString());
       })
       return keyNews;
     })

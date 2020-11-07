@@ -1,10 +1,11 @@
 .NewsCardList__container{
   display: grid;
   grid-gap: 16px;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
+  max-width: calc(100vw - 208px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .NewsCardList__container{
     grid-gap: 8px;
   }
@@ -12,7 +13,8 @@
 
 @media (max-width: 767px) {
   .NewsCardList__container{
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
+    max-width: calc(100vw - 80px);
   }
 }
 

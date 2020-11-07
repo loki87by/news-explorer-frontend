@@ -10,7 +10,7 @@
   color: #B6BCBF;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 894px) {
   .NewsCard__source{
     margin: 0 auto 16px 16px;
     font-size: 16px;
@@ -18,8 +18,23 @@
   }
 }
 
+@media (max-width: 768px) {
+  .NewsCard__source{
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 555px) {
+  .NewsCard__source{
+    margin: auto auto 24px 24px;
+    margin-bottom: 16px;
+  }
+}
+
 @media (max-width: 400px) {
   .NewsCard__source{
-    margin: 0 16px 17px;
+    margin: 0 16px 16px;
   }
 }

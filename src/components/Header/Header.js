@@ -19,7 +19,10 @@ function Header(props) {
   // *отслеживатель изменения ширины экрана
   useEffect(function() {
     function resizer() {
-      setScreenWidth(window.screen.width)
+      setScreenWidth(window.innerWidth)
+      if (screenWidth > 610) {
+        setMobileMenuOpen(false)
+      }
     };
     window.addEventListener("resize", resizer);
     resizer();

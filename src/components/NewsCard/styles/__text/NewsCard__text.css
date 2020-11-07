@@ -15,42 +15,64 @@
 
 @media (max-width: 1120px) {
   .NewsCard__text{
-    max-height: 154px;
+    height: 66px;
   }
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1081px) {
   .NewsCard__text{
-    max-height: 132px;
-    display: -webkit-box;
-    display: box;
-    -ms-line-clamp: 4;
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    word-wrap: break-word;
-    -webkit-box-orient: vertical;
-    box-orient: vertical;
+    height: 88px;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 917px) {
   .NewsCard__text{
-    max-height: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 894px) {
+  .NewsCard__text{
+    margin: 16px 12px;
+    height: 88px;
+  }
+}
+
+@media (max-width: 845px) {
+  .NewsCard__text{
+    height: 110px;
   }
 }
 
 @media (max-width: 768px) {
   .NewsCard__text{
-    max-height: 88px;
-    margin: 16px 12px;
+    margin: 10px 12px 16px;
+    height: 88px;
+  }
+}
+
+@media (max-width: 555px) {
+  .NewsCard__text{
+    margin: 16px 24px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 443px) {
+  .NewsCard__text{
+    margin-top: 10px;
   }
 }
 
 @media (max-width: 400px) {
   .NewsCard__text{
-    margin: 0 16px 8px;
+    margin: 10px 16px 8px;
+  }
+}
+
+@media (max-width: 325px) {
+  .NewsCard__text{
+    margin: 10px 16px 8px;
   }
 }

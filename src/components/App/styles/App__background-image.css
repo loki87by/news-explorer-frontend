@@ -86,9 +86,9 @@
   }
 }
 
-@media (max-width: 633px) {
+@media (max-width: 655px) {
   .App__background-image{
-    background-position-y: top, -1vw;
+    background-position-y: top;
   }
 }
 

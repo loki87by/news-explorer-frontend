@@ -1,8 +1,16 @@
 .NewsCard__image{
-  max-width: 100%;
+  max-width: 400px;
   max-height: 272px;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+@media (max-width: 1300px) {
+  .NewsCard__image{
+    max-width: 100%;
+    max-height: 200px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -22,13 +30,18 @@
 @media (max-width: 555px) {
   .NewsCard__image{
     max-width: 100%;
-    max-height: 196px;
   }
 }
 
 @media (max-width: 400px) {
   .NewsCard__image{
     max-width: 100%;
+    /*max-height: 196px;*/
+  }
+}
+
+@media (max-width: 325px) {
+  .NewsCard__image{
     max-height: 196px;
   }
 }

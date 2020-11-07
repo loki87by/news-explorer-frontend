@@ -25,7 +25,7 @@ function Navigation(props) {
       </>
       : ''}
       {props.loggedIn ?
-      <button className={`Navigation__button ${props.isSavedNewsPage && (props.screenWidth > 610) && "Navigation_black"}`} onClick={props.logOut} type="reset">{props.currentUser.name} [-&gt;</button> :
+      <button className={`Navigation__button ${props.isSavedNewsPage && (props.screenWidth > 610) && "Navigation_black"}`} onClick={props.logOut} type="reset">{props.currentUser.name}[-&nbsp;&gt;</button> :
       <button className={`Navigation__button ${props.isSavedNewsPage && (props.screenWidth > 610) && "Navigation_black"}`} type="button" onClick={props.handleLoginClick}>Авторизоваться</button>}
     </nav>
   )

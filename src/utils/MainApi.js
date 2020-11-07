@@ -73,7 +73,7 @@ export const getContent = (token) => {
 }
 
   //*получение сохраненных карточек
-  export const getArticles = (id, token) => {
+  export const getArticles = (token) => {
     return fetch(`${BASE_URL}/articles`, {
       method: 'GET',
       headers: {'Content-Type': 'application/json',

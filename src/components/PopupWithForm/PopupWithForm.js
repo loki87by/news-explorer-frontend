@@ -24,6 +24,8 @@ function PopupWithForm(props) {
   const [invalidEmailMessage, setInvalidEmailMessage] = React.useState('');
   const [isValidPassword, setValidPassword] = React.useState(false);
   const [invalidPasswordMessage, setInvalidPasswordMessage] = React.useState('');
+  const [isValidName, setValidName] = React.useState(false);
+  const [invalidNameMessage, setInvalidNameMessage] = React.useState('');
 
   // *ввод и проверка валидности мыла
   function handleEmailChange(e) {
@@ -63,6 +65,20 @@ function PopupWithForm(props) {
     }
   }
 
+  function handleNameChange(e) {
+    props.setUserName(e.target.value);
+    const name = e.target.value;
+    if (name.length < 2) {
+      setInvalidNameMessage('Имя должно быть не менее двух символов');
+      setValidName(false);
+    } else if (name.length > 30) {
+      setInvalidNameMessage('Имя должно быть не более 30 символов');
+      setValidName(false);
+    } else {
+      setValidName(false);
+    }
+  }
+
   // *сабмит формы
   function loginSubmit() {
     closeAllPopups();
@@ -70,6 +86,7 @@ function PopupWithForm(props) {
 
   // *сабмит формы при регистрации
   function registrationSubmit() {
+    props.handleRegisterClick()
     closeAllPopups();
     if (isValidEmail && isValidPassword) {
       props.registrationAcces();
@@ -123,17 +140,18 @@ function PopupWithForm(props) {
         <button className="PopupWithForm__close" src={ closeButton } type="button" aria-label="Закрыть" onClick={ closeAllPopups } id="closeAllPopups"></button>
         <h1 className="PopupWithForm__text">{popupName === 'login' ? 'Вход' : 'Регистрация'}</h1>
         <label htmlFor="email" className="PopupWithForm__label">Email
-          <input type="text" className="PopupWithForm__input" onChange={e => handleEmailChange(e)} value={props.userEmail} placeholder="Введите почту" id="email" name="email" />
+          <input required type="text" className="PopupWithForm__input" onChange={e => handleEmailChange(e)} value={props.userEmail} placeholder="Введите почту" id="email" name="email" />
           <span className="PopupWithForm__error">{isValidEmail ? ' ' : invalidEmailMessage}</span>
         </label>
         <label htmlFor="pass" className="PopupWithForm__label">Пароль
-          <input type="password" className="PopupWithForm__input" onChange={e => handlePasswordChange(e)} value={props.userPassword} placeholder="Введите пароль" id="pass" name="pass" />
+          <input required type="password" className="PopupWithForm__input" onChange={e => handlePasswordChange(e)} value={props.userPassword} placeholder="Введите пароль" id="pass" name="pass" />
           <span className="PopupWithForm__error">{isValidPassword ? ' ' : invalidPasswordMessage}</span>
         </label>
         {popupName === 'login' ? '' :
         <>
           <label htmlFor="name" className="PopupWithForm__label">Имя
-            <input type="name" className="PopupWithForm__input" onChange={e => props.setUserName(e.target.value)} value={props.userName} placeholder="Введите своё имя" id="name" name="name" />
+            <input required type="name" className="PopupWithForm__input" onChange={e => handleNameChange(e)} value={props.userName} placeholder="Введите своё имя" id="name" name="name" />
+            <span className="PopupWithForm__error">{isValidName ? ' ' : invalidNameMessage}</span>
           </label>
           <span className="PopupWithForm__error PopupWithForm__error_registrationError">{ props.registrationError || ' ' }</span>
         </>

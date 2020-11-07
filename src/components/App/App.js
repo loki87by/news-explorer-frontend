@@ -32,7 +32,7 @@ function App() {
   const [searchError, setSearchError] = React.useState('');
   const [isSavedNewsPage, setSavedNewsPage] = React.useState(false);
   const [savedNews, updateSavedNews] = React.useState([]);
-  const [userToken, setUserToken] = React.useState('');
+  //const [userToken, setUserToken] = React.useState('');
   const [userEmail, setUserEmail] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
@@ -60,7 +60,7 @@ function App() {
     .then((token) => {
       if (token){
         localStorage.setItem('token', token);
-        setUserToken(token);
+        //setUserToken(token);
         sourceLoading(token);
       }
     }
@@ -76,15 +76,15 @@ function App() {
       history.push('/');
     })
     .catch(() => logOut())
-    /*.finally(() => {
-      api.getInitialCards(token)
-      .then((cards) => {
-        setCards(cards);
+    .finally(() => {
+      MainApi.getArticles(token)
+      .then((articles) => {
+        updateSavedNews(articles);
         })
         .catch((err) => {
           console.log(err);
         });
-      })*/
+      })
   }
 
   React.useEffect(() => {
@@ -92,12 +92,8 @@ function App() {
     if(token) {
     sourceLoading(token)
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // *открытие оповещения успешной регистрации
-  function registrationAcces() {
-    setInformationPopupOpen(true);
-  } //более не используется
 
   // *закрытие модальных окон
   function handlePopupClose() {
@@ -115,7 +111,7 @@ function App() {
   /*function updateArticle(data) {
     const token = userToken
     console.log(token)
-    Auth.addNewCard(token, data.name, data.link)
+    MainApi.updateArticle(token, keyword, article)
     // console.log(data.name, data.link)
     .then((res) => {
       setDataImage(res);
@@ -145,7 +141,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
     <ArticlesContext.Provider value={savedNews}>
       <div className="App">
-        <PopupWithForm isOpen={isLoginPopupOpen} userEmail={userEmail} userPassword={userPassword} userName={userName}  setInformationPopupOpen={setInformationPopupOpen} handleLoginClick={handleLoginClick} registrationAcces={registrationAcces} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
+        <PopupWithForm isOpen={isLoginPopupOpen} setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName}  handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
         <TooltipPopup isOpen={isInformationPopupOpen} onClose={handlePopupClose} handleLoginClick={handleLoginClick} />
         <Route exact path='/'>
           <div className='App__background App__background-image'>

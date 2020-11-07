@@ -1,0 +1,35 @@
+.Footer__text-link{
+  margin-right: 14px;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+}
+
+.Footer__text-link:hover{
+  opacity: .7;
+}
+
+@media (max-width: 768px) {
+  .Footer__text-link{
+    margin-right: 8px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 585px) {
+  .Footer__text-link{
+    margin-right: calc((100vw - 347px) / 2);
+  }
+}
+
+@media (max-width: 400px) {
+  .Footer__text-link{
+    margin-right: 0;
+    line-height: 48px;
+  }
+}

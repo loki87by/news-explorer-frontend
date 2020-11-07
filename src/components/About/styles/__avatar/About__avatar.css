@@ -1,0 +1,28 @@
+.About__avatar{
+  width: 464px;
+  border-radius: 100%;
+  grid-area: avatar;
+}
+
+@media (max-width: 900px) {
+  .About__avatar{
+    width: 232px;
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .About__avatar{
+    width: 40vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .About__avatar{
+    width: 272px;
+    margin-top: 0;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}

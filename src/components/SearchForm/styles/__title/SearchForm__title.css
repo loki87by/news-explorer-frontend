@@ -1,0 +1,26 @@
+.SearchForm__title{
+  max-width: 100%;
+  margin: auto;
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  line-height: 107%;
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .SearchForm__title{
+    max-width: 80%;
+    margin-left: 0;
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .SearchForm__title{
+    max-width: 100%;
+    margin: 0;
+  }
+}

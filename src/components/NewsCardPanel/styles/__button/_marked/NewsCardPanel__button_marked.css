@@ -1,0 +1,9 @@
+.NewsCardPanel__button_marked{
+  background-image: url('../../../../../images/save-marked-min.png');
+  background-size: 14px;
+}
+
+.NewsCardPanel__button_marked:hover{
+  background-image: url('../../../../../images/save-marked-min.png');
+  opacity: .9;
+}

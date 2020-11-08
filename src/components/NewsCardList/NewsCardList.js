@@ -18,16 +18,18 @@ function NewsCardList(props) {
   const [newsCards, setNewsCards] = useState(firstNews);
   // *карточки после третьей
   let otherNews = JSON.parse(JSON.stringify(allCards));
-  const [hiddenNews, setHiddenNews] = useState(otherNews.length);
+  otherNews.splice(0, 3);
+  const [hiddenNews, setHiddenNews] = useState(otherNews);
   // *подгрузка следующей тройки
-  let moreNews;
+  let moreNews = [];
   function getMoreNews() {
-    if (otherNews.length > 3) {
-      otherNews.splice(0, 3);
-      moreNews = JSON.parse(JSON.stringify(otherNews)).slice(0, 3);
-      setHiddenNews(otherNews.length);
-      firstNews = firstNews.concat(moreNews);
-      setNewsCards(firstNews);
+    if (hiddenNews.length > 3) {
+      hiddenNews.splice(0, 3);
+      let other = hiddenNews;
+      moreNews = JSON.parse(JSON.stringify(hiddenNews)).slice(0, 3);
+      setHiddenNews(other);
+      let plusNews = newsCards.concat(moreNews);
+      setNewsCards(plusNews);
     }
     return
   }
@@ -48,7 +50,7 @@ function NewsCardList(props) {
             <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
           ))}
         </section>
-        {hiddenNews > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
+        {hiddenNews.length > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
       </>}
     </article>
   )

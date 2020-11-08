@@ -1,5 +1,6 @@
 .NewsCard__image{
   max-width: 400px;
+  height: calc(272 / 400 * 30vw);
   max-height: 272px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -29,6 +30,7 @@
 @media (max-width: 555px) {
   .NewsCard__image{
     max-width: 100%;
+    height: calc(272 / 400 * 100vw);
   }
 }
 

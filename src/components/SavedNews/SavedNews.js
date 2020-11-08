@@ -7,22 +7,20 @@ import './SavedNews.css';
 // **Функционал
 function SavedNews(props) {
   useEffect(() => {props.setSavedNewsPage(true);});
+  useEffect(() => {
+    if (props.savedNews.length > 0) {
+      hashtagger()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // *отбор по ключевым словам
-  let hashtags = [];
-  let hashtagger = (() => {
-    let tags =[];
-    props.savedNews.map((item) => {
-      console.log(props.savedNews)
-      tags = Object.values(item.keyword).map(() => {
+  const [hashtags, setHashtags] = React.useState([])
+  let hashtagger = () => {
+    let tags = props.savedNews.map((item) => {
         return item.keyword;
       })
-      return tags;
-    })
-    if (props.savedNews.length > 0) {
-    hashtags = tags.reduce((tags, item) => {return tags.concat(item)})};
-    return hashtags;
-  })
-  hashtagger()
+    setHashtags(tags)
+  }
   let newsQuantity = props.savedNews.length;
 
   // **DOM

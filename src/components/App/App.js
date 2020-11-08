@@ -10,11 +10,8 @@ import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
-
-import {ArticlesContext} from '../../contexts/ArticlesContext';
-
 import * as MainApi from '../../utils/MainApi';
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 import './styles/App__background.css';
 import './styles/App__background-image.css';
@@ -22,7 +19,7 @@ import './styles/App__background-image.css';
 // **Функционал
 function App() {
   // *стейты
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
@@ -139,7 +136,6 @@ function App() {
   // **DOM
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <ArticlesContext.Provider value={savedNews}>
       <div className="App">
         <PopupWithForm isOpen={isLoginPopupOpen} setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName}  handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
         <TooltipPopup isOpen={isInformationPopupOpen} onClose={handlePopupClose} handleLoginClick={handleLoginClick} />
@@ -159,7 +155,7 @@ function App() {
               <div className='App__background'>
                 <Header logOut={logOut} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
                 </div>
-                <SavedNews loggedIn={loggedIn} articles={articles} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
+                <SavedNews loggedIn={loggedIn} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
             </ProtectedRoute>
           <Footer />
               <Route>
@@ -167,7 +163,6 @@ function App() {
               </Route>
             </Switch>
       </div>
-    </ArticlesContext.Provider>
     </CurrentUserContext.Provider>
   )
 };

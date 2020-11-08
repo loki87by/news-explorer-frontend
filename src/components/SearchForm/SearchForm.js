@@ -1,6 +1,6 @@
 // **импорты
 import React from 'react';
-import articles from '../../utils/articles'
+import * as NewsApi from '../../utils/NewsApi';
 import './SearchForm.css';
 import './styles/__title/SearchForm__title.css';
 import './styles/__text/SearchForm__text.css';
@@ -11,35 +11,41 @@ import './styles/__button/SearchForm__button.css';
 // **Функционал
 function SearchForm(props) {
   const[request, setRequest] = React.useState('');
+  const[reqErr, setReqErr] = React.useState({});
+
   function searchNews() {
     if (props.isDataLoaded) {
       props.setResponseSending(false);
       props.setDataLoaded(false);
-      props.setArticles([]);
     }
     props.setResponseSending(true);
-    props.scroller();
-    const search = articles.filter((article, index) => {
-      let arr = Object.values(article);
-      let keyNews = arr.find(function(key) {
-        if (key.toString().includes(request.toString())){
-          article.id = index;
-          article.keyword.splice(0, 1, request);
-        };
-        return key.toString().includes(request.toString());
+    NewsApi.getNews(request)
+      .then((res) => {
+        return res.articles
       })
-      return keyNews;
-    })
-    const news = search.filter((item) => {
-      return Object.keys(item).length !== 0;
-    });
-    if (news.length !== 0) {
-      props.setDataLoaded(true);
-      props.setArticles(news);
-      return
-    } else {
-      props.setSearchError('По вашему запросу ничего не найдено');
-    }
+        .then((articles) => {
+          let arr = [];
+          arr = articles.map((item) => {
+            let obj = {};
+            obj.title = item.title;
+            obj.keyword = request;
+            obj.text = item.description;
+            obj.date = item.publishedAt;
+            obj.source = item.source.name;
+            obj.link = item.url;
+            obj.image = item.urlToImage;
+            console.log(obj);
+            return obj;
+          })
+          console.log(arr);
+          props.setArticles(arr);
+          props.setDataLoaded(true);
+        })
+      .catch((err) => {
+        setReqErr(err);
+        props.setSearchError(reqErr.message)
+      });
+    props.scroller();
   };
 
   // *DOM

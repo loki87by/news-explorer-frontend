@@ -1,5 +1,16 @@
 .NewsCard__title{
   margin: 12px auto 0 24px;
+  display: -webkit-box;
+  display: box;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
   font-style: normal;
   font-weight: normal;
   font-size: 26px;
@@ -11,7 +22,6 @@
   .NewsCard__title{
     font-size: 22px;
     line-height: 24px;
-    word-break: break-word;
   }
 }
 
@@ -33,12 +43,6 @@
     height: 120px;
   }
 }
-/*
-@media (max-width: 800px) {
-  .NewsCard__title{
-    height: 140px;
-  }
-}*/
 
 @media (max-width: 768px) {
   .NewsCard__title{

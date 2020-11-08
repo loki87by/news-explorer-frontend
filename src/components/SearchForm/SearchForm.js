@@ -29,15 +29,25 @@ function SearchForm(props) {
             let obj = {};
             obj.title = item.title;
             obj.keyword = request;
-            obj.text = item.description;
-            obj.date = item.publishedAt;
+            let cleanText = item.description.replace(/<\/?[^>]+(>|$)/g, "");
+            obj.text = cleanText;
+            let date = new Date(item.publishedAt)
+            let rusDate = date.toLocaleString('ru', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })
+            let dateArr = rusDate.split(' ');
+            let start = dateArr.slice(0, 2).join(' ')
+            let end = dateArr.slice(2).join(' ')
+            let comma = start.concat(', ').concat(end)
+            obj.date = comma;
             obj.source = item.source.name;
             obj.link = item.url;
             obj.image = item.urlToImage;
             console.log(obj);
             return obj;
           })
-          console.log(arr);
           props.setArticles(arr);
           props.setDataLoaded(true);
         })

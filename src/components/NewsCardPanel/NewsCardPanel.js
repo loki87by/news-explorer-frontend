@@ -14,7 +14,10 @@ function NewsCardPanel(props) {
   // *отмечаем выбранные карточки
   const [marker, setMarker] = React.useState(false);
   function swichMarker() {
-    let index = props.article.id;
+    // eslint-disable-next-line no-useless-escape
+    //const regex = '/\D/gi';
+    //let index = props.article.id.replace(regex, '').toNumber;
+    let index = props.article.id
     if (marker) {
       props.article.marked = false;
       setMarker(false);

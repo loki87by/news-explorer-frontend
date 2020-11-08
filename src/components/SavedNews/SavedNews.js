@@ -14,11 +14,7 @@ function SavedNews(props) {
     props.savedNews.map((item) => {
       console.log(props.savedNews)
       tags = Object.values(item.keyword).map(() => {
-        if (item.keyword[0] === ' ') {
-          return item.keyword.splice(0, 1, 'пробел')
-        } else {
         return item.keyword;
-        }
       })
       return tags;
     })

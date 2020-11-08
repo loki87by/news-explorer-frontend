@@ -15,19 +15,24 @@ function NewsCardPanel(props) {
   const [marker, setMarker] = React.useState(false);
   function swichMarker() {
     let index = props.article.id;
-    if (props.article.marked) {
+    if (marker) {
       props.article.marked = false;
       setMarker(false);
     } else {
       props.article.marked = true;
       setMarker(true);
     }
-    function marker() {
+    function markered() {
       props.articles.splice(index, 1, props.article);
     }
-    marker();
-    let savedNews = props.articles.filter((item) => {return item.marked === true});
-    props.updateSavedNews(savedNews);
+    markered();
+    let markedNews = props.articles.filter((item, index) => {
+      if (item.marked === true) {
+      return item
+      }
+      return item[index]
+    });
+    props.updateSavedNews(markedNews);
   }
 
   // *снятие отметки
@@ -36,8 +41,13 @@ function NewsCardPanel(props) {
     props.article.marked = false;
     props.articles.splice(index, 0);
     setMarker(false);
-    let savedNews = props.articles.filter((item) => {return item.marked === true});
-    props.updateSavedNews(savedNews);
+    let markedNews = props.articles.filter((item, index) => {
+      if (item.marked === true) {
+      return item
+      }
+      return item[index]
+    });
+    props.updateSavedNews(markedNews);
   }
 
   // **DOM

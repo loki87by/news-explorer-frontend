@@ -11,7 +11,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import * as MainApi from '../../utils/MainApi';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+//import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 import './styles/App__background.css';
 import './styles/App__background-image.css';
@@ -151,12 +151,12 @@ function App() {
             <Main updateSavedNews={updateSavedNews} savedNews={savedNews} loggedIn={loggedIn} articles={articles} isSavedNewsPage={isSavedNewsPage} isDataLoaded={isDataLoaded} searchError={searchError} isResponseSending={isResponseSending} isInformationPopup={isInformationPopupOpen} currentUser={currentUser} />
         </Route>
           <Switch>
-            <ProtectedRoute path='/saved-pages'>
+            <Route path='/saved-pages'>
               <div className='App__background'>
                 <Header logOut={logOut} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
                 </div>
-                <SavedNews loggedIn={loggedIn} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
-            </ProtectedRoute>
+                <SavedNews loggedIn={loggedIn} articles={articles} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
+            </Route>
           <Footer />
               <Route>
                 {loggedIn ? <Redirect to="/saved-pages" /> : <Redirect to="/" />}

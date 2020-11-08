@@ -25,7 +25,7 @@ function SearchForm(props) {
       })
         .then((articles) => {
           let arr = [];
-          arr = articles.map((item) => {
+          arr = articles.map((item, index) => {
             let obj = {};
             obj.title = item.title;
             obj.keyword = request;
@@ -45,7 +45,7 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             obj.image = item.urlToImage;
-            console.log(obj);
+            obj.id = index;
             return obj;
           })
           props.setArticles(arr);

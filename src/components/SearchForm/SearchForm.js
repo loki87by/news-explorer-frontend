@@ -6,13 +6,25 @@ import './styles/__title/SearchForm__title.css';
 import './styles/__text/SearchForm__text.css';
 import './styles/__form/SearchForm__form.css';
 import './styles/__input/SearchForm__input.css';
+import './styles/__input/_placeholder-error/SearchForm__input_placeholder-error.css';
 import './styles/__button/SearchForm__button.css';
 
 // **Функционал
 function SearchForm(props) {
   const[request, setRequest] = React.useState('');
   const[reqErr, setReqErr] = React.useState({});
+  const[placeholderText, setPlaceholderText]  = React.useState('Введите тему новости');
 
+  function handleSearchSubmit(e) {
+    e.preventDefault();
+    const regex = /\s+/;
+    if ((request.length === 0) || (regex.test(request))) {
+      setPlaceholderText('Нужно ввести ключевое слово')
+    } else {
+      searchNews()
+      setPlaceholderText('Введите тему новости')
+    }
+  }
   function searchNews() {
     if (props.isDataLoaded) {
       props.setResponseSending(false);
@@ -45,7 +57,6 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             obj.image = item.urlToImage;
-            //obj.id = index;
             obj.id = index.toString().concat('+').concat(request);
             return obj;
           })
@@ -65,8 +76,8 @@ function SearchForm(props) {
       <h1 className="SearchForm__title">Что творится в мире?</h1>
       <p className="SearchForm__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
       <form className="SearchForm__form">
-        <input required className="SearchForm__input" type='text' placeholder='Введите тему новости' onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
-        <button className="SearchForm__button" type='button' onClick={ searchNews }>Искать</button>
+        <input required className={`SearchForm__input ${placeholderText === 'Нужно ввести ключевое слово' && "SearchForm__input_placeholder-error"}`} type='text' placeholder={placeholderText} onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
+        <button className="SearchForm__button" type='submit' onClick={ handleSearchSubmit }>Искать</button>
       </form>
     </article>
   )

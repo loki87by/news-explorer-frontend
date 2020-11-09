@@ -19,10 +19,8 @@ function NewsCardPanel(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   function swichMarker() {
-    // eslint-disable-next-line no-useless-escape
-    //const regex = '/\D/gi';
-    //let index = props.article.id.replace(regex, '').toNumber;
-    let index = props.article.id
+    const regex = /\D/gi;
+    let index = props.article.id.replace(regex, '')
     if (marker) {
       props.article.marked = false;
       setMarker(false);
@@ -40,7 +38,11 @@ function NewsCardPanel(props) {
       }
       return item[index]
     });
-    props.updateSavedNews(markedNews);
+    let key = props.article.keyword;
+    let anotherKeyNews = props.savedNews.filter((item) => {
+        return item.keyword !== key
+    })
+    props.updateSavedNews([...anotherKeyNews, ...markedNews]);
   }
 
   // *снятие отметки

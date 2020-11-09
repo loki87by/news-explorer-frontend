@@ -45,8 +45,8 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             obj.image = item.urlToImage;
-            obj.id = index;
-            //obj.id = index.toString().concat('+ ').concat(request);
+            //obj.id = index;
+            obj.id = index.toString().concat('+').concat(request);
             return obj;
           })
           props.setArticles(arr);

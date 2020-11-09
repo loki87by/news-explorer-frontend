@@ -18,9 +18,9 @@ function NewsCardPanel(props) {
       setMarker(true)}
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  function swichMarker() {
-    const regex = /\D/gi;
+  const regex = /\D/gi;
     let index = props.article.id.replace(regex, '')
+  function swichMarker() {
     if (marker) {
       props.article.marked = false;
       setMarker(false);
@@ -28,10 +28,7 @@ function NewsCardPanel(props) {
       props.article.marked = true;
       setMarker(true);
     }
-    function markered() {
-      props.articles.splice(index, 1, props.article);
-    }
-    markered();
+    props.articles.splice(index, 1, props.article);
     let markedNews = props.articles.filter((item, index) => {
       if (item.marked === true) {
       return item
@@ -47,11 +44,10 @@ function NewsCardPanel(props) {
 
   // *снятие отметки
   function unsaveArticle() {
-    let index = props.article.id;
     props.article.marked = false;
-    props.articles.splice(index, 0);
     setMarker(false);
-    let markedNews = props.articles.filter((item, index) => {
+    props.articles.splice(index, 1, props.article);
+    let markedNews = props.savedNews.filter((item, index) => {
       if (item.marked === true) {
       return item
       }

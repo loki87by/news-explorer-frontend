@@ -13,6 +13,11 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 function NewsCardPanel(props) {
   // *отмечаем выбранные карточки
   const [marker, setMarker] = React.useState(false);
+  React.useEffect(() => {
+    if (props.article.marked === true) {
+      setMarker(true)}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   function swichMarker() {
     // eslint-disable-next-line no-useless-escape
     //const regex = '/\D/gi';

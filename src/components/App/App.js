@@ -49,7 +49,8 @@ function App() {
     })
     .catch((err) => {
       setInformationPopupOpen(false)
-      setRegistrationError(err.message)
+      console.log(JSON.parse(err.message))
+      setRegistrationError(JSON.parse(err.message))
     });
   }
 
@@ -59,7 +60,7 @@ function App() {
   }
 
   function onLogin() {
-    MainApi.login({ userEmail, userPassword })
+    MainApi.login(userEmail, userPassword)
     .then((token) => {
       if (token){
         localStorage.setItem('token', token);

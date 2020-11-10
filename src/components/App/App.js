@@ -19,7 +19,8 @@ import './styles/App__background-image.css';
 // **Функционал
 function App() {
   // *стейты
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
   const [articles, setArticles] = React.useState([]);
@@ -33,6 +34,7 @@ function App() {
   const [userEmail, setUserEmail] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
+  const [registrationError, setRegistrationError] = React.useState('');
 
   const history = useHistory();
 
@@ -41,18 +43,22 @@ function App() {
     MainApi.register(userEmail, userPassword, userName)
     .then((res) => {
       if(res) {
+        handlePopupClose()
         setInformationPopupOpen(true)
-      } else {
-        setInformationPopupOpen(false)
-        // добавить текст ошибки
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setInformationPopupOpen(false)
+      setRegistrationError(err.message)
+    });
   }
 
   // *авторизация
   function handleLoginClick() {
     setLoginPopupOpen(true);
+  }
+
+  function onLogin() {
     MainApi.login({ userEmail, userPassword })
     .then((token) => {
       if (token){
@@ -96,6 +102,7 @@ function App() {
   function handlePopupClose() {
     setLoginPopupOpen(false);
     setInformationPopupOpen(false);
+    setRegisterPopupOpen(false);
   }
 
   // *выход из аккаунта
@@ -137,25 +144,73 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
-        <PopupWithForm isOpen={isLoginPopupOpen} setUserEmail={setUserEmail} setUserPassword={setUserPassword} setUserName={setUserName}  handleLoginClick={handleLoginClick} handleRegisterClick={handleRegisterClick} setLoggedIn={setLoggedIn} onClose={handlePopupClose} setArticles={setArticles} setCurrentUser={setCurrentUser} />
-        <TooltipPopup isOpen={isInformationPopupOpen} onClose={handlePopupClose} handleLoginClick={handleLoginClick} />
+        <PopupWithForm
+          isOpen={isLoginPopupOpen || isRegisterPopupOpen}
+          isRegisterPopupOpen={isRegisterPopupOpen}
+          setRegisterPopupOpen={setRegisterPopupOpen}
+          onClose={handlePopupClose}
+          setUserEmail={setUserEmail}
+          setUserPassword={setUserPassword}
+          setUserName={setUserName}
+          handleLoginClick={handleLoginClick}
+          handleRegisterClick={handleRegisterClick}
+          onLogin={onLogin}
+          setLoggedIn={setLoggedIn}
+          setCurrentUser={setCurrentUser}
+          setInformationPopupOpen={setInformationPopupOpen}
+          registrationError={registrationError} />
+        <TooltipPopup isOpen={isInformationPopupOpen}
+          onClose={handlePopupClose} />
         <Route exact path='/'>
           <div className='App__background App__background-image'>
-            <Header logOut={logOut} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} loggedIn={loggedIn} isSavedNewsPage={isSavedNewsPage} handleLoginClick={handleLoginClick}/>
+            <Header
+              loggedIn={loggedIn}
+              handleLoginClick={handleLoginClick}
+              isSavedNewsPage={isSavedNewsPage}
+              setSavedNewsPage={setSavedNewsPage}
+              currentUser={currentUser}
+              logOut={logOut}/>
             <ScrollTo>
             {({ scroll }) => (
-            <SearchForm scroller={() => scroll({ y: 550, smooth: true })} isDataLoaded={isDataLoaded} setArticles={setArticles} setDataLoaded={setDataLoaded} setSearchError={setSearchError} setResponseSending={setResponseSending} />
+            <SearchForm scroller={() => scroll({ y: 550, smooth: true })}
+              setResponseSending={setResponseSending}
+              isDataLoaded={isDataLoaded}
+              setDataLoaded={setDataLoaded}
+              setArticles={setArticles}
+              setSearchError={setSearchError} />
             )}
             </ScrollTo>
           </div>
-            <Main updateSavedNews={updateSavedNews} savedNews={savedNews} loggedIn={loggedIn} articles={articles} isSavedNewsPage={isSavedNewsPage} isDataLoaded={isDataLoaded} searchError={searchError} isResponseSending={isResponseSending} isInformationPopup={isInformationPopupOpen} currentUser={currentUser} />
+            <Main
+              loggedIn={loggedIn}
+              currentUser={currentUser}
+              isSavedNewsPage={isSavedNewsPage}
+              isResponseSending={isResponseSending}
+              isDataLoaded={isDataLoaded}
+              articles={articles}
+              searchError={searchError}
+              savedNews={savedNews}
+              updateSavedNews={updateSavedNews} />
         </Route>
           <Switch>
             <Route path='/saved-pages'>
               <div className='App__background'>
-                <Header logOut={logOut} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} currentUser={currentUser} handleLoginClick={handleLoginClick} loggedIn={loggedIn} />
+                <Header
+                  loggedIn={loggedIn}
+                  handleLoginClick={handleLoginClick}
+                  currentUser={currentUser}
+                  isSavedNewsPage={isSavedNewsPage}
+                  setSavedNewsPage={setSavedNewsPage}
+                  logOut={logOut} />
                 </div>
-                <SavedNews loggedIn={loggedIn} articles={articles} updateSavedNews={updateSavedNews} currentUser={currentUser} isSavedNewsPage={isSavedNewsPage} setSavedNewsPage={setSavedNewsPage} savedNews={savedNews} />
+                <SavedNews
+                  loggedIn={loggedIn}
+                  currentUser={currentUser}
+                  isSavedNewsPage={isSavedNewsPage}
+                  setSavedNewsPage={setSavedNewsPage}
+                  articles={articles}
+                  updateSavedNews={updateSavedNews}
+                  savedNews={savedNews} />
             </Route>
           <Footer />
               <Route>

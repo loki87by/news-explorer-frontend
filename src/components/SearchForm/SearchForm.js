@@ -12,7 +12,6 @@ import './styles/__button/SearchForm__button.css';
 // **Функционал
 function SearchForm(props) {
   const[request, setRequest] = React.useState('');
-  const[reqErr, setReqErr] = React.useState({});
   const[placeholderText, setPlaceholderText]  = React.useState('Введите тему новости');
 
   function handleSearchSubmit(e) {
@@ -60,12 +59,15 @@ function SearchForm(props) {
             obj.id = index.toString().concat('+').concat(request);
             return obj;
           })
-          props.setArticles(arr);
-          props.setDataLoaded(true);
+          if (arr.length !== 0) {
+            props.setArticles(arr);
+            props.setDataLoaded(true);
+          } else {
+            props.setSearchError('К сожалению по вашему запросу ничего не найдено')
+          }
         })
       .catch((err) => {
-        setReqErr(err);
-        props.setSearchError(reqErr.message)
+        props.setSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
       });
     props.scroller();
   };

@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.diplom.students.nomoreparties.co/';
+export const BASE_URL = 'http://api.diplom.students.nomoreparties.co';
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -24,7 +24,7 @@ export const login = ({ email, password }) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({email, password})
+    body: JSON.stringify({ email, password })
   })
   .then((res) => {
     try {

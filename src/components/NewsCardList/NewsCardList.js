@@ -8,6 +8,11 @@ import './styles/__button/NewsCardList__button.css';
 
 // **Функционал
 function NewsCardList(props) {
+  //const [savedNews, setSavedNews] = React.useState([])
+  //let localNews = JSON.parse(localNews);
+  let savedNews = JSON.parse(localStorage.getItem('articles'));
+  //setSavedNews(props.savedNews)
+  //React.useEffect(() => {props.isSavedNewsPage && props.updateSavedNews(props.savedNews)});
   // *получаем все карточки
   const allCards = props.articles.map((article) => {
     return article
@@ -39,15 +44,35 @@ function NewsCardList(props) {
     <article className="NewsCardList">
       {props.isSavedNewsPage ?
       <section className='NewsCardList__container'>
-      {props.savedNews.map((article, i) => (
-        <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
+      {/*props.*/savedNews.map((article) => (
+        <NewsCard key={article._id}
+          NewsCard={NewsCard}
+          loggedIn={props.loggedIn}
+          isSavedNewsPage={props.isSavedNewsPage}
+          articles={props.articles}
+          article={article}
+          keyword={props.keyword}
+          savedNews={props.savedNews}
+          saveArticle={props.saveArticle}
+          updateLocalStorage={props.updateLocalStorage}
+          /*updateSavedNews={setSavedNews/*props.updateSavedNews}*/ />
       ))}
       </section>:
       <>
         <h1 className="NewsCardList__title">Результаты поиска</h1>
         <section className='NewsCardList__container'>
           {newsCards.map((article, i) => (
-            <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
+            <NewsCard key={i}
+              NewsCard={NewsCard}
+              loggedIn={props.loggedIn}
+              isSavedNewsPage={props.isSavedNewsPage}
+              articles={props.articles}
+              article={article}
+              savedNews={props.savedNews}
+              keyword={props.keyword}
+              saveArticle={props.saveArticle}
+              updateLocalStorage={props.updateLocalStorage}
+              /*updateSavedNews={setSavedNews/*props.updateSavedNews}*/ />
           ))}
         </section>
         {hiddenNews.length > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }

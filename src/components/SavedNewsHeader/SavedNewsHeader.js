@@ -7,7 +7,10 @@ import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css'
 
 // **Функционал
 function SavedNewsHeader(props) {
-  const [startText, setStartText] = React.useState('');
+
+  console.log(props.savedNews)
+  let newsQuantity = props.savedNews.length;
+  //const [startText, setStartText] = React.useState('');
   // *функция сортировки и отброса повторяющихся хэштэгов
   // сосчитаем повторяющиеся хэштэги
   let repeatCounter = props.hashtags.reduce((p, i) => {
@@ -19,9 +22,11 @@ function SavedNewsHeader(props) {
 // *функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
-      setStartText('По ключевому слову: ')
+      //setStartText('По ключевому слову: ')
+      return 'По ключевому слову: '
     } else {
-      setStartText('По ключевым словам: ')
+      //setStartText('По ключевым словам: ')
+      return 'По ключевым словам: '
     }
   }
   textCreator();
@@ -50,9 +55,9 @@ function SavedNewsHeader(props) {
   // *функция подбора окончаний в зависимости от числительного
   let newsQuantityText;
   function newsQuantityTextCreator() {
-    if (props.newsQuantity === 1) {
+    if (newsQuantity === 1) {
       newsQuantityText = 'сохранённая статья';
-    } else if ((props.newsQuantity > 1) && (props.newsQuantity < 5)) {
+    } else if ((newsQuantity > 1) && (newsQuantity < 5)) {
       newsQuantityText = 'сохранённых статьи';
     } else {
       newsQuantityText = 'сохранённых статей';
@@ -64,10 +69,10 @@ function SavedNewsHeader(props) {
   return (
     <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
-      <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${props.newsQuantity} ${newsQuantityText}`}</h1>
+      <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${newsQuantity} ${newsQuantityText}`}</h1>
       {props.hashtags.length > 0 ?
-        (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{startText}<b>{hashtagsCreator()}</b></h2>
-        : <h2 className="SavedNewsHeader__hashtag-information">{startText}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
+        (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()/*startText*/}<b>{hashtagsCreator()}</b></h2>
+        : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()/*startText*/}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
       : ''}
     </article>
   )

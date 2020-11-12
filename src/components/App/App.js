@@ -35,6 +35,8 @@ function App() {
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
   const [registrationError, setRegistrationError] = React.useState('');
+  //const [currentArticle, setCurrentArticle] = React.useState({});
+  const [keyword, setKeyword] = React.useState({});
 
   const history = useHistory();
 
@@ -64,15 +66,16 @@ function App() {
     .then((token) => {
       if (token){
         localStorage.setItem('token', token);
+        sourceLoading()
         //setUserToken(token);
-        sourceLoading(token);
       }
     }
     )
     .catch((err) => console.log(err));
   }
   // *получение данных пользователя
-  function sourceLoading(token) {
+  function sourceLoading() {
+    let token = localStorage.getItem('token')
     MainApi.getContent(token)
     .then((user) => {
       setCurrentUser(user);
@@ -83,12 +86,22 @@ function App() {
     .finally(() => {
       MainApi.getArticles(token)
       .then((articles) => {
+        let news = JSON.stringify(articles);
+        localStorage.setItem('articles', news)
         updateSavedNews(articles);
+        console.log(savedNews)
         })
         .catch((err) => {
           console.log(err);
         });
       })
+  }
+
+  function updateLocalStorage(news) {
+    localStorage.removeItem('articles');
+    let articles = JSON.stringify(news);
+    localStorage.setItem('articles', articles)
+    updateSavedNews(articles);
   }
 
   React.useEffect(() => {
@@ -112,34 +125,7 @@ function App() {
     setSavedNewsPage(false);
     setLoggedIn(false);
     history.push('/');
-  }
-  /*function updateArticle(data) {
-    const token = userToken
-    console.log(token)
-    MainApi.updateArticle(token, keyword, article)
-    // console.log(data.name, data.link)
-    .then((res) => {
-      setDataImage(res);
-      setCards([res, ...cards]);
-      closeAllPopups()
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`)
-    })
-}*/
-
-/*function articleDelete(card) {
-  setConfirmPopupOpen(true)
-  selectCardDelete(card)
-  function ConfirmDelete() {
-    const token = userToken
-    api.deleteCard(token, cardDelete._id).then(() => {
-      const newCards = cards.filter((i) => i._id !== cardDelete._id);
-      setCards(newCards);
-      closeAllPopups();
-    });
-  }
-}*/
+}
 
   // **DOM
   return (
@@ -174,9 +160,11 @@ function App() {
             <ScrollTo>
             {({ scroll }) => (
             <SearchForm scroller={() => scroll({ y: 550, smooth: true })}
+              setSavedNewsPage={setSavedNewsPage}
               setResponseSending={setResponseSending}
               isDataLoaded={isDataLoaded}
               setDataLoaded={setDataLoaded}
+              setKeyword={setKeyword}
               setArticles={setArticles}
               setSearchError={setSearchError} />
             )}
@@ -191,7 +179,9 @@ function App() {
               articles={articles}
               searchError={searchError}
               savedNews={savedNews}
-              updateSavedNews={updateSavedNews} />
+              keyword={keyword}
+              updateLocalStorage={updateLocalStorage}
+              /*updateSavedNews={updateSavedNews}*/ />
         </Route>
           <Switch>
             <Route path='/saved-pages'>
@@ -210,7 +200,8 @@ function App() {
                   isSavedNewsPage={isSavedNewsPage}
                   setSavedNewsPage={setSavedNewsPage}
                   articles={articles}
-                  updateSavedNews={updateSavedNews}
+                  updateLocalStorage={updateLocalStorage}
+                  /*updateSavedNews={updateSavedNews}*/
                   savedNews={savedNews} />
             </Route>
           <Footer />

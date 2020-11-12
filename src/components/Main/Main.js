@@ -12,11 +12,13 @@ function Main(props) {
       {props.isResponseSending
         ? (props.isDataLoaded
           ? <NewsCardList
-            loggedIn={props.loggedIn}
-            isSavedNewsPage={props.isSavedNewsPage}
-            articles={props.articles}
-            savedNews={props.savedNews}
-            updateSavedNews={props.updateSavedNews} />
+              loggedIn={props.loggedIn}
+              isSavedNewsPage={props.isSavedNewsPage}
+              articles={props.articles}
+              savedNews={props.savedNews}
+              keyword={props.keyword}
+              updateLocalStorage={props.updateLocalStorage}
+              /*updateSavedNews={props.updateSavedNews}*/ />
           : <Preloader searchError={props.searchError} />)
         : ''}
       <About />

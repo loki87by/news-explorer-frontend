@@ -14,7 +14,16 @@ function NewsCard(props) {
   return (
     <section className="NewsCard">
       <img className="NewsCard__image" src={props.article.image} alt='caption'/>
-      <NewsCardPanel loggedIn={props.loggedIn} savedNews={props.savedNews} updateSavedNews={props.updateSavedNews} article={props.article} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} />
+      <NewsCardPanel
+        loggedIn={props.loggedIn}
+        isSavedNewsPage={props.isSavedNewsPage}
+        articles={props.articles}
+        article={props.article}
+        keyword={props.keyword}
+        savedNews={props.savedNews}
+        saveArticle={props.saveArticle}
+        updateLocalStorage={props.updateLocalStorage}
+        /*updateSavedNews={props.updateSavedNews}*/ />
       <p className="NewsCard__text-content NewsCard__date">{props.article.date}</p>
       <h1 className="NewsCard__text-content NewsCard__title">{props.article.title}</h1>
       <h2 className="NewsCard__text-content NewsCard__text">{props.article.text}</h2>

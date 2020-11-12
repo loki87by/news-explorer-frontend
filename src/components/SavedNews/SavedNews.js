@@ -6,6 +6,8 @@ import './SavedNews.css';
 
 // **Функционал
 function SavedNews(props) {
+  //let savedNews = JSON.parse(localStorage.getItem('articles'));
+
   useEffect(() => {props.setSavedNewsPage(true);});
   useEffect(() => {
     if (props.savedNews.length > 0) {
@@ -21,13 +23,23 @@ function SavedNews(props) {
       })
     setHashtags(tags)
   }
-  let newsQuantity = props.savedNews.length;
 
   // **DOM
   return (
     <main className="SavedNews">
-      <SavedNewsHeader currentUser={props.currentUser} newsQuantity={newsQuantity} hashtags={hashtags}/>
-      <NewsCardList loggedIn={props.loggedIn} savedNews={props.savedNews} updateSavedNews={props.updateSavedNews} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} hashtags={hashtags}/>
+       <SavedNewsHeader
+        currentUser={props.currentUser}
+        savedNews={props.savedNews}
+        //newsQuantity={newsQuantity}
+        hashtags={hashtags}/>
+      <NewsCardList
+        loggedIn={props.loggedIn}
+        isSavedNewsPage={props.isSavedNewsPage}
+        articles={props.articles}
+        savedNews={props.savedNews}
+        updateLocalStorage={props.updateLocalStorage}
+        //updateSavedNews={setSavedNews}
+        hashtags={hashtags}/>
     </main>
   )
 };

@@ -14,6 +14,7 @@ function SearchForm(props) {
   const[request, setRequest] = React.useState('');
   const[placeholderText, setPlaceholderText]  = React.useState('Введите тему новости');
 
+  React.useEffect(() => {props.setSavedNewsPage(false);});
   function handleSearchSubmit(e) {
     e.preventDefault();
     const regex = /\s+/;
@@ -29,6 +30,7 @@ function SearchForm(props) {
       props.setResponseSending(false);
       props.setDataLoaded(false);
     }
+    props.setKeyword(request)
     props.setResponseSending(true);
     NewsApi.getNews(request)
       .then((res) => {
@@ -56,7 +58,7 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             obj.image = item.urlToImage;
-            obj.id = index.toString().concat('+').concat(request);
+            obj._id = index.toString().concat('+').concat(request);
             return obj;
           })
           if (arr.length !== 0) {

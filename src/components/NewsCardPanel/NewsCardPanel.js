@@ -1,5 +1,6 @@
 // **импорты
 import React from 'react';
+import * as MainApi from '../../utils/MainApi';
 import './NewsCardPanel.css';
 import './styles/_savedPages/NewsCardPanel_savedPages.css';
 import './styles/__keyword/NewsCardPanel__keyword.css';
@@ -11,49 +12,57 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 
 // **Функционал
 function NewsCardPanel(props) {
-  // *отмечаем выбранные карточки
+
+  /*function updateLocalStorage(articles) {
+    localStorage.removeItem('articles');
+    //let updatedNews = JSON.stringify(articles);
+    localStorage.setItem('articles', articles)
+  }*/
+
+  function saveArticle() {
+    let token = localStorage.getItem('token')
+    MainApi.updateArticle(token, props.keyword, props.article)
+    .then((res) => {
+      props.article._id = res._id
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+  }
+
+  function deleteArticle() {
+    let token = localStorage.getItem('token')
+    MainApi.deleteArticle(token, props.article._id)
+  }
+
   const [marker, setMarker] = React.useState(false);
   React.useEffect(() => {
     if (props.article.marked === true) {
       setMarker(true)}
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  const regex = /\D/gi;
-    let index = props.article.id.replace(regex, '')
+
+  // *отмечаем выбранные карточки
   function swichMarker() {
     if (marker) {
       props.article.marked = false;
       setMarker(false);
+      deleteArticle()
+      props.updateLocalStorage(props.savedNews)
     } else {
       props.article.marked = true;
       setMarker(true);
+      saveArticle()
+      props.updateLocalStorage(props.savedNews)
     }
-    props.articles.splice(index, 1, props.article);
-    let markedNews = props.articles.filter((item, index) => {
-      if (item.marked === true) {
-      return item
-      }
-      return item[index]
-    });
-    let key = props.article.keyword;
-    let anotherKeyNews = props.savedNews.filter((item) => {
-        return item.keyword !== key
-    })
-    props.updateSavedNews([...anotherKeyNews, ...markedNews]);
   }
 
   // *снятие отметки
   function unsaveArticle() {
     props.article.marked = false;
     setMarker(false);
-    props.articles.splice(index, 1, props.article);
-    let markedNews = props.savedNews.filter((item, index) => {
-      if (item.marked === true) {
-      return item
-      }
-      return item[index]
-    });
-    props.updateSavedNews(markedNews);
+    deleteArticle();
+    props.updateLocalStorage(props.savedNews);
   }
 
   // **DOM

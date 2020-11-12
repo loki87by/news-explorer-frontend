@@ -44,15 +44,10 @@ export const login = (email, password) => {
   })
   .catch ((err) => {return Promise.reject(err)})
   .then((data) => {
-    try{
-      if(data.token) {
-          localStorage.setItem('jwt', data.token);
-      }
-      return data
-    }
-      catch (err){
+      return data.token
+    })
+      .catch ((err) => {
         return Promise.reject(err);
-    }
   })
   .catch(err => console.log(err))
 }
@@ -86,9 +81,9 @@ export const getContent = (token) => {
       return Promise.reject(new Error(`Ошибка: ${res.status}`));
     })
     .catch ((err) => {return Promise.reject(err)})
-    .then((data) => {
+    /*.then((data) => {
       console.log(data);})
-      /*try{
+      try{
         if(data.articles) {
           let news = JSON.parse(localStorage.getItem('articles'))
           } let articles = JSON.stringify(news.?push(data.articles));
@@ -100,30 +95,22 @@ export const getContent = (token) => {
         catch (err){
           return Promise.reject(err);
       }
-    })*/
-    .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err)) */
   }
 
-  //*добавление карточки
+  // *добавление карточки
   export const updateArticle = (token, keyword, article) => {
-    const { title, description, publishedAt, source, url, urlToImage } = article;
+    const { title, text, date, source, link, image } = article;
     return fetch(`${BASE_URL}/articles`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`},
-      body: JSON.stringify({
-        keyword: keyword,
-        title: title,
-        text: description,
-        date: publishedAt,
-        source: source.name,
-        link: url,
-        image: urlToImage
-      })
+      body: JSON.stringify({ keyword, title, text, date, source, link, image })
     })
     .then((res) => {
       try {
-        if (res.status === 200) {
+        if (res.status === 201) {
           return res.json();
         }
         if (res.status === 400) {
@@ -137,10 +124,12 @@ export const getContent = (token) => {
         return err;
       }
     })
+    /*.then((res) => {
+      console.log(res.data);})*/
     .catch ((err) => {return Promise.reject(err)})
-    .then((data) => {
+    /*.then((data) => {
       console.log(data);})
-      /*try{
+      try{
         if(data.articles) {
           if (!localStorage.getItem('articles')) {
             let news = []
@@ -154,12 +143,12 @@ export const getContent = (token) => {
         catch (err){
           return Promise.reject(err);
       }
-    })*/
-    .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err))*/
   }
 
   //*удаление карточки
-  export const articleDelete = (id, token) => {
+  export const deleteArticle = (token, id) => {
     return fetch(`${BASE_URL}/articles/${id}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json',

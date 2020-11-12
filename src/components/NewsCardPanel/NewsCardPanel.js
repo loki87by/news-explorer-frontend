@@ -13,28 +13,29 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 // **Функционал
 function NewsCardPanel(props) {
 
-  /*function updateLocalStorage(articles) {
-    localStorage.removeItem('articles');
-    //let updatedNews = JSON.stringify(articles);
-    localStorage.setItem('articles', articles)
-  }*/
-
+  // *сохранение статьи
   function saveArticle() {
     let token = localStorage.getItem('token')
     MainApi.updateArticle(token, props.keyword, props.article)
-    .then((res) => {
-      props.article._id = res._id
+    .then((last) => {
+      props.article._id = last._id
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`)
     })
+    let news = localStorage.getItem('articles')
+    console.log(JSON.parse(news))
   }
 
+  // *удаление статьи
   function deleteArticle() {
     let token = localStorage.getItem('token')
     MainApi.deleteArticle(token, props.article._id)
+    let news = localStorage.getItem('articles')
+    console.log(JSON.parse(news))
   }
 
+  // *установка метки
   const [marker, setMarker] = React.useState(false);
   React.useEffect(() => {
     if (props.article.marked === true) {
@@ -45,24 +46,19 @@ function NewsCardPanel(props) {
   // *отмечаем выбранные карточки
   function swichMarker() {
     if (marker) {
-      props.article.marked = false;
-      setMarker(false);
-      deleteArticle()
-      props.updateLocalStorage(props.savedNews)
+      unsaveArticle()
     } else {
       props.article.marked = true;
       setMarker(true);
       saveArticle()
-      props.updateLocalStorage(props.savedNews)
     }
   }
 
-  // *снятие отметки
+  // *снятие метки
   function unsaveArticle() {
     props.article.marked = false;
     setMarker(false);
     deleteArticle();
-    props.updateLocalStorage(props.savedNews);
   }
 
   // **DOM

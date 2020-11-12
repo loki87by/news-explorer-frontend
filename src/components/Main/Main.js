@@ -16,9 +16,7 @@ function Main(props) {
               isSavedNewsPage={props.isSavedNewsPage}
               articles={props.articles}
               savedNews={props.savedNews}
-              keyword={props.keyword}
-              updateLocalStorage={props.updateLocalStorage}
-              /*updateSavedNews={props.updateSavedNews}*/ />
+              keyword={props.keyword} />
           : <Preloader searchError={props.searchError} />)
         : ''}
       <About />

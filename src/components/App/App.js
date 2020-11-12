@@ -1,5 +1,5 @@
-// **импорты
-import React from 'react';
+// ***импорты
+import React, { useEffect } from 'react';
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import { ScrollTo } from "react-scroll-to";
 import Header from '../Header/Header';
@@ -11,14 +11,13 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import * as MainApi from '../../utils/MainApi';
-//import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import './App.css';
 import './styles/App__background.css';
 import './styles/App__background-image.css';
 
-// **Функционал
+// ***Функционал
 function App() {
-  // *стейты
+  // **стейты
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
@@ -30,17 +29,15 @@ function App() {
   const [searchError, setSearchError] = React.useState('');
   const [isSavedNewsPage, setSavedNewsPage] = React.useState(false);
   const [savedNews, updateSavedNews] = React.useState([]);
-  //const [userToken, setUserToken] = React.useState('');
   const [userEmail, setUserEmail] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
   const [registrationError, setRegistrationError] = React.useState('');
-  //const [currentArticle, setCurrentArticle] = React.useState({});
   const [keyword, setKeyword] = React.useState({});
 
   const history = useHistory();
 
-  // *регистрация
+  // **регистрация
   function handleRegisterClick() {
     MainApi.register(userEmail, userPassword, userName)
     .then((res) => {
@@ -56,23 +53,25 @@ function App() {
     });
   }
 
-  // *авторизация
+  // **авторизация
+  // *попап логина
   function handleLoginClick() {
     setLoginPopupOpen(true);
   }
 
+  // *обращение к API
   function onLogin() {
     MainApi.login(userEmail, userPassword)
     .then((token) => {
       if (token){
         localStorage.setItem('token', token);
         sourceLoading()
-        //setUserToken(token);
       }
     }
     )
     .catch((err) => console.log(err));
   }
+
   // *получение данных пользователя
   function sourceLoading() {
     let token = localStorage.getItem('token')
@@ -89,7 +88,6 @@ function App() {
         let news = JSON.stringify(articles);
         localStorage.setItem('articles', news)
         updateSavedNews(articles);
-        console.log(savedNews)
         })
         .catch((err) => {
           console.log(err);
@@ -97,14 +95,8 @@ function App() {
       })
   }
 
-  function updateLocalStorage(news) {
-    localStorage.removeItem('articles');
-    let articles = JSON.stringify(news);
-    localStorage.setItem('articles', articles)
-    updateSavedNews(articles);
-  }
-
-  React.useEffect(() => {
+  // *подгрузка данных залогиненного юзера
+  useEffect(() => {
     const token = localStorage.getItem('token');
     if(token) {
     sourceLoading(token)
@@ -112,20 +104,27 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // *закрытие модальных окон
+  // **закрытие модальных окон
   function handlePopupClose() {
     setLoginPopupOpen(false);
     setInformationPopupOpen(false);
     setRegisterPopupOpen(false);
   }
 
-  // *выход из аккаунта
+  // **выход из аккаунта
   function logOut(){
     localStorage.removeItem('token');
     setSavedNewsPage(false);
     setLoggedIn(false);
     history.push('/');
-}
+  }
+
+  // **подгрузка карточек из локалки
+  useEffect(() => {
+    let articles = localStorage.getItem('articles');
+    return () => {updateSavedNews(JSON.parse(articles))};
+
+  }, [])
 
   // **DOM
   return (
@@ -180,7 +179,7 @@ function App() {
               searchError={searchError}
               savedNews={savedNews}
               keyword={keyword}
-              updateLocalStorage={updateLocalStorage}
+              //updateLocalStorage={updateLocalStorage}
               /*updateSavedNews={updateSavedNews}*/ />
         </Route>
           <Switch>
@@ -200,7 +199,7 @@ function App() {
                   isSavedNewsPage={isSavedNewsPage}
                   setSavedNewsPage={setSavedNewsPage}
                   articles={articles}
-                  updateLocalStorage={updateLocalStorage}
+//updateLocalStorage={updateLocalStorage}
                   /*updateSavedNews={updateSavedNews}*/
                   savedNews={savedNews} />
             </Route>

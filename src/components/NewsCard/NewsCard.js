@@ -20,9 +20,9 @@ function NewsCard(props) {
         articles={props.articles}
         article={props.article}
         keyword={props.keyword}
-        savedNews={props.savedNews}
+        //savedNews={props.savedNews}
         saveArticle={props.saveArticle}
-        updateLocalStorage={props.updateLocalStorage}
+        //updateLocalStorage={props.updateLocalStorage}
         /*updateSavedNews={props.updateSavedNews}*/ />
       <p className="NewsCard__text-content NewsCard__date">{props.article.date}</p>
       <h1 className="NewsCard__text-content NewsCard__title">{props.article.title}</h1>

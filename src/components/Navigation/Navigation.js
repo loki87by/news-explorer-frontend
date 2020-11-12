@@ -9,9 +9,12 @@ import './styles/_black/Navigation_black.css';
 
 // **Функционал
 function Navigation(props) {
+  // *смена состояния страницы
   function offSavedPages() {
     props.setSavedNewsPage(false);
   }
+
+  // **DOM
   return (
     <nav className="Navigation">
       {props.screenWidth > 610 ?

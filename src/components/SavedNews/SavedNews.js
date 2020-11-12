@@ -6,8 +6,6 @@ import './SavedNews.css';
 
 // **Функционал
 function SavedNews(props) {
-  //let savedNews = JSON.parse(localStorage.getItem('articles'));
-
   useEffect(() => {props.setSavedNewsPage(true);});
   useEffect(() => {
     if (props.savedNews.length > 0) {
@@ -30,15 +28,12 @@ function SavedNews(props) {
        <SavedNewsHeader
         currentUser={props.currentUser}
         savedNews={props.savedNews}
-        //newsQuantity={newsQuantity}
         hashtags={hashtags}/>
       <NewsCardList
         loggedIn={props.loggedIn}
         isSavedNewsPage={props.isSavedNewsPage}
         articles={props.articles}
         savedNews={props.savedNews}
-        updateLocalStorage={props.updateLocalStorage}
-        //updateSavedNews={setSavedNews}
         hashtags={hashtags}/>
     </main>
   )

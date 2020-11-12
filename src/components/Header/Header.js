@@ -9,7 +9,6 @@ import './styles/_mobileMenuOpen/Header_mobileMenuOpen.css';
 import './styles/__mobile-menu/_close/Header__mobile-menu_close.css';
 import './styles/_black/Header_black.css';
 import './styles/__title/Header__title.css';
-// передать пропс открытой страницы сохраненок
 
 // **Функционал
 function Header(props) {

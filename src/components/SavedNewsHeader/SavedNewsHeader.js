@@ -8,9 +8,9 @@ import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css'
 // **Функционал
 function SavedNewsHeader(props) {
 
-  console.log(props.savedNews)
+  // *счетчик количества сохраненных новостей
   let newsQuantity = props.savedNews.length;
-  //const [startText, setStartText] = React.useState('');
+
   // *функция сортировки и отброса повторяющихся хэштэгов
   // сосчитаем повторяющиеся хэштэги
   let repeatCounter = props.hashtags.reduce((p, i) => {
@@ -19,17 +19,17 @@ function SavedNewsHeader(props) {
   // отсортируем массив по количеству повторов
   let arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
     return repeatCounter[b] - repeatCounter[a]});
-// *функция выбора вступительного текста по количеству хэштэгов
+
+  // *функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
-      //setStartText('По ключевому слову: ')
       return 'По ключевому слову: '
     } else {
-      //setStartText('По ключевым словам: ')
       return 'По ключевым словам: '
     }
   }
   textCreator();
+
   // *функция возврата ТОП-2 хэштэгов
   function hashtagsCreator() {
     if (arrayNormalizer.length === 1) {
@@ -40,6 +40,7 @@ function SavedNewsHeader(props) {
       return `${arrayNormalizer[0]}, ${arrayNormalizer[1]} `;
     }
   }
+
   // *функция возврата хэштегов превышающих ТОП-2
   function hashtagsExcesser() {
     const excess = arrayNormalizer.length - 2;

@@ -1,4 +1,5 @@
 export const BASE_URL = 'http://api.diplom.students.nomoreparties.co';
+// *рега
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -18,6 +19,7 @@ export const register = (email, password, name) => {
   })
 }
 
+// *вход
 export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
@@ -52,6 +54,7 @@ export const login = (email, password) => {
   .catch(err => console.log(err))
 }
 
+// *подгрузка данных
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
@@ -67,37 +70,21 @@ export const getContent = (token) => {
   })
 }
 
-  //*получение сохраненных карточек
-  export const getArticles = (token) => {
-    return fetch(`${BASE_URL}/articles`, {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`},
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(new Error(`Ошибка: ${res.status}`));
-    })
-    .catch ((err) => {return Promise.reject(err)})
-    /*.then((data) => {
-      console.log(data);})
-      try{
-        if(data.articles) {
-          let news = JSON.parse(localStorage.getItem('articles'))
-          } let articles = JSON.stringify(news.?push(data.articles));
-          // or localStorage.removeItem('articles'); and next
-            localStorage.setItem('articles', articles);
-        }
-        return data
-      }
-        catch (err){
-          return Promise.reject(err);
-      }
-    })
-    .catch(err => console.log(err)) */
-  }
+// *получение сохраненных карточек
+export const getArticles = (token) => {
+  return fetch(`${BASE_URL}/articles`, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`},
+  })
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(new Error(`Ошибка: ${res.status}`));
+  })
+  .catch ((err) => {return Promise.reject(err)})
+}
 
   // *добавление карточки
   export const updateArticle = (token, keyword, article) => {
@@ -124,27 +111,14 @@ export const getContent = (token) => {
         return err;
       }
     })
-    /*.then((res) => {
-      console.log(res.data);})*/
+    .then((res) => {
+      let oldArticles = JSON.parse(localStorage.getItem('articles'))
+      let updateArticles = [...oldArticles, res]
+      let last = updateArticles.reverse()[0]
+      let result = JSON.stringify(updateArticles);
+      localStorage.setItem('articles', result);
+      return last})
     .catch ((err) => {return Promise.reject(err)})
-    /*.then((data) => {
-      console.log(data);})
-      try{
-        if(data.articles) {
-          if (!localStorage.getItem('articles')) {
-            let news = []
-          } else {
-            let news = JSON.parse(localStorage.getItem('articles'))
-          } let articles = JSON.stringify(news.push(data.articles));
-            localStorage.setItem('articles', articles);
-        }
-        return data
-      }
-        catch (err){
-          return Promise.reject(err);
-      }
-    })
-    .catch(err => console.log(err))*/
   }
 
   //*удаление карточки
@@ -160,21 +134,14 @@ export const getContent = (token) => {
       }
       return Promise.reject(new Error(`Ошибка: ${res.status}`));
     })
+    .then((res) => {
+      let oldArticles = JSON.parse(localStorage.getItem('articles'))
+      let updateArticles = oldArticles.filter((item) => {
+        return item._id !== id
+      })
+      let result = JSON.stringify(updateArticles);
+      localStorage.removeItem('articles')
+      localStorage.setItem('articles', result)
+    })
     .catch ((err) => {return Promise.reject(err)})
-    .then((data) => {
-      console.log(data);})
-      /*try{
-        if(data.articles) {
-          let news = JSON.parse(localStorage.getItem('articles'))
-          } let articles = JSON.stringify(news.?push(data.articles));
-          // or localStorage.removeItem('articles'); and next
-            localStorage.setItem('articles', articles);
-        }
-        return data
-      }
-        catch (err){
-          return Promise.reject(err);
-      }
-    })*/
-    .catch(err => console.log(err))
   }

@@ -11,10 +11,14 @@ import './styles/__button/SearchForm__button.css';
 
 // **Функционал
 function SearchForm(props) {
+  // *стейты
   const[request, setRequest] = React.useState('');
   const[placeholderText, setPlaceholderText]  = React.useState('Введите тему новости');
 
+  // *эффект открытой страницы сохраненок
   React.useEffect(() => {props.setSavedNewsPage(false);});
+
+  // *валидация кнопки сабмита
   function handleSearchSubmit(e) {
     e.preventDefault();
     const regex = /\s+/;
@@ -25,6 +29,8 @@ function SearchForm(props) {
       setPlaceholderText('Введите тему новости')
     }
   }
+
+  // *поиск новостей
   function searchNews() {
     if (props.isDataLoaded) {
       props.setResponseSending(false);

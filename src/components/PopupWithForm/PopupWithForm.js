@@ -63,6 +63,7 @@ function PopupWithForm(props) {
     }
   }
 
+  // *ввод и проверка валидности имени
   function handleNameChange(e) {
     props.setUserName(e.target.value);
     const name = e.target.value;

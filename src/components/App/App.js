@@ -123,8 +123,40 @@ function App() {
   useEffect(() => {
     let articles = localStorage.getItem('articles');
     return () => {updateSavedNews(JSON.parse(articles))};
-
+  }, []);
+  // **подгрузка карточек из локалки 2
+  useEffect(() => {
+    let news = localStorage.getItem('news');
+    return () => {setArticles(JSON.parse(news))};
   }, [])
+
+/*
+  window.onstorage = event => {
+    let articles = localStorage.getItem('articles');
+      updateSavedNews(JSON.parse(articles))
+  }*/
+  /*
+  if (window.addEventListener) {
+  window.addEventListener("storage", onStorage, false);
+} else {
+  window.attachEvent("onstorage", onStorage);
+};
+
+let onStorage = () => {
+  let articles = localStorage.getItem('articles');
+  updateSavedNews(JSON.parse(articles))
+}
+*/
+  // *отслеживатель изменения ширины экрана
+  /*useEffect(function() {
+    function localStorageUpdater() {
+      let articles = localStorage.getItem('articles');
+      updateSavedNews(JSON.parse(articles))
+      }
+    window.addEventListener('storage', localStorageUpdater)
+    localStorageUpdater();
+    return () => window.removeEventListener('storage', localStorageUpdater);
+  }, []);*/
 
   // **DOM
   return (

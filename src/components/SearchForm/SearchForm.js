@@ -64,11 +64,13 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             obj.image = item.urlToImage;
-            obj._id = index.toString().concat('+').concat(request);
             return obj;
           })
           if (arr.length !== 0) {
-            props.setArticles(arr);
+            let setNews = JSON.stringify(arr);
+            localStorage.setItem('news', setNews);
+            let getNews = JSON.parse(localStorage.getItem('news'))
+            props.setArticles(getNews);
             props.setDataLoaded(true);
           } else {
             props.setSearchError('К сожалению по вашему запросу ничего не найдено')

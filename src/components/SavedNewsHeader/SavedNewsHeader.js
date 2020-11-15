@@ -7,19 +7,23 @@ import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css'
 
 // **Функционал
 function SavedNewsHeader(props) {
+  let savedNews = JSON.parse(localStorage.getItem('articles'));
+  // *получаем массив хэштэгов
+  let hashtags = savedNews.map((item) => {
+    return item.keyword;
+  })
 
   // *счетчик количества сохраненных новостей
-  let newsQuantity = props.savedNews.length;
+  let newsQuantity = savedNews.length;
 
   // *функция сортировки и отброса повторяющихся хэштэгов
   // сосчитаем повторяющиеся хэштэги
-  let repeatCounter = props.hashtags.reduce((p, i) => {
+  let repeatCounter = hashtags.reduce((p, i) => {
     if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
     return p; }, {});
   // отсортируем массив по количеству повторов
   let arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
     return repeatCounter[b] - repeatCounter[a]});
-
   // *функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
@@ -71,9 +75,9 @@ function SavedNewsHeader(props) {
     <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
       <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${newsQuantity} ${newsQuantityText}`}</h1>
-      {props.hashtags.length > 0 ?
-        (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()/*startText*/}<b>{hashtagsCreator()}</b></h2>
-        : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()/*startText*/}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
+      {hashtags.length > 0 ?
+        (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b></h2>
+        : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
       : ''}
     </article>
   )

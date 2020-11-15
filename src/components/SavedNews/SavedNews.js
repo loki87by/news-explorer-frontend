@@ -7,6 +7,7 @@ import './SavedNews.css';
 // **Функционал
 function SavedNews(props) {
   useEffect(() => {props.setSavedNewsPage(true);});
+
   useEffect(() => {
     if (props.savedNews.length > 0) {
       hashtagger()
@@ -33,7 +34,9 @@ function SavedNews(props) {
         loggedIn={props.loggedIn}
         isSavedNewsPage={props.isSavedNewsPage}
         articles={props.articles}
+        setArticles={props.setArticles}
         savedNews={props.savedNews}
+        updateSavedNews={props.updateSavedNews}
         hashtags={hashtags}/>
     </main>
   )

@@ -8,30 +8,28 @@ import './styles/__button/NewsCardList__button.css';
 
 // **Функционал
 function NewsCardList(props) {
-  // *копируем массив новостных карточек
-  const allCards = props.articles.map((article) => {
-    return article
-  });
+  let savedNews = JSON.parse(localStorage.getItem('articles'));
+  // *получаем массив новостных карточек
+  let getNews = JSON.parse(localStorage.getItem('news'));
+
   // *отбираем 3 первых в списке
-  let firstNews = JSON.parse(JSON.stringify(allCards));
-  firstNews.splice(3)
+  let firstNews = getNews.slice(0, 3);
+
+  // *устанавливаем отображаемые на странице карточки
   const [newsCards, setNewsCards] = useState(firstNews);
+
   // *карточки после третьей
-  let otherNews = JSON.parse(JSON.stringify(allCards));
-  otherNews.splice(0, 3);
+  let otherNews = getNews.slice(3);
+
+  // *скрытые карточки
   const [hiddenNews, setHiddenNews] = useState(otherNews);
+
   // *подгрузка следующей тройки
-  let moreNews = [];
   function getMoreNews() {
-    if (hiddenNews.length > 3) {
-      hiddenNews.splice(0, 3);
-      let other = hiddenNews;
-      moreNews = JSON.parse(JSON.stringify(hiddenNews)).slice(0, 3);
-      setHiddenNews(other);
-      let plusNews = newsCards.concat(moreNews);
-      setNewsCards(plusNews);
-    }
-    return
+    let moreNews = hiddenNews.slice(0, 3);
+    let other = hiddenNews.slice(3);
+    setHiddenNews(other);
+    setNewsCards([...newsCards, ...moreNews]);
   }
 
   // **DOM
@@ -39,14 +37,16 @@ function NewsCardList(props) {
     <article className="NewsCardList">
       {props.isSavedNewsPage ?
       <section className='NewsCardList__container'>
-      {props.savedNews.map((article) => (
+      {savedNews.map((article) => (
         <NewsCard key={article._id}
           NewsCard={NewsCard}
           loggedIn={props.loggedIn}
           isSavedNewsPage={props.isSavedNewsPage}
           articles={props.articles}
+          setArticles={props.setArticles}
           article={article}
           keyword={props.keyword}
+          updateSavedNews={props.updateSavedNews}
           saveArticle={props.saveArticle} />
       ))}
       </section>:
@@ -59,12 +59,14 @@ function NewsCardList(props) {
               loggedIn={props.loggedIn}
               isSavedNewsPage={props.isSavedNewsPage}
               articles={props.articles}
+              setArticles={props.setArticles}
               article={article}
               keyword={props.keyword}
+              updateSavedNews={props.updateSavedNews}
               saveArticle={props.saveArticle} />
           ))}
         </section>
-        {hiddenNews.length > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
+        {hiddenNews.length > 0 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
       </>}
     </article>
   )

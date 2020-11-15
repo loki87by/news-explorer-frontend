@@ -115,11 +115,13 @@ export const getArticles = (token) => {
       let oldArticles = JSON.parse(localStorage.getItem('articles'))
       let updateArticles = [...oldArticles, res]
       let last = updateArticles.reverse()[0]
+      updateArticles.reverse()
       let result = JSON.stringify(updateArticles);
       localStorage.setItem('articles', result);
       return last})
     .catch ((err) => {return Promise.reject(err)})
   }
+
 
   //*удаление карточки
   export const deleteArticle = (token, id) => {

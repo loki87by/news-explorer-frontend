@@ -15,7 +15,9 @@ function Main(props) {
               loggedIn={props.loggedIn}
               isSavedNewsPage={props.isSavedNewsPage}
               articles={props.articles}
+              setArticles={props.setArticles}
               savedNews={props.savedNews}
+              updateSavedNews={props.updateSavedNews}
               keyword={props.keyword} />
           : <Preloader searchError={props.searchError} />)
         : ''}

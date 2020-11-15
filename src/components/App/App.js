@@ -119,44 +119,30 @@ function App() {
     history.push('/');
   }
 
-  // **подгрузка карточек из локалки
-  useEffect(() => {
-    let articles = localStorage.getItem('articles');
-    return () => {updateSavedNews(JSON.parse(articles))};
-  }, []);
-  // **подгрузка карточек из локалки 2
+  let getAllNews = JSON.parse(localStorage.getItem('news'));
+  let getSavedNews = JSON.parse(localStorage.getItem('articles'));
+  if (getSavedNews !== null) {
+    getAllNews.forEach(function(v) {
+    if (getSavedNews.some(function(v2) {
+        return v.link === v2.link })){
+      return v.marked = true}
+    });
+  }
+  localStorage.removeItem('news')
+  let markedNews = (JSON.stringify(getAllNews))
+  localStorage.setItem('news', markedNews);
+
+  // **подгрузка найденных карточек из локалки
   useEffect(() => {
     let news = localStorage.getItem('news');
     return () => {setArticles(JSON.parse(news))};
   }, [])
 
-/*
-  window.onstorage = event => {
+  // **подгрузка сохраненных карточек из локалки
+  useEffect(() => {
     let articles = localStorage.getItem('articles');
-      updateSavedNews(JSON.parse(articles))
-  }*/
-  /*
-  if (window.addEventListener) {
-  window.addEventListener("storage", onStorage, false);
-} else {
-  window.attachEvent("onstorage", onStorage);
-};
-
-let onStorage = () => {
-  let articles = localStorage.getItem('articles');
-  updateSavedNews(JSON.parse(articles))
-}
-*/
-  // *отслеживатель изменения ширины экрана
-  /*useEffect(function() {
-    function localStorageUpdater() {
-      let articles = localStorage.getItem('articles');
-      updateSavedNews(JSON.parse(articles))
-      }
-    window.addEventListener('storage', localStorageUpdater)
-    localStorageUpdater();
-    return () => window.removeEventListener('storage', localStorageUpdater);
-  }, []);*/
+    return () => {updateSavedNews(JSON.parse(articles))};
+  }, []);
 
   // **DOM
   return (
@@ -208,11 +194,12 @@ let onStorage = () => {
               isResponseSending={isResponseSending}
               isDataLoaded={isDataLoaded}
               articles={articles}
+              setArticles={setArticles}
               searchError={searchError}
               savedNews={savedNews}
               keyword={keyword}
               //updateLocalStorage={updateLocalStorage}
-              /*updateSavedNews={updateSavedNews}*/ />
+              updateSavedNews={updateSavedNews} />
         </Route>
           <Switch>
             <Route path='/saved-pages'>
@@ -231,8 +218,9 @@ let onStorage = () => {
                   isSavedNewsPage={isSavedNewsPage}
                   setSavedNewsPage={setSavedNewsPage}
                   articles={articles}
+                  setArticles={setArticles}
 //updateLocalStorage={updateLocalStorage}
-                  /*updateSavedNews={updateSavedNews}*/
+                  updateSavedNews={updateSavedNews}
                   savedNews={savedNews} />
             </Route>
           <Footer />

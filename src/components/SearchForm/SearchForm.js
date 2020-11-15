@@ -44,7 +44,7 @@ function SearchForm(props) {
       })
         .then((articles) => {
           let arr = [];
-          arr = articles.map((item, index) => {
+          arr = articles.map((item) => {
             let obj = {};
             obj.title = item.title;
             obj.keyword = request;

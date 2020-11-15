@@ -63,7 +63,11 @@ function SearchForm(props) {
             obj.date = comma;
             obj.source = item.source.name;
             obj.link = item.url;
-            obj.image = item.urlToImage;
+            if (!item.urlToImage) {
+              obj.image = 'https://vk.com/images/camera_200.png?ava=1'
+            } else {
+            obj.image = item.urlToImage
+            };
             return obj;
           })
           if (arr.length !== 0) {

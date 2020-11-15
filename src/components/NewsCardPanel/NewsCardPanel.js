@@ -27,9 +27,16 @@ function NewsCardPanel(props) {
         }
         return item;
       })
+      //console.log(updateNews)
       localStorage.removeItem('news')
       let setNews = (JSON.stringify(updateNews))
       localStorage.setItem('news', setNews)
+    })
+    .then(() => {
+      let articles = (JSON.parse(localStorage.getItem('news')));
+      //console.log(articles)
+      props.setArticles(articles)
+      console.log(props.articles)
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`)
@@ -40,7 +47,17 @@ function NewsCardPanel(props) {
   function deleteArticle() {
     let token = localStorage.getItem('token')
     setMarker(false);
-    MainApi.deleteArticle(token, props.article._id)
+    let id;
+    if (!props.article._id) {
+      let news = (JSON.parse(localStorage.getItem('news')))
+      let currentArticle = news.filter((item) => {
+        return item.link === props.article.link
+      })
+      id = currentArticle[0]._id
+    } else {
+      id = props.article._id
+    }
+    MainApi.deleteArticle(token, id)
     .then(() => {
     let news = (JSON.parse(localStorage.getItem('news')));
     let updateNews = news.map((item) => {

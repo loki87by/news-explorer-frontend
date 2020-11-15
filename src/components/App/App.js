@@ -198,7 +198,6 @@ function App() {
               searchError={searchError}
               savedNews={savedNews}
               keyword={keyword}
-              //updateLocalStorage={updateLocalStorage}
               updateSavedNews={updateSavedNews} />
         </Route>
           <Switch>

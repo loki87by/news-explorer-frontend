@@ -1,5 +1,6 @@
 // **импорты
 import React from 'react';
+import { emailChecker, uncorrectedEmail, passChecker, shortPass, passRules, shortName, longName } from '../../utils/consts.js';
 import './PopupWithForm.css';
 import './styles/_opened/PopupWithForm_opened.css';
 import './styles/__container/PopupWithForm__container.css';
@@ -29,7 +30,7 @@ function PopupWithForm(props) {
   function handleEmailChange(e) {
     props.setUserEmail(e.target.value);
     const email = e.target.value;
-    const reg = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+    const reg = emailChecker;
     const test = reg.test(email);
     if (test) {
       setValidEmail(true);
@@ -37,7 +38,7 @@ function PopupWithForm(props) {
       setValidEmail(false);
       setInvalidEmailMessage('');
     } else {
-      setInvalidEmailMessage('email введен некорректно');
+      setInvalidEmailMessage(uncorrectedEmail);
       setValidEmail(false);
     }
 }
@@ -46,19 +47,19 @@ function PopupWithForm(props) {
   function handlePasswordChange(e) {
     props.setUserPassword(e.target.value);
     const pass = e.target.value;
-    const reg = /^[a-zA-Z0-9]{6,30}$/;
+    const reg = passChecker;
     const test = reg.test(pass);
     if (pass.length === 0) {
       setInvalidPasswordMessage('');
       setValidPassword(false);
     } else if((pass.length < 8) && (pass.length > 0)) {
       setValidPassword(false);
-      setInvalidPasswordMessage('Пароль слишком короткий');
+      setInvalidPasswordMessage(shortPass);
     } else if(test) {
       setInvalidPasswordMessage('');
       setValidPassword(true);
     } else {
-      setInvalidPasswordMessage('Пароль может содержать только цифры и буквы');
+      setInvalidPasswordMessage(passRules);
       setValidPassword(false);
     }
   }
@@ -68,10 +69,10 @@ function PopupWithForm(props) {
     props.setUserName(e.target.value);
     const name = e.target.value;
     if (name.length < 2) {
-      setInvalidNameMessage('Имя должно быть не менее двух символов');
+      setInvalidNameMessage(shortName);
       setValidName(false);
     } else if (name.length > 30) {
-      setInvalidNameMessage('Имя должно быть не более 30 символов');
+      setInvalidNameMessage(longName);
       setValidName(false);
     } else {
       setValidName(true);

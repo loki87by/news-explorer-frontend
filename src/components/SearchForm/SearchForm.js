@@ -1,6 +1,7 @@
 // **импорты
 import React from 'react';
 import * as NewsApi from '../../utils/NewsApi';
+import { defaultPlaceholder, needKeyword, notFind, connectedError, defaultPicture, notEmptyRequest, htmlUntagger } from '../../utils/consts.js';
 import './SearchForm.css';
 import './styles/__title/SearchForm__title.css';
 import './styles/__text/SearchForm__text.css';
@@ -13,7 +14,7 @@ import './styles/__button/SearchForm__button.css';
 function SearchForm(props) {
   // *стейты
   const[request, setRequest] = React.useState('');
-  const[placeholderText, setPlaceholderText]  = React.useState('Введите тему новости');
+  const[placeholderText, setPlaceholderText]  = React.useState(defaultPlaceholder);
 
   // *эффект открытой страницы сохраненок
   React.useEffect(() => {props.setSavedNewsPage(false);});
@@ -21,12 +22,12 @@ function SearchForm(props) {
   // *валидация кнопки сабмита
   function handleSearchSubmit(e) {
     e.preventDefault();
-    const regex = /\s+/;
+    const regex = notEmptyRequest;
     if ((request.length === 0) || (regex.test(request))) {
-      setPlaceholderText('Нужно ввести ключевое слово')
+      setPlaceholderText(needKeyword)
     } else {
       searchNews()
-      setPlaceholderText('Введите тему новости')
+      setPlaceholderText(defaultPlaceholder)
     }
   }
 
@@ -48,7 +49,7 @@ function SearchForm(props) {
             let obj = {};
             obj.title = item.title;
             obj.keyword = request;
-            let cleanText = item.description.replace(/<\/?[^>]+(>|$)/g, "");
+            let cleanText = item.description.replace(htmlUntagger, "");
             obj.text = cleanText;
             let date = new Date(item.publishedAt)
             let rusDate = date.toLocaleString('ru', {
@@ -64,7 +65,7 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             if (!item.urlToImage) {
-              obj.image = 'https://cs.pikabu.ru/post_img/big/2013/08/24/1/1377296637_1500370441.png'
+              obj.image = defaultPicture
             } else {
             obj.image = item.urlToImage
             };
@@ -77,11 +78,11 @@ function SearchForm(props) {
             props.setArticles(getNews);
             props.setDataLoaded(true);
           } else {
-            props.setSearchError('К сожалению по вашему запросу ничего не найдено')
+            props.setSearchError(notFind)
           }
         })
       .catch((err) => {
-        props.setSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
+        props.setSearchError(connectedError)
       });
     props.scroller();
   };
@@ -92,7 +93,7 @@ function SearchForm(props) {
       <h1 className="SearchForm__title">Что творится в мире?</h1>
       <p className="SearchForm__text">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
       <form className="SearchForm__form">
-        <input required className={`SearchForm__input ${placeholderText === 'Нужно ввести ключевое слово' && "SearchForm__input_placeholder-error"}`} type='text' placeholder={placeholderText} onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
+        <input required className={`SearchForm__input ${placeholderText === needKeyword && "SearchForm__input_placeholder-error"}`} type='text' placeholder={placeholderText} onChange={e => setRequest(e.target.value)} value={request} id="search" name="search" />
         <button className="SearchForm__button" type='submit' onClick={ handleSearchSubmit }>Искать</button>
       </form>
     </article>

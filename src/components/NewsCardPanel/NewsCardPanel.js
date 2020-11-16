@@ -12,7 +12,6 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 
 // **Функционал
 function NewsCardPanel(props) {
-
   // *сохранение статьи
   function saveArticle() {
     let token = localStorage.getItem('token')
@@ -27,16 +26,13 @@ function NewsCardPanel(props) {
         }
         return item;
       })
-      //console.log(updateNews)
       localStorage.removeItem('news')
       let setNews = (JSON.stringify(updateNews))
       localStorage.setItem('news', setNews)
     })
     .then(() => {
       let articles = (JSON.parse(localStorage.getItem('news')));
-      //console.log(articles)
       props.setArticles(articles)
-      console.log(props.articles)
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`)
@@ -85,7 +81,7 @@ function NewsCardPanel(props) {
   // *отмечаем выбранные карточки
   function swichMarker() {
     if (marker) {
-      unsaveArticle()
+      deleteArticle();
     } else {
       saveArticle()
     }
@@ -93,7 +89,6 @@ function NewsCardPanel(props) {
 
   // *снятие метки
   function unsaveArticle() {
-    deleteArticle();
   }
 
   // **DOM

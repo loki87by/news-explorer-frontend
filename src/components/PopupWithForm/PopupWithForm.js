@@ -79,14 +79,14 @@ function PopupWithForm(props) {
     }
   }
 
-  // *сабмит формы
+  // *сабмит формы входа
   function loginSubmit(e) {
     e.preventDefault();
     props.onLogin();
     closeAllPopups();
   }
 
-  // *сабмит формы при регистрации
+  // *сабмит формы регистрации
   function registrationSubmit(e) {
     e.preventDefault();
     if (isValidEmail && isValidPassword && isValidName) {

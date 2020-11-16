@@ -12,6 +12,7 @@ import './styles/__title/Header__title.css';
 
 // **Функционал
 function Header(props) {
+  // *стейты
   const [screenWidth, setScreenWidth] = React.useState(window.screen.width);
   const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 

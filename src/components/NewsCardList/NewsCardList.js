@@ -8,8 +8,10 @@ import './styles/__button/NewsCardList__button.css';
 
 // **Функционал
 function NewsCardList(props) {
+  // *получаем массив найденных новостных карточек
   let savedNews = JSON.parse(localStorage.getItem('articles'));
-  // *получаем массив новостных карточек
+
+  // *получаем массив сохраненных новостных карточек
   let getNews = JSON.parse(localStorage.getItem('news'));
 
   // *отбираем 3 первых в списке

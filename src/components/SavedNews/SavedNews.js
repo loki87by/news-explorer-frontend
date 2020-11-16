@@ -1,15 +1,15 @@
-// **импорты
+// *импорты
 import React, { useEffect } from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SavedNews.css';
 
-// **Функционал
+// *Функционал
 function SavedNews(props) {
   useEffect(() => {props.setSavedNewsPage(true);});
 
 
-  // **DOM
+  // *DOM
   return (
     <main className="SavedNews">
        <SavedNewsHeader
@@ -26,5 +26,5 @@ function SavedNews(props) {
   )
 };
 
-// **экспорт
+// *экспорт
 export default SavedNews;

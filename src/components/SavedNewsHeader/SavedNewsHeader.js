@@ -1,30 +1,33 @@
-// **импорты
+// ***импорты
 import React from 'react';
 import './SavedNewsHeader.css';
 import './styles/__title/SavedNewsHeader__title.css';
 import './styles/__caption/SavedNewsHeader__caption.css';
 import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css';
 
-// **Функционал
+// ***Функционал
 function SavedNewsHeader(props) {
+  // **берем массив из локалки
   let savedNews = JSON.parse(localStorage.getItem('articles'));
-  // *получаем массив хэштэгов
+
+  // **получаем массив хэштэгов
   let hashtags = savedNews.map((item) => {
     return item.keyword;
   })
 
-  // *счетчик количества сохраненных новостей
+  // **счетчик количества сохраненных новостей
   let newsQuantity = savedNews.length;
 
-  // *функция сортировки и отброса повторяющихся хэштэгов
-  // сосчитаем повторяющиеся хэштэги
+  // **функция сортировки и отброса повторяющихся хэштэгов
+  // *сосчитаем повторяющиеся хэштэги
   let repeatCounter = hashtags.reduce((p, i) => {
     if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
     return p; }, {});
-  // отсортируем массив по количеству повторов
+  // *отсортируем массив по количеству повторов
   let arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
     return repeatCounter[b] - repeatCounter[a]});
-  // *функция выбора вступительного текста по количеству хэштэгов
+
+  // **функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
       return 'По ключевому слову: '
@@ -34,7 +37,7 @@ function SavedNewsHeader(props) {
   }
   textCreator();
 
-  // *функция возврата ТОП-2 хэштэгов
+  // **функция возврата ТОП-2 хэштэгов
   function hashtagsCreator() {
     if (arrayNormalizer.length === 1) {
       return `${arrayNormalizer[0]}`;
@@ -45,7 +48,7 @@ function SavedNewsHeader(props) {
     }
   }
 
-  // *функция возврата хэштегов превышающих ТОП-2
+  // **функция возврата хэштегов вне ТОП-2
   function hashtagsExcesser() {
     const excess = arrayNormalizer.length - 2;
     if (arrayNormalizer.length === 3) {
@@ -57,7 +60,7 @@ function SavedNewsHeader(props) {
     }
   }
 
-  // *функция подбора окончаний в зависимости от числительного
+  // **функция подбора окончаний в зависимости от числительного
   let newsQuantityText;
   function newsQuantityTextCreator() {
     if (newsQuantity === 1) {
@@ -70,7 +73,7 @@ function SavedNewsHeader(props) {
   };
   newsQuantityTextCreator()
 
-  // **DOM
+  // ***DOM
   return (
     <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
@@ -83,5 +86,5 @@ function SavedNewsHeader(props) {
   )
 };
 
-// **экспорт
+// ***экспорт
 export default SavedNewsHeader;

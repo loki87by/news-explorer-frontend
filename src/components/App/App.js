@@ -9,6 +9,7 @@ import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import * as MainApi from '../../utils/MainApi';
 import './App.css';
@@ -18,21 +19,26 @@ import './styles/App__background-image.css';
 // ***Функционал
 function App() {
   // **стейты
+  // *глобальные стейты
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isSavedNewsPage, setSavedNewsPage] = React.useState(false);
+  // *стейты попапов
   const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
+  const [registrationError, setRegistrationError] = React.useState('');
+  // *стейты карточек
   const [articles, setArticles] = React.useState([]);
-  const [currentUser, setCurrentUser] = React.useState({ name: 'testUser'});
-  const [isResponseSending, setResponseSending] = React.useState(false);
-  const [isDataLoaded, setDataLoaded] = React.useState(false);
-  const [searchError, setSearchError] = React.useState('');
-  const [isSavedNewsPage, setSavedNewsPage] = React.useState(false);
   const [savedNews, updateSavedNews] = React.useState([]);
+  // *стейты пользователя
+  const [currentUser, setCurrentUser] = React.useState({ name: 'testUser'});
   const [userEmail, setUserEmail] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
-  const [registrationError, setRegistrationError] = React.useState('');
+  // *стейты поиска
+  const [isResponseSending, setResponseSending] = React.useState(false);
+  const [isDataLoaded, setDataLoaded] = React.useState(false);
+  const [searchError, setSearchError] = React.useState('');
   const [keyword, setKeyword] = React.useState({});
 
   const history = useHistory();
@@ -119,6 +125,8 @@ function App() {
     history.push('/');
   }
 
+  // **карточки
+  // *отслеживание отмеченных карточек
   let getAllNews = JSON.parse(localStorage.getItem('news'));
   let getSavedNews = JSON.parse(localStorage.getItem('articles'));
   if (getSavedNews !== null) {
@@ -132,13 +140,13 @@ function App() {
   let markedNews = (JSON.stringify(getAllNews))
   localStorage.setItem('news', markedNews);
 
-  // **подгрузка найденных карточек из локалки
+  // *подгрузка найденных карточек из локалки
   useEffect(() => {
     let news = localStorage.getItem('news');
     return () => {setArticles(JSON.parse(news))};
   }, [])
 
-  // **подгрузка сохраненных карточек из локалки
+  // *подгрузка сохраненных карточек из локалки
   useEffect(() => {
     let articles = localStorage.getItem('articles');
     return () => {updateSavedNews(JSON.parse(articles))};
@@ -211,14 +219,15 @@ function App() {
                   setSavedNewsPage={setSavedNewsPage}
                   logOut={logOut} />
                 </div>
-                <SavedNews
+                <ProtectedRoute
+                  exact path="/saved-pages"
                   loggedIn={loggedIn}
+                  component={SavedNews}
                   currentUser={currentUser}
                   isSavedNewsPage={isSavedNewsPage}
                   setSavedNewsPage={setSavedNewsPage}
                   articles={articles}
                   setArticles={setArticles}
-//updateLocalStorage={updateLocalStorage}
                   updateSavedNews={updateSavedNews}
                   savedNews={savedNews} />
             </Route>

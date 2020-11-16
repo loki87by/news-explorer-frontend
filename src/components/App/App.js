@@ -180,7 +180,6 @@ function App() {
               handleLoginClick={handleLoginClick}
               isSavedNewsPage={isSavedNewsPage}
               setSavedNewsPage={setSavedNewsPage}
-              currentUser={currentUser}
               logOut={logOut}/>
             <ScrollTo>
             {({ scroll }) => (
@@ -197,7 +196,6 @@ function App() {
           </div>
             <Main
               loggedIn={loggedIn}
-              currentUser={currentUser}
               isSavedNewsPage={isSavedNewsPage}
               isResponseSending={isResponseSending}
               isDataLoaded={isDataLoaded}
@@ -206,36 +204,33 @@ function App() {
               searchError={searchError}
               savedNews={savedNews}
               keyword={keyword}
-              updateSavedNews={updateSavedNews} />
+              updateSavedNews={updateSavedNews}
+              setRegisterPopupOpen={setRegisterPopupOpen} />
         </Route>
-          <Switch>
-            <Route path='/saved-pages'>
-              <div className='App__background'>
-                <Header
-                  loggedIn={loggedIn}
-                  handleLoginClick={handleLoginClick}
-                  currentUser={currentUser}
-                  isSavedNewsPage={isSavedNewsPage}
-                  setSavedNewsPage={setSavedNewsPage}
-                  logOut={logOut} />
-                </div>
-                <ProtectedRoute
-                  exact path="/saved-pages"
-                  loggedIn={loggedIn}
-                  component={SavedNews}
-                  currentUser={currentUser}
-                  isSavedNewsPage={isSavedNewsPage}
-                  setSavedNewsPage={setSavedNewsPage}
-                  articles={articles}
-                  setArticles={setArticles}
-                  updateSavedNews={updateSavedNews}
-                  savedNews={savedNews} />
-            </Route>
-          <Footer />
-              <Route>
-                {loggedIn ? <Redirect to="/saved-pages" /> : <Redirect to="/" />}
-              </Route>
-            </Switch>
+        <Switch>
+          <Route path='/saved-pages'>
+            <div className='App__background'>
+              <Header
+                loggedIn={loggedIn}
+                handleLoginClick={handleLoginClick}
+                isSavedNewsPage={isSavedNewsPage}
+                setSavedNewsPage={setSavedNewsPage}
+                logOut={logOut} />
+              </div>
+              <ProtectedRoute
+                exact path="/saved-pages"
+                loggedIn={loggedIn}
+                component={SavedNews}
+                isSavedNewsPage={isSavedNewsPage}
+                setSavedNewsPage={setSavedNewsPage}
+                setArticles={setArticles}
+                updateSavedNews={updateSavedNews} />
+          </Route>
+        <Footer />
+          <Route>
+            {loggedIn ? <Redirect to="/saved-pages" /> : <Redirect to="/" />}
+          </Route>
+        </Switch>
       </div>
     </CurrentUserContext.Provider>
   )

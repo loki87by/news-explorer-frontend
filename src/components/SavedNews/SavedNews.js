@@ -2,25 +2,24 @@
 import React, { useEffect } from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import './SavedNews.css';
 
 // *Функционал
 function SavedNews(props) {
+  const currentUser = React.useContext(CurrentUserContext);
   useEffect(() => {props.setSavedNewsPage(true);});
-
 
   // *DOM
   return (
     <main className="SavedNews">
-       <SavedNewsHeader
-        currentUser={props.currentUser}
-        savedNews={props.savedNews} />
+      <CurrentUserContext.Provider value={currentUser}>
+       <SavedNewsHeader />
+      </CurrentUserContext.Provider>
       <NewsCardList
         loggedIn={props.loggedIn}
         isSavedNewsPage={props.isSavedNewsPage}
-        articles={props.articles}
         setArticles={props.setArticles}
-        savedNews={props.savedNews}
         updateSavedNews={props.updateSavedNews} />
     </main>
   )

@@ -4,7 +4,7 @@
 }
 .NewsCardPanel{
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   width: calc(100% - 48px);
   padding: 24px;
   display: -webkit-box;

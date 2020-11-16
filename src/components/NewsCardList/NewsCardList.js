@@ -44,12 +44,10 @@ function NewsCardList(props) {
           NewsCard={NewsCard}
           loggedIn={props.loggedIn}
           isSavedNewsPage={props.isSavedNewsPage}
-          articles={props.articles}
           setArticles={props.setArticles}
           article={article}
           keyword={props.keyword}
-          updateSavedNews={props.updateSavedNews}
-          saveArticle={props.saveArticle} />
+          updateSavedNews={props.updateSavedNews} />
       ))}
       </section>:
       <>
@@ -60,12 +58,11 @@ function NewsCardList(props) {
               NewsCard={NewsCard}
               loggedIn={props.loggedIn}
               isSavedNewsPage={props.isSavedNewsPage}
-              articles={props.articles}
               setArticles={props.setArticles}
               article={article}
               keyword={props.keyword}
               updateSavedNews={props.updateSavedNews}
-              saveArticle={props.saveArticle} />
+              setRegisterPopupOpen={props.setRegisterPopupOpen} />
           ))}
         </section>
         {hiddenNews.length > 0 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }

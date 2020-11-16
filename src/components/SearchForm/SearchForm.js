@@ -64,7 +64,7 @@ function SearchForm(props) {
             obj.source = item.source.name;
             obj.link = item.url;
             if (!item.urlToImage) {
-              obj.image = 'https://vk.com/images/camera_200.png?ava=1'
+              obj.image = 'https://cs.pikabu.ru/post_img/big/2013/08/24/1/1377296637_1500370441.png'
             } else {
             obj.image = item.urlToImage
             };

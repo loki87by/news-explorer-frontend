@@ -14,11 +14,10 @@ function Main(props) {
           ? <NewsCardList
               loggedIn={props.loggedIn}
               isSavedNewsPage={props.isSavedNewsPage}
-              articles={props.articles}
               setArticles={props.setArticles}
-              savedNews={props.savedNews}
               updateSavedNews={props.updateSavedNews}
-              keyword={props.keyword} />
+              keyword={props.keyword}
+              setRegisterPopupOpen={props.setRegisterPopupOpen} />
           : <Preloader searchError={props.searchError} />)
         : ''}
       <About />

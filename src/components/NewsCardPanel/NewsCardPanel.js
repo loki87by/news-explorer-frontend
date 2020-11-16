@@ -12,6 +12,7 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 
 // **Функционал
 function NewsCardPanel(props) {
+
   // *сохранение статьи
   function saveArticle() {
     let token = localStorage.getItem('token')
@@ -81,7 +82,7 @@ function NewsCardPanel(props) {
   // *отмечаем выбранные карточки
   function swichMarker() {
     if (marker) {
-      deleteArticle();
+      unsaveArticle()
     } else {
       saveArticle()
     }
@@ -89,6 +90,12 @@ function NewsCardPanel(props) {
 
   // *снятие метки
   function unsaveArticle() {
+    deleteArticle();
+  }
+
+  // *открытие попапа
+  function handlePopupOpen() {
+    props.setRegisterPopupOpen(true)
   }
 
   // **DOM
@@ -104,7 +111,7 @@ function NewsCardPanel(props) {
       </div>)}
     </>) :
     (<div className="NewsCardPanel">
-      <button className="NewsCardPanel__button NewsCardPanel__button_save"></button>
+      <button className="NewsCardPanel__button NewsCardPanel__button_save" onClick={handlePopupOpen}></button>
       <h2 className="NewsCardPanel__tooltip">Войдите, чтобы сохранять статьи</h2>
     </div>)
 };

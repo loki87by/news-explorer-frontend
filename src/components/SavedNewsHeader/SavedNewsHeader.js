@@ -1,12 +1,14 @@
 // ***импорты
 import React from 'react';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import './SavedNewsHeader.css';
 import './styles/__title/SavedNewsHeader__title.css';
 import './styles/__caption/SavedNewsHeader__caption.css';
 import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css';
 
 // ***Функционал
-function SavedNewsHeader(props) {
+function SavedNewsHeader() {
+  const currentUser = React.useContext(CurrentUserContext);
   // **берем массив из локалки
   let savedNews = JSON.parse(localStorage.getItem('articles'));
 
@@ -77,7 +79,7 @@ function SavedNewsHeader(props) {
   return (
     <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
-      <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${newsQuantity} ${newsQuantityText}`}</h1>
+      <h1 className="SavedNewsHeader__title">{`${currentUser.name}, у вас ${newsQuantity} ${newsQuantityText}`}</h1>
       {hashtags.length > 0 ?
         (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b></h2>
         : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)

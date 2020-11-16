@@ -13,21 +13,22 @@ import './styles/__source/NewsCard__source.css';
 function NewsCard(props) {
   return (
     <section className="NewsCard">
-      <img className="NewsCard__image" src={props.article.image} alt='caption'/>
+      <a href={props.article.link} target="blank"><img className="NewsCard__image" src={props.article.image} alt='caption'/></a>
       <NewsCardPanel
         loggedIn={props.loggedIn}
         isSavedNewsPage={props.isSavedNewsPage}
-        articles={props.articles}
         article={props.article}
         setArticles={props.setArticles}
         keyword={props.keyword}
-        savedNews={props.savedNews}
         saveArticle={props.saveArticle}
-        updateSavedNews={props.updateSavedNews} />
-      <p className="NewsCard__text-content NewsCard__date">{props.article.date}</p>
-      <h1 className="NewsCard__text-content NewsCard__title">{props.article.title}</h1>
-      <h2 className="NewsCard__text-content NewsCard__text">{props.article.text}</h2>
-      <h3 className="NewsCard__text-content NewsCard__source">{props.article.source}</h3>
+        updateSavedNews={props.updateSavedNews}
+        setRegisterPopupOpen={props.setRegisterPopupOpen} />
+      <a style={{ textDecoration: 'none' }} href={props.article.link} target="blank">
+        <p className="NewsCard__text-content NewsCard__date">{props.article.date}</p>
+        <h1 className="NewsCard__text-content NewsCard__title">{props.article.title}</h1>
+        <h2 className="NewsCard__text-content NewsCard__text">{props.article.text}</h2>
+        <h3 className="NewsCard__text-content NewsCard__source">{props.article.source}</h3>
+      </a>
     </section>
   )
 };

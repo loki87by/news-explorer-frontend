@@ -12,7 +12,7 @@ import Login from '../Login/Login';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
-import { emailChecker,
+import { EMAIL_CHECKER,
   UNCORRECTED_EMAIL,
   PASS_CHECKER,
   SHORT_PASS,
@@ -167,7 +167,7 @@ function App() {
   function handleEmailChange(e) {
     setUserEmail(e.target.value);
     const email = e.target.value;
-    const reg = emailChecker;
+    const reg = EMAIL_CHECKER;
     const test = reg.test(email);
     if (test) {
       setValidEmail(true);

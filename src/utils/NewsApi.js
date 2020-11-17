@@ -1,4 +1,4 @@
-import { API_KEY } from './consts/consts';
+import { API_KEY } from './consts.js';
 
 export const getNews = (keyword) => {
   // *приводим дату в нужный вид

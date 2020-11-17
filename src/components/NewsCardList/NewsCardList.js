@@ -9,27 +9,27 @@ import './styles/__button/NewsCardList__button.css';
 // **Функционал
 function NewsCardList(props) {
   // *получаем массив найденных новостных карточек
-  let savedNews = JSON.parse(localStorage.getItem('articles'));
+  const savedNews = JSON.parse(localStorage.getItem('articles'));
 
   // *получаем массив сохраненных новостных карточек
-  let getNews = JSON.parse(localStorage.getItem('news'));
+  const getNews = JSON.parse(localStorage.getItem('news'));
 
   // *отбираем 3 первых в списке
-  let firstNews = getNews.slice(0, 3);
+  const firstNews = getNews.slice(0, 3);
 
   // *устанавливаем отображаемые на странице карточки
   const [newsCards, setNewsCards] = useState(firstNews);
 
   // *карточки после третьей
-  let otherNews = getNews.slice(3);
+  const otherNews = getNews.slice(3);
 
   // *скрытые карточки
   const [hiddenNews, setHiddenNews] = useState(otherNews);
 
   // *подгрузка следующей тройки
   function getMoreNews() {
-    let moreNews = hiddenNews.slice(0, 3);
-    let other = hiddenNews.slice(3);
+    const moreNews = hiddenNews.slice(0, 3);
+    const other = hiddenNews.slice(3);
     setHiddenNews(other);
     setNewsCards([...newsCards, ...moreNews]);
   }

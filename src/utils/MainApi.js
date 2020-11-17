@@ -9,13 +9,12 @@ export const register = (email, password, name) => {
     body: JSON.stringify({ email, password, name })
   })
   .then((res) => {
-    try {
       if(res.ok) {
         return res.json();
       }
-    } catch(e) {
-      return (e)
-    }
+    })
+  .catch((e) => {
+    return (e)
   })
 }
 

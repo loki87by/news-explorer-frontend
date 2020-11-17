@@ -1,3 +1,5 @@
+import { API_KEY } from './consts/consts';
+
 export const getNews = (keyword) => {
   // *приводим дату в нужный вид
   let date = new Date()
@@ -12,7 +14,7 @@ export const getNews = (keyword) => {
     `q=${keyword}&` +
     `from=${dateNormalizer}&` +
     'sortBy=popularity&' +
-    'apiKey=96fb88023047493688f02442b20eac74';
+    `apiKey=${API_KEY}`;
 
   // *сам запрос
   return fetch(`${BASE_URL}`, {

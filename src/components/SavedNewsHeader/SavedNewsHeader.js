@@ -10,23 +10,23 @@ import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css'
 function SavedNewsHeader() {
   const currentUser = React.useContext(CurrentUserContext);
   // **берем массив из локалки
-  let savedNews = JSON.parse(localStorage.getItem('articles'));
+  const savedNews = JSON.parse(localStorage.getItem('articles'));
 
   // **получаем массив хэштэгов
-  let hashtags = savedNews.map((item) => {
+  const hashtags = savedNews.map((item) => {
     return item.keyword;
   })
 
   // **счетчик количества сохраненных новостей
-  let newsQuantity = savedNews.length;
+  const newsQuantity = savedNews.length;
 
   // **функция сортировки и отброса повторяющихся хэштэгов
   // *сосчитаем повторяющиеся хэштэги
-  let repeatCounter = hashtags.reduce((p, i) => {
+  const repeatCounter = hashtags.reduce((p, i) => {
     if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
     return p; }, {});
   // *отсортируем массив по количеству повторов
-  let arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
+  const arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
     return repeatCounter[b] - repeatCounter[a]});
 
   // **функция выбора вступительного текста по количеству хэштэгов

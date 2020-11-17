@@ -1,5 +1,6 @@
 // **импорты
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import * as MainApi from '../../utils/MainApi';
 import './NewsCardPanel.css';
 import './styles/_savedPages/NewsCardPanel_savedPages.css';
@@ -15,12 +16,12 @@ function NewsCardPanel(props) {
 
   // *сохранение статьи
   function saveArticle() {
-    let token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     MainApi.updateArticle(token, props.keyword, props.article)
     .then((last) => {
       setMarker(true);
-      let news = (JSON.parse(localStorage.getItem('news')));
-      let updateNews = news.map((item) => {
+      const news = (JSON.parse(localStorage.getItem('news')));
+      const updateNews = news.map((item) => {
         if (item.link === props.article.link) {
           item._id = last._id
           item.marked = true;
@@ -28,11 +29,11 @@ function NewsCardPanel(props) {
         return item;
       })
       localStorage.removeItem('news')
-      let setNews = (JSON.stringify(updateNews))
+      const setNews = (JSON.stringify(updateNews))
       localStorage.setItem('news', setNews)
     })
     .then(() => {
-      let articles = (JSON.parse(localStorage.getItem('news')));
+      const articles = (JSON.parse(localStorage.getItem('news')));
       props.setArticles(articles)
     })
     .catch((err) => {
@@ -42,12 +43,12 @@ function NewsCardPanel(props) {
 
   // *удаление статьи
   function deleteArticle() {
-    let token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     setMarker(false);
     let id;
     if (!props.article._id) {
-      let news = (JSON.parse(localStorage.getItem('news')))
-      let currentArticle = news.filter((item) => {
+      const news = (JSON.parse(localStorage.getItem('news')))
+      const currentArticle = news.filter((item) => {
         return item.link === props.article.link
       })
       id = currentArticle[0]._id
@@ -56,17 +57,17 @@ function NewsCardPanel(props) {
     }
     MainApi.deleteArticle(token, id)
     .then(() => {
-    let news = (JSON.parse(localStorage.getItem('news')));
-    let updateNews = news.map((item) => {
+      const news = (JSON.parse(localStorage.getItem('news')));
+      const updateNews = news.map((item) => {
       if (item._link !== props.article.link) {
         item.marked = false;
       }
       return item;
     })
-    let result = JSON.stringify(updateNews);
+    const result = JSON.stringify(updateNews);
     localStorage.removeItem('news')
     localStorage.setItem('news', result)
-    let savedNews = (JSON.parse(localStorage.getItem('articles')));
+    const savedNews = (JSON.parse(localStorage.getItem('articles')));
     props.updateSavedNews(savedNews)})
   }
 
@@ -112,7 +113,7 @@ function NewsCardPanel(props) {
     </>) :
     (<div className="NewsCardPanel">
       <button className="NewsCardPanel__button NewsCardPanel__button_save" onClick={handlePopupOpen}></button>
-      <h2 className="NewsCardPanel__tooltip">Войдите, чтобы сохранять статьи</h2>
+      <h2 className="NewsCardPanel__tooltip" onClick={() => <Redirect to={{ path: "/", state: { setLoginPopupOpen: true } }}/>} >Войдите, чтобы сохранять статьи</h2>
     </div>)
 };
 

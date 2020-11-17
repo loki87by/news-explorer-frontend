@@ -7,10 +7,19 @@ import SearchForm from '../SearchForm/SearchForm';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import Registration from '../Registration/Registration';
+import Login from '../Login/Login';
 import TooltipPopup from '../TooltipPopup/TooltipPopup';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
+import { emailChecker,
+  UNCORRECTED_EMAIL,
+  PASS_CHECKER,
+  SHORT_PASS,
+  PASS_RULES,
+  SHORT_NAME,
+  CONFLICT_ERROR,
+  LONG_NAME } from '../../utils/consts.js';
 import * as MainApi from '../../utils/MainApi';
 import './App.css';
 import './styles/App__background.css';
@@ -27,6 +36,13 @@ function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
   const [registrationError, setRegistrationError] = React.useState('');
+  // *стейты валидации
+  const [isValidEmail, setValidEmail] = React.useState(false);
+  const [invalidEmailMessage, setInvalidEmailMessage] = React.useState('');
+  const [isValidPassword, setValidPassword] = React.useState(false);
+  const [isValidName, setValidName] = React.useState(false);
+  const [invalidPasswordMessage, setInvalidPasswordMessage] = React.useState('');
+  const [invalidNameMessage, setInvalidNameMessage] = React.useState('');
   // *стейты карточек
   const [articles, setArticles] = React.useState([]);
   const [savedNews, updateSavedNews] = React.useState([]);
@@ -53,9 +69,9 @@ function App() {
       }
     })
     .catch((err) => {
+      setRegistrationError(CONFLICT_ERROR)
       setInformationPopupOpen(false)
-      console.log(JSON.parse(err.message))
-      setRegistrationError(JSON.parse(err.message))
+      console.log(err)
     });
   }
 
@@ -80,7 +96,7 @@ function App() {
 
   // *получение данных пользователя
   function sourceLoading() {
-    let token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     MainApi.getContent(token)
     .then((user) => {
       setCurrentUser(user);
@@ -91,9 +107,14 @@ function App() {
     .finally(() => {
       MainApi.getArticles(token)
       .then((articles) => {
-        let news = JSON.stringify(articles);
+        const news = JSON.stringify(articles);
         localStorage.setItem('articles', news)
         updateSavedNews(articles);
+        const findedNews = localStorage.getItem('news');
+        if (findedNews) {
+          setResponseSending(true)
+          setDataLoaded(true)
+          setArticles(JSON.parse(findedNews))}
         })
         .catch((err) => {
           console.log(err);
@@ -115,7 +136,97 @@ function App() {
     setLoginPopupOpen(false);
     setInformationPopupOpen(false);
     setRegisterPopupOpen(false);
+    setUserEmail('');
+    setUserPassword('');
+    setUserName('');
+    setInvalidEmailMessage('');
+    setInvalidPasswordMessage('');
+    setInvalidNameMessage('');
   }
+
+  // *закрытие по esc
+  function handleEscClose(e) {
+    if (e.key === "Escape") {
+      handlePopupClose();
+    }
+  }
+  // *закрытие по оверлею
+  function handleClickClose(e) {
+    if (e.target.classList.contains('PopupWithForm_opened')) {
+      handlePopupClose();
+    }
+  }
+
+  // *слушатели закрытий
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleEscClose);
+    window.addEventListener('click', handleClickClose);
+  })
+
+  // *ввод и проверка валидности мыла
+  function handleEmailChange(e) {
+    setUserEmail(e.target.value);
+    const email = e.target.value;
+    const reg = emailChecker;
+    const test = reg.test(email);
+    if (test) {
+      setValidEmail(true);
+    } else if(email.length < 1) {
+      setValidEmail(false);
+      setInvalidEmailMessage('');
+    } else {
+      setInvalidEmailMessage(UNCORRECTED_EMAIL);
+      setValidEmail(false);
+    }
+}
+
+  // *ввод и проверка валидности пароля
+  function handlePasswordChange(e) {
+    setUserPassword(e.target.value);
+    const pass = e.target.value;
+    const reg = PASS_CHECKER;
+    const test = reg.test(pass);
+    if (pass.length === 0) {
+      setInvalidPasswordMessage('');
+      setValidPassword(false);
+    } else if((pass.length < 8) && (pass.length > 0)) {
+      setValidPassword(false);
+      setInvalidPasswordMessage(SHORT_PASS);
+    } else if(test) {
+      setInvalidPasswordMessage('');
+      setValidPassword(true);
+    } else {
+      setInvalidPasswordMessage(PASS_RULES);
+      setValidPassword(false);
+    }
+  }
+
+  // *ввод и проверка валидности имени
+  function handleNameChange(e) {
+    setUserName(e.target.value);
+    const name = e.target.value;
+    if (name.length < 2) {
+      setInvalidNameMessage(SHORT_NAME);
+      setValidName(false);
+    } else if (name.length > 30) {
+      setInvalidNameMessage(LONG_NAME);
+      setValidName(false);
+    } else {
+      setValidName(true);
+      setInvalidNameMessage('')
+    }
+  }
+
+   // *смена формы
+   function changeLink() {
+    if (isRegisterPopupOpen) {
+      setRegisterPopupOpen(false);
+      setLoginPopupOpen(true);
+    } else {
+      setRegisterPopupOpen(true);
+      setLoginPopupOpen(false);
+    }
+  };
 
   // **выход из аккаунта
   function logOut(){
@@ -127,8 +238,8 @@ function App() {
 
   // **карточки
   // *отслеживание отмеченных карточек
-  let getAllNews = JSON.parse(localStorage.getItem('news'));
-  let getSavedNews = JSON.parse(localStorage.getItem('articles'));
+  const getAllNews = JSON.parse(localStorage.getItem('news'));
+  const getSavedNews = JSON.parse(localStorage.getItem('articles'));
   if (getSavedNews !== null) {
     getAllNews.forEach(function(v) {
     if (getSavedNews.some(function(v2) {
@@ -137,42 +248,38 @@ function App() {
     });
   }
   localStorage.removeItem('news')
-  let markedNews = (JSON.stringify(getAllNews))
+  const markedNews = (JSON.stringify(getAllNews))
   localStorage.setItem('news', markedNews);
 
   // *подгрузка найденных карточек из локалки
   useEffect(() => {
-    let news = localStorage.getItem('news');
+    const news = localStorage.getItem('news');
     return () => {setArticles(JSON.parse(news))};
   }, [])
 
   // *подгрузка сохраненных карточек из локалки
   useEffect(() => {
-    let articles = localStorage.getItem('articles');
+    const articles = localStorage.getItem('articles');
     return () => {updateSavedNews(JSON.parse(articles))};
   }, []);
+
+  useEffect(function() {
+    function redirector() {
+      const location = window.location
+      if ((location === '/saved-pages') && loggedIn === false) {
+        return <Redirect to={{ path: "/", state: { setLoginPopupOpen: true } }}/>
+      }
+    };
+    window.addEventListener("hashchange", redirector);
+    redirector();
+    return () => window.removeEventListener("hashchange", redirector);
+  });
 
   // **DOM
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
-        <PopupWithForm
-          isOpen={isLoginPopupOpen || isRegisterPopupOpen}
-          isRegisterPopupOpen={isRegisterPopupOpen}
-          setRegisterPopupOpen={setRegisterPopupOpen}
-          onClose={handlePopupClose}
-          setUserEmail={setUserEmail}
-          setUserPassword={setUserPassword}
-          setUserName={setUserName}
-          handleLoginClick={handleLoginClick}
-          handleRegisterClick={handleRegisterClick}
-          onLogin={onLogin}
-          setLoggedIn={setLoggedIn}
-          setCurrentUser={setCurrentUser}
-          setInformationPopupOpen={setInformationPopupOpen}
-          registrationError={registrationError} />
-        <TooltipPopup isOpen={isInformationPopupOpen}
-          onClose={handlePopupClose} />
+        <Switch>
         <Route exact path='/'>
           <div className='App__background App__background-image'>
             <Header
@@ -206,8 +313,43 @@ function App() {
               keyword={keyword}
               updateSavedNews={updateSavedNews}
               setRegisterPopupOpen={setRegisterPopupOpen} />
+              <Login
+                isOpen={isLoginPopupOpen}
+                onLogin={onLogin}
+                closeAllPopups={handlePopupClose}
+                userEmail={userEmail}
+                userPassword={userPassword}
+                changeLink={changeLink}
+                isValidEmail={isValidEmail}
+                invalidEmailMessage={invalidEmailMessage}
+                handleEmailChange={handleEmailChange}
+                isValidPassword={isValidPassword}
+                invalidPasswordMessage={invalidPasswordMessage}
+                handlePasswordChange={handlePasswordChange}
+              />
+              <Registration
+                isOpen={isRegisterPopupOpen}
+                onClose={handlePopupClose}
+                onRegister={handleRegisterClick}
+                userEmail={userEmail}
+                userPassword={userPassword}
+                userName={userName}
+                changeLink={changeLink}
+                isValidEmail={isValidEmail}
+                invalidEmailMessage={invalidEmailMessage}
+                handleEmailChange={handleEmailChange}
+                isValidPassword={isValidPassword}
+                invalidPasswordMessage={invalidPasswordMessage}
+                handlePasswordChange={handlePasswordChange}
+                isValidName={isValidName}
+                invalidNameMessage={invalidNameMessage}
+                handleNameChange={handleNameChange}
+                registrationError={registrationError}
+              />
+              <TooltipPopup isOpen={isInformationPopupOpen}
+                handleLoginClick={handleLoginClick}
+                onClose={handlePopupClose} />
         </Route>
-        <Switch>
           <Route path='/saved-pages'>
             <div className='App__background'>
               <Header
@@ -226,11 +368,11 @@ function App() {
                 setArticles={setArticles}
                 updateSavedNews={updateSavedNews} />
           </Route>
-        <Footer />
           <Route>
-            {loggedIn ? <Redirect to="/saved-pages" /> : <Redirect to="/" />}
+            {loggedIn ? <Redirect to="/saved-pages"/> : <Redirect to={{ path: "/", state: { setRegisterPopupOpen: true } }}/>}
           </Route>
         </Switch>
+        <Footer />
       </div>
     </CurrentUserContext.Provider>
   )

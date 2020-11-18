@@ -21,13 +21,24 @@ function PopupWithForm(props) {
         <button className="PopupWithForm__close" type="reset" aria-label="Закрыть" onClick={props.onClose} id="closeAllPopups"></button>
         <h1 className="PopupWithForm__text">{props.title}</h1>
         <label htmlFor="email" className="PopupWithForm__label">Email
-          <input required type="text" className="PopupWithForm__input" onChange={e => props.handleEmailChange(e)} value={props.userEmail}
-          placeholder="Введите почту" id={props.emailId} name="email" />
+          <input required type="text"
+          className="PopupWithForm__input"
+          onChange={e => props.handleEmailChange(e)}
+          value={props.userEmail}
+          placeholder="Введите почту"
+          id={props.emailId}
+          name="email"
+          disabled={props.isResponseSending ? true : false } />
           <span className="PopupWithForm__error">{props.isValidEmail ? ' ' : props.invalidEmailMessage}</span>
         </label>
         <label htmlFor="pass" className="PopupWithForm__label">Пароль
-          <input required type="password" className="PopupWithForm__input" onChange={e => props.handlePasswordChange(e)} value={props.userPassword}
-          placeholder="Введите пароль" id={props.passiD} name="pass" />
+          <input required type="password"
+          className="PopupWithForm__input"
+          onChange={e => props.handlePasswordChange(e)}
+          value={props.userPassword}
+          placeholder="Введите пароль"
+          id={props.passiD} name="pass"
+          disabled={props.isResponseSending ? true : false } />
           <span className="PopupWithForm__error">{props.isValidPassword ? ' ' : props.invalidPasswordMessage}</span>
         </label>
         {props.children}

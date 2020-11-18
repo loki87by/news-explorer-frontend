@@ -16,44 +16,44 @@ function NewsCardPanel(props) {
 
   // *сохранение статьи
   function saveArticle() {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     MainApi.updateArticle(token, props.article.keyword, props.article)
     .then((last) => {
       setMarker(true);
       const news = (JSON.parse(localStorage.getItem('news')));
       const updateNews = news.map((item) => {
         if (item.link === props.article.link) {
-          item._id = last._id
+          item._id = last._id;
           item.marked = true;
         }
         return item;
       })
-      localStorage.removeItem('news')
-      const setNews = (JSON.stringify(updateNews))
-      localStorage.setItem('news', setNews)
+      localStorage.removeItem('news');
+      const setNews = (JSON.stringify(updateNews));
+      localStorage.setItem('news', setNews);
     })
     .then(() => {
       const articles = (JSON.parse(localStorage.getItem('news')));
-      props.setArticles(articles)
+      props.setArticles(articles);
     })
     .catch((err) => {
-      console.log(`Ошибка: ${err}`)
+      console.log(`Ошибка: ${err}`);
     })
   }
 
   // *удаление статьи
   function deleteArticle() {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     setMarker(false);
     let id;
     if (!props.article._id) {
-      const news = (JSON.parse(localStorage.getItem('news')))
+      const news = (JSON.parse(localStorage.getItem('news')));
       const currentArticle = news.filter((item) => {
-        return item.link === props.article.link
+        return item.link === props.article.link;
       })
-      id = currentArticle[0]._id
+      id = currentArticle[0]._id;
     } else {
-      id = props.article._id
+      id = props.article._id;
     }
     MainApi.deleteArticle(token, id)
     .then(() => {
@@ -65,17 +65,18 @@ function NewsCardPanel(props) {
       return item;
     })
     const result = JSON.stringify(updateNews);
-    localStorage.removeItem('news')
-    localStorage.setItem('news', result)
+    localStorage.removeItem('news');
+    localStorage.setItem('news', result);
     const savedNews = (JSON.parse(localStorage.getItem('articles')));
-    props.updateSavedNews(savedNews)})
+    props.updateSavedNews(savedNews);
+    })
   }
 
   // *установка метки
   const [marker, setMarker] = React.useState(false);
   React.useEffect(() => {
     if (props.article.marked === true) {
-      setMarker(true)
+      setMarker(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -83,9 +84,9 @@ function NewsCardPanel(props) {
   // *отмечаем выбранные карточки
   function swichMarker() {
     if (marker) {
-      unsaveArticle()
+      unsaveArticle();
     } else {
-      saveArticle()
+      saveArticle();
     }
   }
 
@@ -96,7 +97,7 @@ function NewsCardPanel(props) {
 
   // *открытие попапа
   function handlePopupOpen() {
-    props.setRegisterPopupOpen(true)
+    props.setRegisterPopupOpen(true);
   }
 
   // **DOM

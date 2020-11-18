@@ -29,7 +29,8 @@ function Login(props) {
       isValidPassword={props.isValidPassword}
       invalidPasswordMessage={props.invalidPasswordMessage}
       handlePasswordChange={props.handlePasswordChange}
-      isValidName={props.isValidName} children={
+      isValidName={props.isValidName}
+      isResponseSending={props.isResponseSending} children={
         <span className="PopupWithForm__error PopupWithForm__error_loginError">{ props.loginError }</span>
       } />
   );

@@ -10,7 +10,7 @@ export const register = (email, password, name) => {
   })
   .then((res) => {
     try {
-      if (res.status === 200) {
+      if (res.status === 201) {
         return res.json();
       }
       if (res.status === 409) {

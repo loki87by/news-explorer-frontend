@@ -9,8 +9,10 @@ function Registration(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (props.isValidEmail && props.isValidPassword && props.isValidName) {
-      props.onRegister()
+    props.setRequestSending(true)
+    if (props.isValidEmail && props.isValidPassword && props.isValidName)
+    {
+      props.onRegister();
       return
     }
   };
@@ -36,7 +38,8 @@ function Registration(props) {
       handlePasswordChange={props.handlePasswordChange}
       isValidName={props.isValidName}
       invalidNameMessage={props.invalidNameMessage}
-      handleNameChange={props.handleNameChange} children={
+      handleNameChange={props.handleNameChange}
+      isResponseSending={props.isResponseSending} children={
         <>
         <label htmlFor="name" className="PopupWithForm__label">Имя
             <input required type="name" className="PopupWithForm__input" onChange={e => props.handleNameChange(e)} value={props.userName}

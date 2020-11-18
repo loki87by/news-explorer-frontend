@@ -46,11 +46,12 @@ function App() {
   const [isValidName, setValidName] = React.useState(false);
   const [invalidPasswordMessage, setInvalidPasswordMessage] = React.useState('');
   const [invalidNameMessage, setInvalidNameMessage] = React.useState('');
+  const [isRequestSending, setRequestSending] = React.useState(false);
   // *стейты карточек
   const [articles, setArticles] = React.useState([]);
   const [savedNews, updateSavedNews] = React.useState([]);
   // *стейты пользователя
-  const [currentUser, setCurrentUser] = React.useState({ name: 'testUser'});
+  const [currentUser, setCurrentUser] = React.useState({});
   const [userEmail, setUserEmail] = React.useState('');
   const [userPassword, setUserPassword] = React.useState('');
   const [userName, setUserName] = React.useState('');
@@ -64,23 +65,26 @@ function App() {
 
   // **регистрация
   function handleRegisterClick() {
+    setRequestSending(true)
+    console.log(isRequestSending)
     MainApi.register(userEmail, userPassword, userName)
     .then((res) => {
       if(res) {
-        handlePopupClose()
-        setInformationPopupOpen(true)
+        handlePopupClose();
+        setInformationPopupOpen(true);
       }
     })
     .catch((err) => {
-      setInformationPopupOpen(false)
+      setInformationPopupOpen(false);
       if(err.message.includes(409)) {
-        setRegistrationError(CONFLICT_ERROR)
-        document.getElementById('regEmail').addEventListener('input', changeInputListener)
-        document.getElementById('regPass').addEventListener('input', changeInputListener)
+        setRegistrationError(CONFLICT_ERROR);
+        document.getElementById('regEmail').addEventListener('input', changeInputListener);
+        document.getElementById('regPass').addEventListener('input', changeInputListener);
       } else {
         setRegistrationError(UNKNOWN_ERROR);
       }
     });
+    setRequestSending(false)
   }
 
   // **авторизация
@@ -91,29 +95,31 @@ function App() {
 
   // *обращение к API
   function onLogin() {
+    setResponseSending(true)
     MainApi.login(userEmail, userPassword)
     .then((token) => {
       if (token){
         localStorage.setItem('token', token);
-        handlePopupClose()
-        sourceLoading()
+        handlePopupClose();
+        sourceLoading();
       }
     }
     )
     .catch((err) => {
       if(err.message.includes(401)) {
         setLoginError(UNAUTHORIZED_ERROR);
-        document.getElementById('loginEmail').addEventListener('input', changeInputListener)
-        document.getElementById('loginPass').addEventListener('input', changeInputListener)
+        document.getElementById('loginEmail').addEventListener('input', changeInputListener);
+        document.getElementById('loginPass').addEventListener('input', changeInputListener);
       } else {
         setLoginError(UNKNOWN_ERROR);
       }
     });
+    setResponseSending(false)
   }
 
   // *получение данных пользователя
   function sourceLoading() {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     MainApi.getContent(token)
     .then((user) => {
       setCurrentUser(user);
@@ -125,46 +131,53 @@ function App() {
       MainApi.getArticles(token)
       .then((articles) => {
         const news = JSON.stringify(articles);
-        localStorage.setItem('articles', news)
+        localStorage.setItem('articles', news);
         updateSavedNews(articles);
         const findedNews = localStorage.getItem('news');
         if (findedNews) {
-          setResponseSending(true)
-          setDataLoaded(true)
-          setArticles(JSON.parse(findedNews))}
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+          setResponseSending(true);
+          setDataLoaded(true);
+          setArticles(JSON.parse(findedNews));
+        }
       })
+      .catch((err) => {
+        console.log(err);
+      });
+    })
   }
 
   // *подгрузка данных залогиненного юзера
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(token) {
-    sourceLoading(token)
-  }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      sourceLoading(token);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // *обнуление ошибки
   function changeInputListener() {
-    let oldEmail = userEmail;
-    let oldPassword = userPassword;
-    let newEmail
-    if (isLoginPopupOpen) {newEmail = document.getElementById('loginEmail').value
-  } else {newEmail = document.getElementById('regEmail').value}
-    let newPassword
-    if (isLoginPopupOpen) {newPassword = document.getElementById('loginPass').value
-  } else {newPassword = document.getElementById('regPass').value}
-    if ((oldEmail !== newEmail) || (oldPassword !== newPassword)){
-      if(isLoginPopupOpen) {setLoginError('')}
-      setRegistrationError('')
-      document.getElementById('regEmail').removeEventListener('input', changeInputListener)
-      document.getElementById('regPass').removeEventListener('input', changeInputListener)
-      document.getElementById('loginEmail').removeEventListener('input', changeInputListener)
-      document.getElementById('loginPass').removeEventListener('input', changeInputListener)
+    const oldEmail = userEmail;
+    const oldPassword = userPassword;
+    let newEmail;
+    let newPassword;
+    if (isLoginPopupOpen) {
+      newEmail = document.getElementById('loginEmail').value;
+    } else {
+      newEmail = document.getElementById('regEmail').value;
+    }
+    if (isLoginPopupOpen) {
+      newPassword = document.getElementById('loginPass').value;
+    } else {
+      newPassword = document.getElementById('regPass').value;
+    }
+    if ((oldEmail !== newEmail) || (oldPassword !== newPassword)) {
+      setLoginError('');
+      setRegistrationError('');
+      document.getElementById('regEmail').removeEventListener('input', changeInputListener);
+      document.getElementById('regPass').removeEventListener('input', changeInputListener);
+      document.getElementById('loginEmail').removeEventListener('input', changeInputListener);
+      document.getElementById('loginPass').removeEventListener('input', changeInputListener);
     }
   }
 
@@ -250,7 +263,7 @@ function App() {
       setValidName(false);
     } else {
       setValidName(true);
-      setInvalidNameMessage('')
+      setInvalidNameMessage('');
     }
   }
 
@@ -271,8 +284,8 @@ function App() {
     localStorage.removeItem('articles');
     localStorage.removeItem('token');
     setArticles([]);
-    setResponseSending(false)
-    setDataLoaded(false)
+    setResponseSending(false);
+    setDataLoaded(false);
     setSavedNewsPage(false);
     setLoggedIn(false);
     history.push('/');
@@ -289,8 +302,8 @@ function App() {
       return v.marked = true}
     });
   }
-  localStorage.removeItem('news')
-  const markedNews = (JSON.stringify(getAllNews))
+  localStorage.removeItem('news');
+  const markedNews = (JSON.stringify(getAllNews));
   localStorage.setItem('news', markedNews);
 
   // *подгрузка найденных карточек из локалки
@@ -307,7 +320,7 @@ function App() {
 
   useEffect(function() {
     function redirector() {
-      const location = window.location
+      const location = window.location;
       if ((location === '/saved-pages') && loggedIn === false) {
         return <Redirect to={{ path: "/", state: { setLoginPopupOpen: true } }}/>
       }
@@ -355,43 +368,47 @@ function App() {
               keyword={keyword}
               updateSavedNews={updateSavedNews}
               setRegisterPopupOpen={setRegisterPopupOpen} />
-              <Login
-                isOpen={isLoginPopupOpen}
-                onLogin={onLogin}
-                closeAllPopups={handlePopupClose}
-                userEmail={userEmail}
-                userPassword={userPassword}
-                changeLink={changeLink}
-                isValidEmail={isValidEmail}
-                invalidEmailMessage={invalidEmailMessage}
-                handleEmailChange={handleEmailChange}
-                isValidPassword={isValidPassword}
-                invalidPasswordMessage={invalidPasswordMessage}
-                handlePasswordChange={handlePasswordChange}
-                loginError={loginError}
-              />
-              <Registration
-                isOpen={isRegisterPopupOpen}
-                onClose={handlePopupClose}
-                onRegister={handleRegisterClick}
-                userEmail={userEmail}
-                userPassword={userPassword}
-                userName={userName}
-                changeLink={changeLink}
-                isValidEmail={isValidEmail}
-                invalidEmailMessage={invalidEmailMessage}
-                handleEmailChange={handleEmailChange}
-                isValidPassword={isValidPassword}
-                invalidPasswordMessage={invalidPasswordMessage}
-                handlePasswordChange={handlePasswordChange}
-                isValidName={isValidName}
-                invalidNameMessage={invalidNameMessage}
-                handleNameChange={handleNameChange}
-                registrationError={registrationError}
-              />
-              <TooltipPopup isOpen={isInformationPopupOpen}
-                handleLoginClick={handleLoginClick}
-                onClose={handlePopupClose} />
+            <Login
+              isOpen={isLoginPopupOpen}
+              onLogin={onLogin}
+              closeAllPopups={handlePopupClose}
+              userEmail={userEmail}
+              userPassword={userPassword}
+              changeLink={changeLink}
+              isValidEmail={isValidEmail}
+              invalidEmailMessage={invalidEmailMessage}
+              handleEmailChange={handleEmailChange}
+              isValidPassword={isValidPassword}
+              invalidPasswordMessage={invalidPasswordMessage}
+              handlePasswordChange={handlePasswordChange}
+              loginError={loginError}
+              isResponseSending={isResponseSending}
+              setResponseSending={setResponseSending}
+            />
+            <Registration
+              isOpen={isRegisterPopupOpen}
+              closeAllPopups={handlePopupClose}
+              onRegister={handleRegisterClick}
+              userEmail={userEmail}
+              userPassword={userPassword}
+              userName={userName}
+              changeLink={changeLink}
+              isValidEmail={isValidEmail}
+              invalidEmailMessage={invalidEmailMessage}
+              handleEmailChange={handleEmailChange}
+              isValidPassword={isValidPassword}
+              invalidPasswordMessage={invalidPasswordMessage}
+              handlePasswordChange={handlePasswordChange}
+              isValidName={isValidName}
+              invalidNameMessage={invalidNameMessage}
+              handleNameChange={handleNameChange}
+              registrationError={registrationError}
+              isRequestSending={isRequestSending}
+              setRequestSending={setRequestSending}
+            />
+            <TooltipPopup isOpen={isInformationPopupOpen}
+              handleLoginClick={handleLoginClick}
+              onClose={handlePopupClose} />
         </Route>
           <Route path='/saved-pages'>
             <div className='App__background'>

@@ -32,9 +32,9 @@ function SavedNewsHeader() {
   // **функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
-      return 'По ключевому слову: '
+      return 'По ключевому слову: ';
     } else {
-      return 'По ключевым словам: '
+      return 'По ключевым словам: ';
     }
   }
   textCreator();

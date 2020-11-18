@@ -24,10 +24,10 @@ function SearchForm(props) {
     e.preventDefault();
     const regex = NOT_EMPTY_REQUEST;
     if ((request.length === 0) || (regex.test(request))) {
-      setPlaceholderText(NEED_KEYWORD)
+      setPlaceholderText(NEED_KEYWORD);
     } else {
-      searchNews()
-      setPlaceholderText(DEFAULT_PLACEHOLDER)
+      searchNews();
+      setPlaceholderText(DEFAULT_PLACEHOLDER);
     }
   }
 
@@ -37,11 +37,11 @@ function SearchForm(props) {
       props.setResponseSending(false);
       props.setDataLoaded(false);
     }
-    props.setKeyword(request)
+    props.setKeyword(request);
     props.setResponseSending(true);
     NewsApi.getNews(request)
       .then((res) => {
-        return res.articles
+        return res.articles;
       })
         .then((articles) => {
           let arr = [];
@@ -51,16 +51,16 @@ function SearchForm(props) {
             obj.keyword = request;
             const cleanText = item.description.replace(HTML_UNTAGGER, "");
             obj.text = cleanText;
-            const date = new Date(item.publishedAt)
+            const date = new Date(item.publishedAt);
             const rusDate = date.toLocaleString('ru', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
-            })
+            });
             const dateArr = rusDate.split(' ');
-            const start = dateArr.slice(0, 2).join(' ')
-            const end = dateArr.slice(2).join(' ')
-            const comma = start.concat(', ').concat(end)
+            const start = dateArr.slice(0, 2).join(' ');
+            const end = dateArr.slice(2).join(' ');
+            const comma = start.concat(', ').concat(end);
             obj.date = comma;
             obj.source = item.source.name;
             obj.link = item.url;
@@ -70,19 +70,19 @@ function SearchForm(props) {
             obj.image = item.urlToImage
             };
             return obj;
-          })
+          });
           if (arr.length !== 0) {
             const setNews = JSON.stringify(arr);
             localStorage.setItem('news', setNews);
-            const getNews = JSON.parse(localStorage.getItem('news'))
+            const getNews = JSON.parse(localStorage.getItem('news'));
             props.setArticles(getNews);
             props.setDataLoaded(true);
           } else {
-            props.setSearchError(NOT_FIND)
+            props.setSearchError(NOT_FIND);
           }
         })
       .catch((err) => {
-        props.setSearchError(CONNECTED_ERROR)
+        props.setSearchError(CONNECTED_ERROR);
       });
     props.scroller();
   };

@@ -21,9 +21,9 @@ function Header(props) {
   // *отслеживатель изменения ширины экрана
   useEffect(function() {
     function resizer() {
-      setScreenWidth(window.innerWidth)
+      setScreenWidth(window.innerWidth);
       if (screenWidth > 610) {
-        setMobileMenuOpen(false)
+        setMobileMenuOpen(false);
       }
     };
     window.addEventListener("resize", resizer);
@@ -34,9 +34,9 @@ function Header(props) {
   // *переключатель меню мобильной версии
   function mobileMenuSwitcher() {
     if (isMobileMenuOpen) {
-      setMobileMenuOpen(false)
+      setMobileMenuOpen(false);
     } else {
-      setMobileMenuOpen(true)
+      setMobileMenuOpen(true);
     }
   }
 

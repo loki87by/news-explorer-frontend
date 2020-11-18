@@ -12,16 +12,28 @@ function NewsCardList(props) {
   const savedNews = JSON.parse(localStorage.getItem('articles'));
 
   // *получаем массив сохраненных новостных карточек
-  const getNews = JSON.parse(localStorage.getItem('news'));
+  let getNews = JSON.parse(localStorage.getItem('news'));
 
   // *отбираем 3 первых в списке
-  const firstNews = getNews.slice(0, 3);
+  let firstNews = [];
+  function firstNewsCutter() {
+    if ((getNews !== null) && (getNews !== undefined)) {
+      firstNews = getNews.slice(0, 3);
+    }
+  }
+  firstNewsCutter()
 
   // *устанавливаем отображаемые на странице карточки
   const [newsCards, setNewsCards] = useState(firstNews);
 
   // *карточки после третьей
-  const otherNews = getNews.slice(3);
+  let otherNews = [];
+  function otherNewsCutter() {
+    if ((getNews !== null) && (getNews !== undefined)) {
+      otherNews = getNews.slice(3);
+    }
+  }
+  otherNewsCutter()
 
   // *скрытые карточки
   const [hiddenNews, setHiddenNews] = useState(otherNews);

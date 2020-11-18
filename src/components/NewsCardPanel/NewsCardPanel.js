@@ -17,7 +17,7 @@ function NewsCardPanel(props) {
   // *сохранение статьи
   function saveArticle() {
     const token = localStorage.getItem('token')
-    MainApi.updateArticle(token, props.keyword, props.article)
+    MainApi.updateArticle(token, props.article.keyword, props.article)
     .then((last) => {
       setMarker(true);
       const news = (JSON.parse(localStorage.getItem('news')));

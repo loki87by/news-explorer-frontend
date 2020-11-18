@@ -17,12 +17,14 @@ function Registration(props) {
 
   return (
     <PopupWithForm isOpen={props.isOpen}
-      onClose={props.onClose}
+      onClose={props.closeAllPopups}
       onSubmit={handleSubmit}
       name="registration"
       title={'Регистрация'}
       link={'Зарегистрироваться'}
       antilink={' Войти'}
+      emailId={'regEmail'}
+      passiD={'regPass'}
       userEmail={props.userEmail}
       userPassword={props.userPassword}
       changeLink={props.changeLink}

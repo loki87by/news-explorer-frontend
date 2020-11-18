@@ -19,7 +19,9 @@ import { EMAIL_CHECKER,
   PASS_RULES,
   SHORT_NAME,
   CONFLICT_ERROR,
-  LONG_NAME } from '../../utils/consts.js';
+  LONG_NAME,
+  UNAUTHORIZED_ERROR,
+  UNKNOWN_ERROR } from '../../utils/consts.js';
 import * as MainApi from '../../utils/MainApi';
 import './App.css';
 import './styles/App__background.css';
@@ -36,6 +38,7 @@ function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = React.useState(false);
   const [isInformationPopupOpen, setInformationPopupOpen] = React.useState(false);
   const [registrationError, setRegistrationError] = React.useState('');
+  const [loginError, setLoginError] = React.useState('');
   // *стейты валидации
   const [isValidEmail, setValidEmail] = React.useState(false);
   const [invalidEmailMessage, setInvalidEmailMessage] = React.useState('');
@@ -69,9 +72,14 @@ function App() {
       }
     })
     .catch((err) => {
-      setRegistrationError(CONFLICT_ERROR)
       setInformationPopupOpen(false)
-      console.log(err)
+      if(err.message.includes(409)) {
+        setRegistrationError(CONFLICT_ERROR)
+        document.getElementById('regEmail').addEventListener('input', changeInputListener)
+        document.getElementById('regPass').addEventListener('input', changeInputListener)
+      } else {
+        setRegistrationError(UNKNOWN_ERROR);
+      }
     });
   }
 
@@ -87,11 +95,20 @@ function App() {
     .then((token) => {
       if (token){
         localStorage.setItem('token', token);
+        handlePopupClose()
         sourceLoading()
       }
     }
     )
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      if(err.message.includes(401)) {
+        setLoginError(UNAUTHORIZED_ERROR);
+        document.getElementById('loginEmail').addEventListener('input', changeInputListener)
+        document.getElementById('loginPass').addEventListener('input', changeInputListener)
+      } else {
+        setLoginError(UNKNOWN_ERROR);
+      }
+    });
   }
 
   // *получение данных пользователя
@@ -130,6 +147,26 @@ function App() {
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // *обнуление ошибки
+  function changeInputListener() {
+    let oldEmail = userEmail;
+    let oldPassword = userPassword;
+    let newEmail
+    if (isLoginPopupOpen) {newEmail = document.getElementById('loginEmail').value
+  } else {newEmail = document.getElementById('regEmail').value}
+    let newPassword
+    if (isLoginPopupOpen) {newPassword = document.getElementById('loginPass').value
+  } else {newPassword = document.getElementById('regPass').value}
+    if ((oldEmail !== newEmail) || (oldPassword !== newPassword)){
+      if(isLoginPopupOpen) {setLoginError('')}
+      setRegistrationError('')
+      document.getElementById('regEmail').removeEventListener('input', changeInputListener)
+      document.getElementById('regPass').removeEventListener('input', changeInputListener)
+      document.getElementById('loginEmail').removeEventListener('input', changeInputListener)
+      document.getElementById('loginPass').removeEventListener('input', changeInputListener)
+    }
+  }
 
   // **закрытие модальных окон
   function handlePopupClose() {
@@ -230,7 +267,12 @@ function App() {
 
   // **выход из аккаунта
   function logOut(){
+    localStorage.removeItem('news');
+    localStorage.removeItem('articles');
     localStorage.removeItem('token');
+    setArticles([]);
+    setResponseSending(false)
+    setDataLoaded(false)
     setSavedNewsPage(false);
     setLoggedIn(false);
     history.push('/');
@@ -238,9 +280,9 @@ function App() {
 
   // **карточки
   // *отслеживание отмеченных карточек
-  const getAllNews = JSON.parse(localStorage.getItem('news'));
-  const getSavedNews = JSON.parse(localStorage.getItem('articles'));
-  if (getSavedNews !== null) {
+  let getAllNews = JSON.parse(localStorage.getItem('news'));
+  let getSavedNews = JSON.parse(localStorage.getItem('articles'));
+  if ((getSavedNews !== null) && (getSavedNews !== undefined) && (getAllNews !== null) && (getAllNews !== undefined)) {
     getAllNews.forEach(function(v) {
     if (getSavedNews.some(function(v2) {
         return v.link === v2.link })){
@@ -326,6 +368,7 @@ function App() {
                 isValidPassword={isValidPassword}
                 invalidPasswordMessage={invalidPasswordMessage}
                 handlePasswordChange={handlePasswordChange}
+                loginError={loginError}
               />
               <Registration
                 isOpen={isRegisterPopupOpen}

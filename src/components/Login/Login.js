@@ -1,21 +1,24 @@
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import '../PopupWithForm/styles/__error/PopupWithForm__error.css';
+import '../PopupWithForm/styles/__error/_loginError/PopupWithForm__error_loginError.css';
 
 function Login(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
     props.onLogin();
-    props.closeAllPopups();
   }
 
   return (
     <PopupWithForm isOpen={props.isOpen}
-      onClose={props.onClose}
+      onClose={props.closeAllPopups}
       onSubmit={handleSubmit}
       name="login"
       title={'Вход'}
       link={'Войти'}
+      emailId={'loginEmail'}
+      passiD={'loginPass'}
       antilink={' Зарегистрироваться'}
       userEmail={props.userEmail}
       userPassword={props.userPassword}
@@ -26,7 +29,9 @@ function Login(props) {
       isValidPassword={props.isValidPassword}
       invalidPasswordMessage={props.invalidPasswordMessage}
       handlePasswordChange={props.handlePasswordChange}
-      isValidName={props.isValidName}  />
+      isValidName={props.isValidName} children={
+        <span className="PopupWithForm__error PopupWithForm__error_loginError">{ props.loginError }</span>
+      } />
   );
 }
 

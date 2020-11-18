@@ -10,6 +10,8 @@ export const SHORT_NAME = 'Имя должно быть не менее двух
 export const LONG_NAME = 'Имя должно быть не более 30 символов'
 export const CONFLICT_ERROR = 'Такой пользователь уже существует'
 export const API_KEY = '96fb88023047493688f02442b20eac74'
+export const UNAUTHORIZED_ERROR = 'Ошибка: Неправильный логин или пароль'
+export const UNKNOWN_ERROR = 'Ошибка: Неправильный логин или пароль'
 // *ссылки
 export const DEFAULT_PICTURE = 'https://cs.pikabu.ru/post_img/big/2013/08/24/1/1377296637_1500370441.png'
 // *регулярки

@@ -9,12 +9,20 @@ export const register = (email, password, name) => {
     body: JSON.stringify({ email, password, name })
   })
   .then((res) => {
-      if(res.ok) {
+    try {
+      if (res.status === 200) {
         return res.json();
       }
+      if (res.status === 409) {
+        return Promise.reject(new Error(`Ошибка: ${res.status}`));
+      }
+    }
+    catch (err) {
+      return err;
+    }
     })
-  .catch((e) => {
-    return (e)
+  .catch ((err) => {
+    return Promise.reject(err);
   })
 }
 
@@ -47,10 +55,9 @@ export const login = (email, password) => {
   .then((data) => {
       return data.token
     })
-      .catch ((err) => {
-        return Promise.reject(err);
+  .catch ((err) => {
+    return Promise.reject(err);
   })
-  .catch(err => console.log(err))
 }
 
 // *подгрузка данных

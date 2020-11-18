@@ -22,12 +22,12 @@ function PopupWithForm(props) {
         <h1 className="PopupWithForm__text">{props.title}</h1>
         <label htmlFor="email" className="PopupWithForm__label">Email
           <input required type="text" className="PopupWithForm__input" onChange={e => props.handleEmailChange(e)} value={props.userEmail}
-          placeholder="Введите почту" id="email" name="email" />
+          placeholder="Введите почту" id={props.emailId} name="email" />
           <span className="PopupWithForm__error">{props.isValidEmail ? ' ' : props.invalidEmailMessage}</span>
         </label>
         <label htmlFor="pass" className="PopupWithForm__label">Пароль
           <input required type="password" className="PopupWithForm__input" onChange={e => props.handlePasswordChange(e)} value={props.userPassword}
-          placeholder="Введите пароль" id="pass" name="pass" />
+          placeholder="Введите пароль" id={props.passiD} name="pass" />
           <span className="PopupWithForm__error">{props.isValidPassword ? ' ' : props.invalidPasswordMessage}</span>
         </label>
         {props.children}

@@ -1,42 +1,29 @@
-// **импорты
+// *импорты
 import React, { useEffect } from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import './SavedNews.css';
 
-// **Функционал
+// *Функционал
 function SavedNews(props) {
+  const currentUser = React.useContext(CurrentUserContext);
   useEffect(() => {props.setSavedNewsPage(true);});
-  // *отбор по ключевым словам
-  let hashtags = [];
-  let hashtagger = (() => {
-    let tags =[];
-    props.savedNews.map((item) => {
-      console.log(props.savedNews)
-      tags = Object.values(item.keyword).map(() => {
-        if (item.keyword[0] === ' ') {
-          return item.keyword.splice(0, 1, 'пробел')
-        } else {
-        return item.keyword;
-        }
-      })
-      return tags;
-    })
-    if (props.savedNews.length > 0) {
-    hashtags = tags.reduce((tags, item) => {return tags.concat(item)})};
-    return hashtags;
-  })
-  hashtagger()
-  let newsQuantity = props.savedNews.length;
 
-  // **DOM
+  // *DOM
   return (
     <main className="SavedNews">
-      <SavedNewsHeader currentUser={props.currentUser} newsQuantity={newsQuantity} hashtags={hashtags}/>
-      <NewsCardList loggedIn={props.loggedIn} savedNews={props.savedNews} updateSavedNews={props.updateSavedNews} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} hashtags={hashtags}/>
+      <CurrentUserContext.Provider value={currentUser}>
+       <SavedNewsHeader />
+      </CurrentUserContext.Provider>
+      <NewsCardList
+        loggedIn={props.loggedIn}
+        isSavedNewsPage={props.isSavedNewsPage}
+        setArticles={props.setArticles}
+        updateSavedNews={props.updateSavedNews} />
     </main>
   )
 };
 
-// **экспорт
+// *экспорт
 export default SavedNews;

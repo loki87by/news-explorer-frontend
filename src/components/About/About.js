@@ -1,6 +1,6 @@
 // **импорты
 import React from 'react';
-import authorAvatar from '../../images/authorAvatar-min.jpg'
+import authorAvatar from '../../images/authorAvatar-min.jpg';
 import './About.css';
 import './styles/__avatar/About__avatar.css';
 import './styles/__title/About__title.css';

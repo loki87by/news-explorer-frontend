@@ -1,5 +1,16 @@
 .NewsCard__title{
   margin: 12px auto 0 24px;
+  display: -webkit-box;
+  display: box;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
   font-style: normal;
   font-weight: normal;
   font-size: 26px;
@@ -11,38 +22,12 @@
   .NewsCard__title{
     font-size: 22px;
     line-height: 24px;
-    word-break: break-word;
-  }
-}
-
-@media (max-width: 1089px) {
-  .NewsCard__title{
-    height: 72px;
   }
 }
 
 @media (max-width: 894px) {
   .NewsCard__title{
     margin: 0 16px;
-    height: 96px;
-  }
-}
-
-@media (max-width: 846px) {
-  .NewsCard__title{
-    height: 120px;
-  }
-}
-/*
-@media (max-width: 800px) {
-  .NewsCard__title{
-    height: 140px;
-  }
-}*/
-
-@media (max-width: 768px) {
-  .NewsCard__title{
-    height: 72px;
   }
 }
 
@@ -51,12 +36,6 @@
     margin: 12px auto 0 24px;
     font-size: 26px;
     line-height: 30px;
-  }
-}
-
-@media (max-width: 443px) {
-  .NewsCard__title{
-    height: 98px;
   }
 }
 

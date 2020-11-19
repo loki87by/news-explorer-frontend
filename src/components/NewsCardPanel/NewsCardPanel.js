@@ -1,5 +1,7 @@
 // **импорты
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import * as MainApi from '../../utils/MainApi';
 import './NewsCardPanel.css';
 import './styles/_savedPages/NewsCardPanel_savedPages.css';
 import './styles/__keyword/NewsCardPanel__keyword.css';
@@ -11,33 +13,91 @@ import './styles/__button/_marked/NewsCardPanel__button_marked.css';
 
 // **Функционал
 function NewsCardPanel(props) {
-  // *отмечаем выбранные карточки
-  const [marker, setMarker] = React.useState(false);
-  function swichMarker() {
-    let index = props.article.id;
-    if (props.article.marked) {
-      props.article.marked = false;
-      setMarker(false);
-    } else {
-      props.article.marked = true;
+
+  // *сохранение статьи
+  function saveArticle() {
+    const token = localStorage.getItem('token');
+    MainApi.updateArticle(token, props.article.keyword, props.article)
+    .then((last) => {
       setMarker(true);
-    }
-    function marker() {
-      props.articles.splice(index, 1, props.article);
-    }
-    marker();
-    let savedNews = props.articles.filter((item) => {return item.marked === true});
-    props.updateSavedNews(savedNews);
+      const news = (JSON.parse(localStorage.getItem('news')));
+      const updateNews = news.map((item) => {
+        if (item.link === props.article.link) {
+          item._id = last._id;
+          item.marked = true;
+        }
+        return item;
+      })
+      localStorage.removeItem('news');
+      const setNews = (JSON.stringify(updateNews));
+      localStorage.setItem('news', setNews);
+    })
+    .then(() => {
+      const articles = (JSON.parse(localStorage.getItem('news')));
+      props.setArticles(articles);
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
   }
 
-  // *снятие отметки
-  function unsaveArticle() {
-    let index = props.article.id;
-    props.article.marked = false;
-    props.articles.splice(index, 0);
+  // *удаление статьи
+  function deleteArticle() {
+    const token = localStorage.getItem('token');
     setMarker(false);
-    let savedNews = props.articles.filter((item) => {return item.marked === true});
+    let id;
+    if (!props.article._id) {
+      const news = (JSON.parse(localStorage.getItem('news')));
+      const currentArticle = news.filter((item) => {
+        return item.link === props.article.link;
+      })
+      id = currentArticle[0]._id;
+    } else {
+      id = props.article._id;
+    }
+    MainApi.deleteArticle(token, id)
+    .then(() => {
+      const news = (JSON.parse(localStorage.getItem('news')));
+      const updateNews = news.map((item) => {
+      if (item._link !== props.article.link) {
+        item.marked = false;
+      }
+      return item;
+    })
+    const result = JSON.stringify(updateNews);
+    localStorage.removeItem('news');
+    localStorage.setItem('news', result);
+    const savedNews = (JSON.parse(localStorage.getItem('articles')));
     props.updateSavedNews(savedNews);
+    })
+  }
+
+  // *установка метки
+  const [marker, setMarker] = React.useState(false);
+  React.useEffect(() => {
+    if (props.article.marked === true) {
+      setMarker(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // *отмечаем выбранные карточки
+  function swichMarker() {
+    if (marker) {
+      unsaveArticle();
+    } else {
+      saveArticle();
+    }
+  }
+
+  // *снятие метки
+  function unsaveArticle() {
+    deleteArticle();
+  }
+
+  // *открытие попапа
+  function handlePopupOpen() {
+    props.setRegisterPopupOpen(true);
   }
 
   // **DOM
@@ -53,8 +113,8 @@ function NewsCardPanel(props) {
       </div>)}
     </>) :
     (<div className="NewsCardPanel">
-      <button className="NewsCardPanel__button NewsCardPanel__button_save"></button>
-      <h2 className="NewsCardPanel__tooltip">Войдите, чтобы сохранять статьи</h2>
+      <button className="NewsCardPanel__button NewsCardPanel__button_save" onClick={handlePopupOpen}></button>
+      <h2 className="NewsCardPanel__tooltip" onClick={() => <Redirect to={{ path: "/", state: { setLoginPopupOpen: true } }}/>} >Войдите, чтобы сохранять статьи</h2>
     </div>)
 };
 

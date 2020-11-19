@@ -8,28 +8,42 @@ import './styles/__button/NewsCardList__button.css';
 
 // **Функционал
 function NewsCardList(props) {
-  // *получаем все карточки
-  const allCards = props.articles.map((article) => {
-    return article
-  });
+  // *получаем массив найденных новостных карточек
+  const savedNews = JSON.parse(localStorage.getItem('articles'));
+
+  // *получаем массив сохраненных новостных карточек
+  let getNews = JSON.parse(localStorage.getItem('news'));
+
   // *отбираем 3 первых в списке
-  let firstNews = JSON.parse(JSON.stringify(allCards));
-  firstNews.splice(3)
-  const [newsCards, setNewsCards] = useState(firstNews);
-  // *карточки после третьей
-  let otherNews = JSON.parse(JSON.stringify(allCards));
-  const [hiddenNews, setHiddenNews] = useState(otherNews.length);
-  // *подгрузка следующей тройки
-  let moreNews;
-  function getMoreNews() {
-    if (otherNews.length > 3) {
-      otherNews.splice(0, 3);
-      moreNews = JSON.parse(JSON.stringify(otherNews)).slice(0, 3);
-      setHiddenNews(otherNews.length);
-      firstNews = firstNews.concat(moreNews);
-      setNewsCards(firstNews);
+  let firstNews = [];
+  function firstNewsCutter() {
+    if ((getNews !== null) && (getNews !== undefined)) {
+      firstNews = getNews.slice(0, 3);
     }
-    return
+  }
+  firstNewsCutter()
+
+  // *устанавливаем отображаемые на странице карточки
+  const [newsCards, setNewsCards] = useState(firstNews);
+
+  // *карточки после третьей
+  let otherNews = [];
+  function otherNewsCutter() {
+    if ((getNews !== null) && (getNews !== undefined)) {
+      otherNews = getNews.slice(3);
+    }
+  }
+  otherNewsCutter()
+
+  // *скрытые карточки
+  const [hiddenNews, setHiddenNews] = useState(otherNews);
+
+  // *подгрузка следующей тройки
+  function getMoreNews() {
+    const moreNews = hiddenNews.slice(0, 3);
+    const other = hiddenNews.slice(3);
+    setHiddenNews(other);
+    setNewsCards([...newsCards, ...moreNews]);
   }
 
   // **DOM
@@ -37,18 +51,33 @@ function NewsCardList(props) {
     <article className="NewsCardList">
       {props.isSavedNewsPage ?
       <section className='NewsCardList__container'>
-      {props.savedNews.map((article, i) => (
-        <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
+      {savedNews.map((article) => (
+        <NewsCard key={article._id}
+          NewsCard={NewsCard}
+          loggedIn={props.loggedIn}
+          isSavedNewsPage={props.isSavedNewsPage}
+          setArticles={props.setArticles}
+          article={article}
+          keyword={props.keyword}
+          updateSavedNews={props.updateSavedNews} />
       ))}
       </section>:
       <>
         <h1 className="NewsCardList__title">Результаты поиска</h1>
         <section className='NewsCardList__container'>
           {newsCards.map((article, i) => (
-            <NewsCard key={i} article={article} articles={props.articles} updateSavedNews={props.updateSavedNews} savedNews={props.savedNews} loggedIn={props.loggedIn} isSavedNewsPage={props.isSavedNewsPage} NewsCard={NewsCard} />
+            <NewsCard key={i}
+              NewsCard={NewsCard}
+              loggedIn={props.loggedIn}
+              isSavedNewsPage={props.isSavedNewsPage}
+              setArticles={props.setArticles}
+              article={article}
+              keyword={props.keyword}
+              updateSavedNews={props.updateSavedNews}
+              setRegisterPopupOpen={props.setRegisterPopupOpen} />
           ))}
         </section>
-        {hiddenNews > 3 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
+        {hiddenNews.length > 0 ? <button type="button" className="NewsCardList__button" onClick={getMoreNews}>Показать еще</button> : '' }
       </>}
     </article>
   )

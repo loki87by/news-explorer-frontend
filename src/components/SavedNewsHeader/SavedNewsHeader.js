@@ -1,29 +1,45 @@
-// **импорты
+// ***импорты
 import React from 'react';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import './SavedNewsHeader.css';
 import './styles/__title/SavedNewsHeader__title.css';
 import './styles/__caption/SavedNewsHeader__caption.css';
 import './styles/__hashtag-information/SavedNewsHeader__hashtag-information.css';
 
-// **Функционал
-function SavedNewsHeader(props) {
-  // *функция сортировки и отброса повторяющихся хэштэгов
-    // сосчитаем повторяющиеся хэштэги
-    let repeatCounter = props.hashtags.reduce((p, i) => {
-      if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
-      return p; }, {});
-    // отсортируем массив по количеству повторов
-    let arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
-      return repeatCounter[b] - repeatCounter[a]});
-  // *функция выбора вступительного текста по количеству хэштэгов
+// ***Функционал
+function SavedNewsHeader() {
+  const currentUser = React.useContext(CurrentUserContext);
+  // **берем массив из локалки
+  const savedNews = JSON.parse(localStorage.getItem('articles'));
+
+  // **получаем массив хэштэгов
+  const hashtags = savedNews.map((item) => {
+    return item.keyword;
+  })
+
+  // **счетчик количества сохраненных новостей
+  const newsQuantity = savedNews.length;
+
+  // **функция сортировки и отброса повторяющихся хэштэгов
+  // *сосчитаем повторяющиеся хэштэги
+  const repeatCounter = hashtags.reduce((p, i) => {
+    if (!p[i]) { p[i] = 1; } else { p[i] += 1; }
+    return p; }, {});
+  // *отсортируем массив по количеству повторов
+  const arrayNormalizer = Object.keys(repeatCounter).sort((a,b) => {
+    return repeatCounter[b] - repeatCounter[a]});
+
+  // **функция выбора вступительного текста по количеству хэштэгов
   function textCreator() {
     if (arrayNormalizer.length === 1) {
-      return 'По ключевому слову: '
+      return 'По ключевому слову: ';
     } else {
-      return 'По ключевым словам: '
+      return 'По ключевым словам: ';
     }
   }
-  // *функция возврата ТОП-2 хэштэгов
+  textCreator();
+
+  // **функция возврата ТОП-2 хэштэгов
   function hashtagsCreator() {
     if (arrayNormalizer.length === 1) {
       return `${arrayNormalizer[0]}`;
@@ -33,7 +49,8 @@ function SavedNewsHeader(props) {
       return `${arrayNormalizer[0]}, ${arrayNormalizer[1]} `;
     }
   }
-  // *функция возврата хэштегов превышающих ТОП-2
+
+  // **функция возврата хэштегов вне ТОП-2
   function hashtagsExcesser() {
     const excess = arrayNormalizer.length - 2;
     if (arrayNormalizer.length === 3) {
@@ -45,12 +62,12 @@ function SavedNewsHeader(props) {
     }
   }
 
-  // *функция подбора окончаний в зависимости от числительного
+  // **функция подбора окончаний в зависимости от числительного
   let newsQuantityText;
   function newsQuantityTextCreator() {
-    if (props.newsQuantity === 1) {
+    if (newsQuantity === 1) {
       newsQuantityText = 'сохранённая статья';
-    } else if ((props.newsQuantity > 1) && (props.newsQuantity < 5)) {
+    } else if ((newsQuantity > 1) && (newsQuantity < 5)) {
       newsQuantityText = 'сохранённых статьи';
     } else {
       newsQuantityText = 'сохранённых статей';
@@ -58,12 +75,12 @@ function SavedNewsHeader(props) {
   };
   newsQuantityTextCreator()
 
-  // **DOM
+  // ***DOM
   return (
     <article className="SavedNewsHeader">
       <p className="SavedNewsHeader__caption">Сохранённые статьи</p>
-      <h1 className="SavedNewsHeader__title">{`${props.currentUser.name} у вас ${props.newsQuantity} ${newsQuantityText}`}</h1>
-      {props.hashtags.length > 0 ?
+      <h1 className="SavedNewsHeader__title">{`${currentUser.name}, у вас ${newsQuantity} ${newsQuantityText}`}</h1>
+      {hashtags.length > 0 ?
         (arrayNormalizer.length < 3 ? <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b></h2>
         : <h2 className="SavedNewsHeader__hashtag-information">{textCreator()}<b>{hashtagsCreator()}</b>и <b>{hashtagsExcesser()}</b></h2>)
       : ''}
@@ -71,5 +88,5 @@ function SavedNewsHeader(props) {
   )
 };
 
-// **экспорт
+// ***экспорт
 export default SavedNewsHeader;

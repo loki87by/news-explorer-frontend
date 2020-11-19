@@ -15,152 +15,49 @@ import './styles/__link/PopupWithForm__link.css';
 
 // **функционал
 function PopupWithForm(props) {
-
-  // *стейты
-  const [popupName, setPopupName] = React.useState('login');
-  const [isRegisterPopupOpen, setRegisterPopupOpen] = React.useState(false);
-  const [isValidEmail, setValidEmail] = React.useState(false);
-  const [invalidEmailMessage, setInvalidEmailMessage] = React.useState('');
-  const [isValidPassword, setValidPassword] = React.useState(false);
-  const [isValidName, setValidName] = React.useState(false);
-  const [invalidPasswordMessage, setInvalidPasswordMessage] = React.useState('');
-  const [invalidNameMessage, setInvalidNameMessage] = React.useState('');
-  const [userEmail, setUserEmail] = React.useState('');
-  const [userPassword, setUserPassword] = React.useState('');
-  const [userName, setUserName] = React.useState('');
-
-  // *ввод и проверка валидности мыла
-  function handleEmailChange(e) {
-    setUserEmail(e.target.value);
-    const email = e.target.value;
-    const reg = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
-    const test = reg.test(email);
-    if (test) {
-      setValidEmail(true);
-    } else if(email.length < 1) {
-      setValidEmail(false);
-      setInvalidEmailMessage('');
-    } else {
-      setInvalidEmailMessage('email введен некорректно');
-      setValidEmail(false);
-    }
-}
-
-  // *ввод и проверка валидности пароля
-  function handlePasswordChange(e) {
-    setUserPassword(e.target.value);
-    const pass = e.target.value;
-    const reg = /^[a-zA-Z0-9]{6,30}$/;
-    const test = reg.test(pass);
-    if (pass.length === 0) {
-      setInvalidPasswordMessage('');
-      setValidPassword(false);
-    } else if((pass.length < 8) && (pass.length > 0)) {
-      setValidPassword(false);
-      setInvalidPasswordMessage('Пароль слишком короткий');
-    } else if(test) {
-      setInvalidPasswordMessage('');
-      setValidPassword(true);
-    } else {
-      setInvalidPasswordMessage('Пароль может содержать только цифры и буквы');
-      setValidPassword(false);
-    }
-  }
-
-  function handleNameChange(e) {
-    setUserName(e.target.value);
-    const name = e.target.value;
-    if (name.length < 2) {
-      setInvalidNameMessage('Имя должно быть не менее двух символов');
-      setValidName(false);
-    } else if (name.length > 30) {
-      setInvalidNameMessage('Имя должно быть не более 30 символов');
-      setValidName(false);
-    } else {
-      setValidName(false);
-    }
-  }
-
-  // *сабмит формы
-  function loginSubmit() {
-    closeAllPopups();
-  }
-
-  // *сабмит формы при регистрации
-  function registrationSubmit() {
-    closeAllPopups();
-    if (isValidEmail && isValidPassword) {
-      props.registrationAcces();
-    }
-  };
-
-  // *смена формы
-  function changeLink() {
-    if (isRegisterPopupOpen) {
-      closeAllPopups();
-      props.handleLoginClick();
-    } else {
-      setRegisterPopupOpen(true);
-      setPopupName('registration');
-    }
-  };
-
-  // *закрытие модальных окон
-  function closeAllPopups() {
-    props.onClose();
-    setRegisterPopupOpen(false);
-    setPopupName('login');
-    setUserEmail('');
-    setUserPassword('');
-    setUserName('');
-    setInvalidEmailMessage('');
-    setInvalidPasswordMessage('');
-    setInvalidNameMessage('');
-  }
-  // *закрытие по esc
-  function handleEscClose(e) {
-    if (e.key === "Escape") {
-      closeAllPopups();
-    }
-  }
-  // *закрытие по оверлею
-  function handleClickClose(e) {
-    if (e.target.classList.contains('PopupWithForm_opened')) {
-      closeAllPopups();
-    }
-  }
-  // *слушатели закрытий
-  React.useEffect(() => {
-    window.addEventListener('keydown', handleEscClose);
-    window.addEventListener('click', handleClickClose);
-  })
-
-  // **DOM
   return (
-    <section className={`PopupWithForm ${(props.isOpen || isRegisterPopupOpen) && "PopupWithForm_opened"}`} id={popupName}>
-      <form className="PopupWithForm__container" name={popupName} method="POST" action="#" id="PopupWithForm">
-        <button className="PopupWithForm__close" type="button" aria-label="Закрыть" onClick={ closeAllPopups } id="closeAllPopups"></button>
-        <h1 className="PopupWithForm__text">{popupName === 'login' ? 'Вход' : 'Регистрация'}</h1>
+    <section className={`PopupWithForm ${props.isOpen && "PopupWithForm_opened"}`} id={props.name}>
+      <form className="PopupWithForm__container" name={props.name} onSubmit={props.onSubmit} method="POST" action="#" id="PopupWithForm">
+        <button className="PopupWithForm__close" type="reset" aria-label="Закрыть" onClick={props.onClose} id="closeAllPopups"></button>
+        <h1 className="PopupWithForm__text">{props.title}</h1>
         <label htmlFor="email" className="PopupWithForm__label">Email
-          <input type="text" required className="PopupWithForm__input" onChange={e => handleEmailChange(e)} value={userEmail} placeholder="Введите почту" id="email" name="email" />
-          <span className="PopupWithForm__error">{isValidEmail ? ' ' : invalidEmailMessage}</span>
+          <input required type="text"
+          className="PopupWithForm__input"
+          onChange={e => props.handleEmailChange(e)}
+          value={props.userEmail}
+          placeholder="Введите почту"
+          id={props.emailId}
+          name="email"
+          disabled={props.isResponseSending ? true : false } />
+          <span className="PopupWithForm__error">{props.isValidEmail ? ' ' : props.invalidEmailMessage}</span>
         </label>
         <label htmlFor="pass" className="PopupWithForm__label">Пароль
-          <input type="password" required className="PopupWithForm__input" onChange={e => handlePasswordChange(e)} value={userPassword} placeholder="Введите пароль" id="pass" name="pass" />
-          <span className="PopupWithForm__error">{isValidPassword ? ' ' : invalidPasswordMessage}</span>
+          <input required type="password"
+          className="PopupWithForm__input"
+          onChange={e => props.handlePasswordChange(e)}
+          value={props.userPassword}
+          placeholder="Введите пароль"
+          id={props.passiD} name="pass"
+          disabled={props.isResponseSending ? true : false } />
+          <span className="PopupWithForm__error">{props.isValidPassword ? ' ' : props.invalidPasswordMessage}</span>
         </label>
-        {popupName === 'login' ? '' :
-        <>
-          <label htmlFor="name" className="PopupWithForm__label">Имя
-            <input type="name" required className="PopupWithForm__input" onChange={e => handleNameChange(e)} value={userName} placeholder="Введите своё имя" id="name" name="name" />
-            <span className="PopupWithForm__error">{isValidName ? ' ' : invalidNameMessage}</span>
-          </label>
-          <span className="PopupWithForm__error PopupWithForm__error_registrationError">{ props.registrationError || ' ' }</span>
-        </>
-        }
-        <button type="button" disabled={(isValidEmail && isValidPassword) ? false : "disabled"} style={{ backgroundColor: `${(isValidEmail && isValidPassword) ? '' : "#E6E8EB"}`, color: `${(isValidEmail && isValidPassword) ? '' : "#B6BCBF"}` }} onClick={popupName === 'login' ? loginSubmit : registrationSubmit} className="PopupWithForm__submit">{popupName === 'login' ? 'Войти' : 'Зарегистрироваться'}</button>
+        {props.children}
+        <button type="submit" className="PopupWithForm__submit" onClick={props.handleSubmit}
+          disabled={(props.name === 'login' ?
+            (props.isValidEmail && props.isValidPassword) :
+            (props.isValidEmail && props.isValidPassword && props.isValidName))
+              ? false : "disabled"}
+          style={{ backgroundColor: `${(props.name === 'login'
+            ? (props.isValidEmail && props.isValidPassword)
+            : (props.isValidEmail && props.isValidPassword && props.isValidName))
+              ? '' : "#E6E8EB"}`,
+          color: `${(props.name === 'login'
+            ? (props.isValidEmail && props.isValidPassword)
+            : (props.isValidEmail && props.isValidPassword && props.isValidName))
+              ? '' : "#B6BCBF"}` }}>
+        {props.link}</button>
         <p className="PopupWithForm__subsidiary-text">или&nbsp;
-          <button onClick={changeLink} type="button" className="PopupWithForm__subsidiary-text PopupWithForm__link">{popupName === 'login' ? ' Зарегистрироваться' : ' Войти'}</button>
+          <button onClick={props.changeLink} type="button" className="PopupWithForm__subsidiary-text PopupWithForm__link">{props.antilink}</button>
         </p>
       </form>
     </section>

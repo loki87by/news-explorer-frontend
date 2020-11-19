@@ -11,32 +11,24 @@ import './styles/__source/NewsCard__source.css';
 
 // **Функционал
 function NewsCard(props) {
-  const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
-  // *отслеживатель изменения ширины экрана
-  React.useEffect(function() {
-    function resizer() {
-      setScreenWidth(window.innerWidth)
-    };
-    window.addEventListener("resize", resizer);
-    resizer();
-    return () => window.removeEventListener("resize", resizer);
-  });
-
   return (
     <section className="NewsCard">
-      <img className="NewsCard__image" src={require(`../../images/${props.article.image}`)} alt='caption'/>
-      <NewsCardPanel loggedIn={props.loggedIn} savedNews={props.savedNews} updateSavedNews={props.updateSavedNews} article={props.article} articles={props.articles} isSavedNewsPage={props.isSavedNewsPage} />
-      <p className="NewsCard__text-content NewsCard__date">{props.article.date}</p>
-      <h1 className="NewsCard__text-content NewsCard__title">
-        {screenWidth > 1231 ? props.article.name :
-          screenWidth > 325 ?
-            props.article.hit ? 'Национальное достояние – парки' : 'Лесные огоньки: история одной фотографии'
-            : 'Национальное достояние – парки'}</h1>
-      <h2 className="NewsCard__text-content NewsCard__text">
-        {screenWidth > 1203 ? props.article.text :
-          screenWidth < 556 ? 'В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков...'
-          : 'В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складыв...'}</h2>
-      <h3 className="NewsCard__text-content NewsCard__source">{props.article.source}</h3>
+      <a href={props.article.link} target="blank"><img className="NewsCard__image" src={props.article.image} alt='caption'/></a>
+      <NewsCardPanel
+        loggedIn={props.loggedIn}
+        isSavedNewsPage={props.isSavedNewsPage}
+        article={props.article}
+        setArticles={props.setArticles}
+        keyword={props.keyword}
+        saveArticle={props.saveArticle}
+        updateSavedNews={props.updateSavedNews}
+        setRegisterPopupOpen={props.setRegisterPopupOpen} />
+      <a style={{ textDecoration: 'none' }} href={props.article.link} target="blank">
+        <p className="NewsCard__text-content NewsCard__date">{props.article.date}</p>
+        <h1 className="NewsCard__text-content NewsCard__title">{props.article.title}</h1>
+        <h2 className="NewsCard__text-content NewsCard__text">{props.article.text}</h2>
+        <h3 className="NewsCard__text-content NewsCard__source">{props.article.source}</h3>
+      </a>
     </section>
   )
 };

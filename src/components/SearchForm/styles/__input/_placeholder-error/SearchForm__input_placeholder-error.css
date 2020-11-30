@@ -1,0 +1,5 @@
+.SearchForm__input_placeholder-error::placeholder {
+  font-weight: bold;
+  font-size: 125%;
+  color: red;
+}

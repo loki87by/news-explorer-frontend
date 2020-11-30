@@ -1,0 +1,48 @@
+.NewsCard__image{
+  max-width: 100%;
+  height: calc(272 / 400 * 30vw);
+  max-height: 272px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+@media (max-width: 1300px) {
+  .NewsCard__image{
+    max-width: 100%;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .NewsCard__image{
+    /*max-width: 224px;*/
+    max-height: 150px;
+  }
+}
+/*
+@media (max-width: 767px) {
+  .NewsCard__image{
+    max-width: 400px;
+  }
+}*/
+
+@media (max-width: 555px) {
+  .NewsCard__image{
+    max-width: 100%;
+    height: calc(272 / 400 * 100vw);
+  }
+}
+
+@media (max-width: 400px) {
+  .NewsCard__image{
+    max-width: 100%;
+    /*max-height: 196px;*/
+  }
+}
+
+@media (max-width: 325px) {
+  .NewsCard__image{
+    max-height: 196px;
+  }
+}

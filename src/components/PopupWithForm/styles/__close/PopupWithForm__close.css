@@ -1,0 +1,33 @@
+.PopupWithForm__close {
+  position: absolute;
+  right: -46px;
+  top: -46px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url('../../../../images/close.png');
+}
+
+.PopupWithForm__close:hover {
+  opacity: .6;
+}
+
+@media (max-width: 610px) {
+  .PopupWithForm__close {
+    position: fixed;
+    right: 8px;
+    top: 8px;
+  }
+}
+
+@media (max-width: 430px) {
+  .PopupWithForm__close {
+    position: absolute;
+    right: 8px;
+    top: -48px;
+  }
+}

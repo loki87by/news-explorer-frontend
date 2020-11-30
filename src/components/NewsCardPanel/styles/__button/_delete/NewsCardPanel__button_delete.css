@@ -1,0 +1,10 @@
+.NewsCardPanel__button_delete{
+  background-image: url('../../../../../images/trash-unhover.svg');
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.NewsCardPanel__button_delete:hover{
+  background-image: url('../../../../../images/trash.svg');
+}

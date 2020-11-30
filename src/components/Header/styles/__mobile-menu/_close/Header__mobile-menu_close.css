@@ -1,0 +1,11 @@
+.Header__mobile-menu_close{
+  visibility: hidden;
+  background-position: center;
+  background-image: url('../../../../../images/close.png');
+}
+
+@media (max-width: 610px) {
+  .Header__mobile-menu_close{
+    visibility: visible;
+  }
+}

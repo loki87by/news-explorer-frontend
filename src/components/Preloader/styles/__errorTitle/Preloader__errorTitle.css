@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../../../../vendor/fonts/robotoslab-regular.woff') format('woff');
+}
+
+.Preloader__errorTitle{
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  color: #B6BCBF;
+}
+
+@media (max-width: 768px) {
+  .Preloader__errorTitle{
+    margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

@@ -1,0 +1,21 @@
+.SearchForm__text{
+  max-width: 545px;
+  margin-top: 32px;
+  margin-bottom: 0;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .SearchForm__text{
+    max-width: 100%;
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

@@ -1,0 +1,10 @@
+.Preloader__figure{
+  position: relative;
+  margin: 6px 0 40px;
+}
+
+@media (max-width: 768px) {
+  .Preloader__figure{
+    margin-bottom: calc(80 / 768 * 100vw);
+  }
+}

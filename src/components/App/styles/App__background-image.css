@@ -1,0 +1,99 @@
+.App__background-image{
+  background-position-y: top, -13vw;
+  background-position-x: center;
+  background-size: cover;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.5)), to(rgba(0,0,0,.5))), url('../../../images/82f1206f112335e2ee4d938ba64f02d6-min.jpg');
+  background-image: -o-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('../../../images/82f1206f112335e2ee4d938ba64f02d6-min.jpg');
+  background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('../../../images/82f1206f112335e2ee4d938ba64f02d6-min.jpg');
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1370px) {
+  .App__background-image{
+    background-position-y: top, -11vw;
+  }
+}
+
+@media (max-width: 1300px) {
+  .App__background-image{
+    background-position-y: top, -9vw;
+  }
+}
+
+@media (max-width: 1225px) {
+  .App__background-image{
+    background-position-y: top, -7vw;
+  }
+}
+
+@media (max-width: 1150px) {
+  .App__background-image{
+    background-position-y: top, -5vw;
+  }
+}
+
+@media (max-width: 1075px) {
+  .App__background-image{
+    background-position-y: top, -3vw;
+  }
+}
+
+@media (max-width: 1000px) {
+  .App__background-image{
+    background-position-y: top, -1vw;
+  }
+}
+
+@media (max-width: 950px) {
+  .App__background-image{
+    background-position-y: top;
+  }
+}
+
+@media (max-width: 768px) {
+  .App__background-image{
+    background-position-y: top, -7vw;
+  }
+}
+
+@media (max-width: 745px) {
+  .App__background-image{
+    background-position-y: top, -6vw;
+  }
+}
+
+@media (max-width: 723px) {
+  .App__background-image{
+    background-position-y: top, -5vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .App__background-image{
+    background-position-y: top, -4vw;
+  }
+}
+
+@media (max-width: 677px) {
+  .App__background-image{
+    background-position-y: top, -3vw;
+  }
+}
+
+@media (max-width: 655px) {
+  .App__background-image{
+    background-position-y: top, -2vw;
+  }
+}
+
+@media (max-width: 655px) {
+  .App__background-image{
+    background-position-y: top;
+  }
+}
+
+@media (max-width: 610px) {
+  .App__background-image{
+    background-position-y: top;
+  }
+}

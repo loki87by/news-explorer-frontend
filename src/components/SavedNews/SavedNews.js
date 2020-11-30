@@ -14,7 +14,8 @@ function SavedNews(props) {
   return (
     <main className="SavedNews">
       <CurrentUserContext.Provider value={currentUser}>
-       <SavedNewsHeader />
+       <SavedNewsHeader
+       loggedIn={props.loggedIn} />
       </CurrentUserContext.Provider>
       <NewsCardList
         loggedIn={props.loggedIn}

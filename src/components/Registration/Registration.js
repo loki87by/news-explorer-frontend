@@ -39,7 +39,7 @@ function Registration(props) {
       isValidName={props.isValidName}
       invalidNameMessage={props.invalidNameMessage}
       handleNameChange={props.handleNameChange}
-      isResponseSending={props.isResponseSending} children={
+      isRequestSending={props.isRequestSending} children={
         <>
         <label htmlFor="name" className="PopupWithForm__label">Имя
             <input required type="name" className="PopupWithForm__input" onChange={e => props.handleNameChange(e)} value={props.userName}

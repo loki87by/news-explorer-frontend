@@ -11,10 +11,17 @@
   }
 }
 
+@media (max-width: 768px) {
+  .NewsCardList__container{
+    /*grid-template-columns: repeat(2, 1fr);*/
+    max-width: calc(100vw - 80px);
+  }
+}
+
 @media (max-width: 767px) {
   .NewsCardList__container{
     grid-template-columns: repeat(2, 1fr);
-    max-width: calc(100vw - 80px);
+    /*max-width: calc(100vw - 80px);*/
   }
 }
 

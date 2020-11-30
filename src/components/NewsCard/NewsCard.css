@@ -39,7 +39,7 @@
 
 @media (max-width: 768px) {
   .NewsCard{
-    max-width: 224px;
+    max-width: calc((100vw - 96px) / 3);
   }
 }
 

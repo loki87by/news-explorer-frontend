@@ -16,6 +16,18 @@
   }
 }
 
+@media (max-width: 767px) {
+  .NewsCardList{
+    padding: 40px 104px;
+  }
+}
+
+@media (max-width: 666px) {
+  .NewsCardList{
+    padding: 40px;
+  }
+}
+
 @media (max-width: 400px) {
   .NewsCardList{
     padding: 24px 16px;

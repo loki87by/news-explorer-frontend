@@ -28,7 +28,7 @@ function PopupWithForm(props) {
           placeholder="Введите почту"
           id={props.emailId}
           name="email"
-          disabled={props.isResponseSending ? true : false } />
+          disabled={props.isRequestSending ? true : false } />
           <span className="PopupWithForm__error">{props.isValidEmail ? ' ' : props.invalidEmailMessage}</span>
         </label>
         <label htmlFor="pass" className="PopupWithForm__label">Пароль
@@ -38,7 +38,7 @@ function PopupWithForm(props) {
           value={props.userPassword}
           placeholder="Введите пароль"
           id={props.passiD} name="pass"
-          disabled={props.isResponseSending ? true : false } />
+          disabled={props.isRequestSending ? true : false } />
           <span className="PopupWithForm__error">{props.isValidPassword ? ' ' : props.invalidPasswordMessage}</span>
         </label>
         {props.children}

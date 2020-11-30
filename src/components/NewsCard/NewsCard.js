@@ -13,7 +13,7 @@ import './styles/__source/NewsCard__source.css';
 function NewsCard(props) {
   return (
     <section className="NewsCard">
-      <a href={props.article.link} target="blank"><img className="NewsCard__image" src={props.article.image} alt='caption'/></a>
+      <a href={props.article.link} target="blank" style={{ display: 'contents' }}><img className="NewsCard__image" src={props.article.image} alt='caption'/></a>
       <NewsCardPanel
         loggedIn={props.loggedIn}
         isSavedNewsPage={props.isSavedNewsPage}

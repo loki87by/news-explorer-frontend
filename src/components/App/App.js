@@ -335,82 +335,41 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
         <Switch>
-        <Route exact path='/'>
-          <div className='App__background App__background-image'>
-            <Header
-              loggedIn={loggedIn}
-              handleLoginClick={handleLoginClick}
-              isSavedNewsPage={isSavedNewsPage}
-              setSavedNewsPage={setSavedNewsPage}
-              logOut={logOut}/>
-            <ScrollTo>
-            {({ scroll }) => (
-            <SearchForm scroller={() => scroll({ y: 550, smooth: true })}
-              setSavedNewsPage={setSavedNewsPage}
-              setResponseSending={setResponseSending}
-              isDataLoaded={isDataLoaded}
-              setDataLoaded={setDataLoaded}
-              setKeyword={setKeyword}
-              setArticles={setArticles}
-              setSearchError={setSearchError} />
-            )}
-            </ScrollTo>
-          </div>
-            <Main
-              loggedIn={loggedIn}
-              isSavedNewsPage={isSavedNewsPage}
-              isResponseSending={isResponseSending}
-              isDataLoaded={isDataLoaded}
-              articles={articles}
-              setArticles={setArticles}
-              searchError={searchError}
-              savedNews={savedNews}
-              keyword={keyword}
-              updateSavedNews={updateSavedNews}
-              setRegisterPopupOpen={setRegisterPopupOpen} />
-            <Login
-              isOpen={isLoginPopupOpen}
-              onLogin={onLogin}
-              closeAllPopups={handlePopupClose}
-              userEmail={userEmail}
-              userPassword={userPassword}
-              changeLink={changeLink}
-              isValidEmail={isValidEmail}
-              invalidEmailMessage={invalidEmailMessage}
-              handleEmailChange={handleEmailChange}
-              isValidPassword={isValidPassword}
-              invalidPasswordMessage={invalidPasswordMessage}
-              handlePasswordChange={handlePasswordChange}
-              loginError={loginError}
-              isResponseSending={isResponseSending}
-              setResponseSending={setResponseSending}
-            />
-            <Registration
-              isOpen={isRegisterPopupOpen}
-              closeAllPopups={handlePopupClose}
-              onRegister={handleRegisterClick}
-              userEmail={userEmail}
-              userPassword={userPassword}
-              userName={userName}
-              changeLink={changeLink}
-              isValidEmail={isValidEmail}
-              invalidEmailMessage={invalidEmailMessage}
-              handleEmailChange={handleEmailChange}
-              isValidPassword={isValidPassword}
-              invalidPasswordMessage={invalidPasswordMessage}
-              handlePasswordChange={handlePasswordChange}
-              isValidName={isValidName}
-              invalidNameMessage={invalidNameMessage}
-              handleNameChange={handleNameChange}
-              registrationError={registrationError}
-              isRequestSending={isRequestSending}
-              setRequestSending={setRequestSending}
-            />
-            <TooltipPopup isOpen={isInformationPopupOpen}
-              handleLoginClick={handleLoginClick}
-              onClose={handlePopupClose} />
-        </Route>
-          <Route path='/saved-pages'>
+          <Route exact path='/'>
+            <div className='App__background App__background-image'>
+              <Header
+                loggedIn={loggedIn}
+                handleLoginClick={handleLoginClick}
+                isSavedNewsPage={isSavedNewsPage}
+                setSavedNewsPage={setSavedNewsPage}
+                logOut={logOut}/>
+              <ScrollTo>
+              {({ scroll }) => (
+              <SearchForm scroller={() => scroll({ y: 550, smooth: true })}
+                setSavedNewsPage={setSavedNewsPage}
+                setResponseSending={setResponseSending}
+                isDataLoaded={isDataLoaded}
+                setDataLoaded={setDataLoaded}
+                setKeyword={setKeyword}
+                setArticles={setArticles}
+                setSearchError={setSearchError} />
+              )}
+              </ScrollTo>
+            </div>
+              <Main
+                loggedIn={loggedIn}
+                isSavedNewsPage={isSavedNewsPage}
+                isResponseSending={isResponseSending}
+                isDataLoaded={isDataLoaded}
+                articles={articles}
+                setArticles={setArticles}
+                searchError={searchError}
+                savedNews={savedNews}
+                keyword={keyword}
+                updateSavedNews={updateSavedNews}
+                setRegisterPopupOpen={setRegisterPopupOpen} />
+          </Route>
+          <Route>
             <div className='App__background'>
               <Header
                 loggedIn={loggedIn}
@@ -426,12 +385,54 @@ function App() {
                 isSavedNewsPage={isSavedNewsPage}
                 setSavedNewsPage={setSavedNewsPage}
                 setArticles={setArticles}
-                updateSavedNews={updateSavedNews} />
+                updateSavedNews={updateSavedNews}
+                handleLoginClick={handleLoginClick} />
           </Route>
           <Route>
-            {loggedIn ? <Redirect to="/saved-pages"/> : <Redirect to={{ path: "/", state: { setRegisterPopupOpen: true } }}/>}
+          {loggedIn ? <Redirect to="/saved-pages"/> : <Redirect to={{ path: "/", state: { setRegisterPopupOpen: true } }}/>}
           </Route>
         </Switch>
+        <Login
+          isOpen={isLoginPopupOpen}
+          onLogin={onLogin}
+          closeAllPopups={handlePopupClose}
+          userEmail={userEmail}
+          userPassword={userPassword}
+          changeLink={changeLink}
+          isValidEmail={isValidEmail}
+          invalidEmailMessage={invalidEmailMessage}
+          handleEmailChange={handleEmailChange}
+          isValidPassword={isValidPassword}
+          invalidPasswordMessage={invalidPasswordMessage}
+          handlePasswordChange={handlePasswordChange}
+          loginError={loginError}
+          isRequestSending={isRequestSending}
+          setRequestSending={setRequestSending}
+        />
+        <Registration
+          isOpen={isRegisterPopupOpen}
+          closeAllPopups={handlePopupClose}
+          onRegister={handleRegisterClick}
+          userEmail={userEmail}
+          userPassword={userPassword}
+          userName={userName}
+          changeLink={changeLink}
+          isValidEmail={isValidEmail}
+          invalidEmailMessage={invalidEmailMessage}
+          handleEmailChange={handleEmailChange}
+          isValidPassword={isValidPassword}
+          invalidPasswordMessage={invalidPasswordMessage}
+          handlePasswordChange={handlePasswordChange}
+          isValidName={isValidName}
+          invalidNameMessage={invalidNameMessage}
+          handleNameChange={handleNameChange}
+          registrationError={registrationError}
+          isRequestSending={isRequestSending}
+          setRequestSending={setRequestSending}
+        />
+        <TooltipPopup isOpen={isInformationPopupOpen}
+          handleLoginClick={handleLoginClick}
+          onClose={handlePopupClose} />
         <Footer />
       </div>
     </CurrentUserContext.Provider>

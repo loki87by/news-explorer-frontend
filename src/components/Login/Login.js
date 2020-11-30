@@ -7,6 +7,7 @@ function Login(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    props.setRequestSending(true)
     props.onLogin();
   }
 
@@ -30,7 +31,7 @@ function Login(props) {
       invalidPasswordMessage={props.invalidPasswordMessage}
       handlePasswordChange={props.handlePasswordChange}
       isValidName={props.isValidName}
-      isResponseSending={props.isResponseSending} children={
+      isRequestSending={props.isRequestSending} children={
         <span className="PopupWithForm__error PopupWithForm__error_loginError">{ props.loginError }</span>
       } />
   );

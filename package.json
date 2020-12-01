@@ -2,6 +2,7 @@
   "name": "news-explorer-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://loki87by.github.io/news-explorer-frontend/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,7 +11,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.3",
     "react-scroll": "^1.8.1",
     "react-scroll-to": "^3.0.0-beta.6"
   },

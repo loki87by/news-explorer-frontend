@@ -3,7 +3,7 @@ import { API_KEY, DATE_NORMALIZER } from './consts.js';
 export const getNews = (keyword) => {
 
   // *настраиваем url запроса
-  const BASE_URL = 'http://newsapi.org/v2/everything?' +
+  const BASE_URL = 'https://newsapi.org/v2/everything?' +
     `q=${keyword}&` +
     `from=${DATE_NORMALIZER}&` +
     'sortBy=popularity&' +

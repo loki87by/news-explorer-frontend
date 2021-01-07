@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.diplom.students.nomoreparties.co';
+export const BASE_URL = 'http://api.diplomus.students.nomoreparties.xyz';
 // *рега
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {

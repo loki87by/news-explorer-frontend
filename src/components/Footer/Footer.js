@@ -20,9 +20,9 @@ function Footer() {
         <li style={{ listStyle: 'none' }}>
           <Link to='/' className="Footer__text-link">Главная</Link>
         </li>
-        <li style={{ listStyle: 'none' }}>
+        {/* <li style={{ listStyle: 'none' }}>
           <a href='https://praktikum.yandex.ru/' className="Footer__text-link" target="blank">Яндекс.Практикум</a>
-        </li>
+        </li> */}
         <li style={{ listStyle: 'none' }}>
           <a href='https://github.com/loki87by' className="Footer__social-link Footer__social-link_mobile-position" target="blank">
             <img src={ githubLogo } alt='github' />
